@@ -15,6 +15,7 @@
 		1F63F67E2DD8495700A31BC1 /* myBrowser_UIKitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F63F67D2DD8495700A31BC1 /* myBrowser_UIKitTests.swift */; };
 		1F63F6882DD8495700A31BC1 /* myBrowser_UIKitUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F63F6872DD8495700A31BC1 /* myBrowser_UIKitUITests.swift */; };
 		1F63F68A2DD8495700A31BC1 /* myBrowser_UIKitUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F63F6892DD8495700A31BC1 /* myBrowser_UIKitUITestsLaunchTests.swift */; };
+		1F63F6972DD84E7C00A31BC1 /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F63F6962DD84E7C00A31BC1 /* WebViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +48,7 @@
 		1F63F6832DD8495700A31BC1 /* myBrowser_UIKitUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = myBrowser_UIKitUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		1F63F6872DD8495700A31BC1 /* myBrowser_UIKitUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = myBrowser_UIKitUITests.swift; sourceTree = "<group>"; };
 		1F63F6892DD8495700A31BC1 /* myBrowser_UIKitUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = myBrowser_UIKitUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		1F63F6962DD84E7C00A31BC1 /* WebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,6 +99,7 @@
 		1F63F6672DD8495500A31BC1 /* myBrowser_UIKit */ = {
 			isa = PBXGroup;
 			children = (
+				1F63F6982DD8588D00A31BC1 /* WebViewController */,
 				1F63F6682DD8495500A31BC1 /* AppDelegate.swift */,
 				1F63F66A2DD8495500A31BC1 /* ViewController.swift */,
 				1F63F66F2DD8495700A31BC1 /* Assets.xcassets */,
@@ -122,6 +125,14 @@
 				1F63F6892DD8495700A31BC1 /* myBrowser_UIKitUITestsLaunchTests.swift */,
 			);
 			path = myBrowser_UIKitUITests;
+			sourceTree = "<group>";
+		};
+		1F63F6982DD8588D00A31BC1 /* WebViewController */ = {
+			isa = PBXGroup;
+			children = (
+				1F63F6962DD84E7C00A31BC1 /* WebViewController.swift */,
+			);
+			path = WebViewController;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -257,6 +268,7 @@
 				1F63F66E2DD8495500A31BC1 /* myBrowser_UIKit.xcdatamodeld in Sources */,
 				1F63F66B2DD8495500A31BC1 /* ViewController.swift in Sources */,
 				1F63F6692DD8495500A31BC1 /* AppDelegate.swift in Sources */,
+				1F63F6972DD84E7C00A31BC1 /* WebViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

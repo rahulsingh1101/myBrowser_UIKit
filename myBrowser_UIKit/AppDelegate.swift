@@ -10,11 +10,27 @@ import Cocoa
 @main
 class AppDelegate: NSObject, NSApplicationDelegate {
 
-    
-
+    var window: NSWindow!
 
     func applicationDidFinishLaunching(_ aNotification: Notification) {
-        // Insert code here to initialize your application
+        if let screen = NSScreen.main {
+            let visibleFrame = screen.visibleFrame
+            
+            window = NSWindow(
+                contentRect: visibleFrame,
+                styleMask: [.titled, .closable, .resizable, .miniaturizable],
+                backing: .buffered,
+                defer: false
+            )
+            window.title = "My macOS Browser"
+            window.makeKeyAndOrderFront(nil)
+            
+            // Set your main view controller here
+            window.contentViewController = ViewController()
+            
+            // Position and resize window to match the screen’s visible area
+            window.setFrame(visibleFrame, display: true)
+        }
     }
 
     func applicationWillTerminate(_ aNotification: Notification) {
