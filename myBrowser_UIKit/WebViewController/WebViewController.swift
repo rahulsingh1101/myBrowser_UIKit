@@ -7,6 +7,7 @@
 
 import Cocoa
 import WebKit
+import CoreDataManager
 
 final class WebViewController: NSViewController {
     let webView = WKWebView()
@@ -32,6 +33,9 @@ extension WebViewController: WKNavigationDelegate {
     // Called when loading finishes successfully
     func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
         print("debug :: Finished loading. ::\(webView.url)")
+        let fileManager = JSONFileManager<SearchResult>(fileName: "SearchUrl")
+        let searchItem = SearchResult(searchUrl: webView.url?.absoluteString ?? "")
+        fileManager.add(searchItem)
         delegate?.updateSearchBar(with: webView.url?.absoluteString ?? "")
     }
 
@@ -44,4 +48,8 @@ extension WebViewController: WKNavigationDelegate {
     func webView(_ webView: WKWebView, didFailProvisionalNavigation navigation: WKNavigation!, withError error: Error) {
         print("debug :: Failed to start loading: \(error.localizedDescription)")
     }
+}
+
+struct SearchResult: Codable {
+    let searchUrl: String
 }

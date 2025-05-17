@@ -7,6 +7,7 @@
 
 import Cocoa
 import WebKit
+import CoreDataManager
 
 protocol ViewControllerDelegate: AnyObject {
     func updateSearchBar(with searchValue: String)
@@ -76,6 +77,9 @@ final class ViewController: NSViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let result = JSONFileManager<SearchResult>(fileName: "SearchUrl").getAll()
+        
     }
 
     override var representedObject: Any? {

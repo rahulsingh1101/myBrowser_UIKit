@@ -1,0 +1,6 @@
+framework module Pods_myBrowser_UIKit {
+  umbrella header "Pods-myBrowser_UIKit-umbrella.h"
+
+  export *
+  module * { export * }
+}
