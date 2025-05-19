@@ -30,4 +30,11 @@ final class ManageWindowControllerModel {
     func getCurrentWindow() -> BWWindowController? {
         return currentWindow
     }
+    
+    func isWindowAlreadyPresent(_ identifier: String) -> Bool {
+        let value = windowControllers.first {
+            $0.identifier == identifier
+        }
+        return value != nil
+    }
 }

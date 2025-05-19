@@ -149,9 +149,6 @@ extension PreloadWebsitesController: OpenUrlProtocol {
     func openAt(_ index: Int?) {
         if let index {
             let item = items[index]
-//            let appDelegate = NSApp.delegate as! AppDelegate
-            let app = NSApplication.shared
-//            let delegate = app.delegate as? AppDelegate
             let appDelegate = NSApplication.shared.delegate as? AppDelegate
             appDelegate?.openNewWindow(identifier: item.url, url: item.url)
         }

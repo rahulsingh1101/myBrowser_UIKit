@@ -22,10 +22,14 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
     
     fileprivate func loadUrlLoadingWindowController(identifier: String, model: UrlLoadingViewController.Model) {
-        windowController = UrlLoadingWindowController(identifier: NSUserInterfaceItemIdentifier(identifier).rawValue, model: model)
-        windowController.delegate = self
-        windowController?.showWindow(self)
-        manageWindow.add(windowController)
+        if !manageWindow.isWindowAlreadyPresent(identifier) {
+            windowController = UrlLoadingWindowController(identifier: NSUserInterfaceItemIdentifier(identifier).rawValue, model: model)
+            windowController.delegate = self
+            windowController?.showWindow(self)
+            manageWindow.add(windowController)
+        } else {
+            windowController?.showWindow(self)
+        }
     }
     
     func applicationDidFinishLaunching(_ aNotification: Notification) {
