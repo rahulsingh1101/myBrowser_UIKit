@@ -7,11 +7,11 @@
 
 import Cocoa
 
-protocol DefaultWindowControllerDelegate: AnyObject {
+protocol WindowDelegate: AnyObject {
     func windowWillClose()
 }
 
-final class DefaultWindowController: BWWindowController, NSWindowDelegate {
+final class PreloadWindowController: BWWindowController, NSWindowDelegate {
     init(identifier: String) {
         let viewController = ViewController()
         let window = NSWindow(contentViewController: viewController)

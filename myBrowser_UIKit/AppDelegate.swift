@@ -15,14 +15,14 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     private let manageWindow = ManageWindowControllerModel()
 
     fileprivate func loadDefaultWindowController(identifier: String) {
-        windowController = DefaultWindowController(identifier: NSUserInterfaceItemIdentifier(identifier).rawValue)
+        windowController = PreloadWindowController(identifier: NSUserInterfaceItemIdentifier(identifier).rawValue)
         windowController.delegate = self
         windowController?.showWindow(self)
         manageWindow.add(windowController)
     }
     
-    fileprivate func loadUrlLoadingWindowController(identifier: String) {
-        windowController = UrlLoadingWindowController(identifier: NSUserInterfaceItemIdentifier(identifier).rawValue)
+    fileprivate func loadUrlLoadingWindowController(identifier: String, model: UrlLoadingViewController.Model) {
+        windowController = UrlLoadingWindowController(identifier: NSUserInterfaceItemIdentifier(identifier).rawValue, model: model)
         windowController.delegate = self
         windowController?.showWindow(self)
         manageWindow.add(windowController)
@@ -40,7 +40,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     func openNewWindow(_ sender: NSApplication) {
         let currentWindowIdentifier = manageWindow.getCurrentWindow()?.identifier
         let windows = sender.windows.compactMap {
-            $0.windowController as? DefaultWindowController
+            $0.windowController as? PreloadWindowController
         }.first {
             $0.identifier == currentWindowIdentifier
         }
@@ -50,7 +50,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
     
     func openNewWindow(identifier: String, url: String) {
-        loadUrlLoadingWindowController(identifier: identifier)
+        loadUrlLoadingWindowController(identifier: identifier, model: .init(urlToLoad: url))
     }
 
     func applicationWillTerminate(_ aNotification: Notification) {
@@ -160,7 +160,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
 }
 
-extension AppDelegate: DefaultWindowControllerDelegate {
+extension AppDelegate: WindowDelegate {
     func windowWillClose() {
         manageWindow.remove()
     }

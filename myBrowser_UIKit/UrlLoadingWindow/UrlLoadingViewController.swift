@@ -8,6 +8,9 @@
 import Cocoa
 
 final class UrlLoadingViewController: NSViewController {
+    struct Model {
+        let urlToLoad: String
+    }
 
     let searchField = NSSearchField()
     let webViewController = WebViewController()
@@ -49,6 +52,11 @@ final class UrlLoadingViewController: NSViewController {
             searchField.heightAnchor.constraint(equalToConstant: 30)
         ])
         webViewController.delegate = self
+    }
+    
+    func preloadClass(data: Model) {
+        searchField.stringValue = data.urlToLoad
+//        searchField
     }
     
     @objc func loadURL() {

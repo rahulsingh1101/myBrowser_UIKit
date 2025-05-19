@@ -10,8 +10,9 @@ import Cocoa
 final class UrlLoadingWindowController: BWWindowController, NSWindowDelegate {
 //    weak var delegate: DefaultWindowControllerDelegate?
 
-    init(identifier: String) {
+    init(identifier: String, model: UrlLoadingViewController.Model) {
         let viewController = UrlLoadingViewController()
+        viewController.preloadClass(data: model)
         let window = NSWindow(contentViewController: viewController)
         let visibleFrame = NSScreen.main!.visibleFrame
         window.setContentSize(visibleFrame.size)
