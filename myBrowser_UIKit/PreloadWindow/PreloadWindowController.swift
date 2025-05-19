@@ -7,7 +7,7 @@
 
 import Cocoa
 
-protocol WindowDelegate: AnyObject {
+protocol WindowActionDelegate: AnyObject {
     func windowWillClose(_ window: BWWindowController)
     func windowDidBecomekey(_ window: BWWindowController)
 }

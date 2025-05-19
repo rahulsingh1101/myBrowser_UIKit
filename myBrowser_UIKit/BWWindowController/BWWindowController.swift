@@ -9,7 +9,7 @@ import Cocoa
 
 class BWWindowController: NSWindowController {
     let identifier: String
-    weak var delegate: WindowDelegate?
+    weak var delegate: WindowActionDelegate?
     
     init(window: NSWindow, identifier: String) {
         self.identifier = identifier

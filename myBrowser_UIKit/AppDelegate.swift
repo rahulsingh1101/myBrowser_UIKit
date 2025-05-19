@@ -166,7 +166,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
 }
 
-extension AppDelegate: WindowDelegate {
+extension AppDelegate: WindowActionDelegate {
     func windowWillClose(_ window: BWWindowController) {
         manageWindow.remove(window)
     }
