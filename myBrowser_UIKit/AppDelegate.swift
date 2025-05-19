@@ -11,31 +11,31 @@ import Cocoa
 class AppDelegate: NSObject, NSApplicationDelegate {
 
     var window: NSWindow!
-    var windowController: BWWindowController!
+    var windowController: BWWindowControllerProtocol!
     private let manageWindow = ManageWindowControllerModel()
-
-    fileprivate func loadDefaultWindowController(identifier: String) {
-        windowController = PreloadWindowController(identifier: NSUserInterfaceItemIdentifier(identifier).rawValue)
-        windowController.delegate = self
-        windowController?.showWindow(self)
-        manageWindow.add(windowController)
-    }
     
-    fileprivate func loadUrlLoadingWindowController(identifier: String, model: UrlLoadingViewController.Model) {
+    fileprivate func loadWindow(
+        identifier: String,
+        createWindowController: () -> BWWindowControllerProtocol
+    ) {
         let (isPresent, window) = manageWindow.isWindowAlreadyPresent(identifier)
+        
         if !isPresent {
-            windowController = UrlLoadingWindowController(identifier: NSUserInterfaceItemIdentifier(identifier).rawValue, model: model)
-            windowController.delegate = self
-            windowController?.showWindow(self)
-            manageWindow.add(windowController)
+            let controller = createWindowController()
+            controller.delegate = self
+            controller.showWindoww(self)
+            manageWindow.add(controller)
+            windowController = controller
         } else if let window {
-            window.showWindow(self)
+            window.showWindoww(self)
             manageWindow.updateCurrentWindow(window)
         }
     }
     
     func applicationDidFinishLaunching(_ aNotification: Notification) {
-        loadDefaultWindowController(identifier: #function)
+        loadWindow(identifier: #function) {
+            return PreloadWindowController(identifier: NSUserInterfaceItemIdentifier(#function).rawValue)
+        }
     }
     
     func applicationShouldHandleReopen(_ sender: NSApplication, hasVisibleWindows flag: Bool) -> Bool {
@@ -51,12 +51,16 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             $0.identifier == currentWindowIdentifier
         }
         if windows == nil {
-            loadDefaultWindowController(identifier: #function)
+            loadWindow(identifier: #function) {
+                return PreloadWindowController(identifier: NSUserInterfaceItemIdentifier(#function).rawValue)
+            }
         }
     }
     
     func openNewWindow(identifier: String, url: String) {
-        loadUrlLoadingWindowController(identifier: identifier, model: .init(urlToLoad: url))
+        loadWindow(identifier: identifier) {
+            return UrlLoadingWindowController(identifier: NSUserInterfaceItemIdentifier(identifier).rawValue, model: .init(urlToLoad: url))
+        }
     }
 
     func applicationWillTerminate(_ aNotification: Notification) {

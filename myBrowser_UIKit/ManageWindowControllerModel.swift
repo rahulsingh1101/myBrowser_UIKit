@@ -12,10 +12,10 @@ enum ManageWindowErrors: Error {
 }
 
 final class ManageWindowControllerModel {
-    var windowControllers: [BWWindowController] = []
-    private var currentWindow: BWWindowController?
+    var windowControllers: [BWWindowControllerProtocol] = []
+    private var currentWindow: BWWindowControllerProtocol?
     
-    func add(_ window: BWWindowController) {
+    func add(_ window: BWWindowControllerProtocol) {
         windowControllers.append(window)
         currentWindow = window
     }
@@ -27,18 +27,18 @@ final class ManageWindowControllerModel {
         currentWindow = nil
     }
     
-    func getCurrentWindow() -> BWWindowController? {
+    func getCurrentWindow() -> BWWindowControllerProtocol? {
         return currentWindow
     }
     
-    func isWindowAlreadyPresent(_ identifier: String) -> (isPresent: Bool, window: BWWindowController?) {
+    func isWindowAlreadyPresent(_ identifier: String) -> (isPresent: Bool, window: BWWindowControllerProtocol?) {
         let value = windowControllers.first {
             $0.identifier == identifier
         }
         return (value != nil, value)
     }
     
-    func updateCurrentWindow(_ window: BWWindowController) {
+    func updateCurrentWindow(_ window: BWWindowControllerProtocol) {
         if currentWindow?.identifier == window.identifier {
             return
         }

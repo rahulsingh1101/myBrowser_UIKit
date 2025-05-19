@@ -12,7 +12,7 @@ protocol WindowActionDelegate: AnyObject {
     func windowDidBecomekey(_ window: BWWindowController)
 }
 
-final class PreloadWindowController: BWWindowController, NSWindowDelegate {
+final class PreloadWindowController: BWWindowController {
     init(identifier: String) {
         let viewController = ViewController()
         let window = NSWindow(contentViewController: viewController)
@@ -21,7 +21,6 @@ final class PreloadWindowController: BWWindowController, NSWindowDelegate {
         window.styleMask = [.titled, .closable, .resizable, .miniaturizable]
         window.title = "My Custom Window"
         super.init(window: window, identifier: identifier)
-        self.window?.delegate = self
     }
     
     required init?(coder: NSCoder) {
@@ -30,13 +29,5 @@ final class PreloadWindowController: BWWindowController, NSWindowDelegate {
     
     override func windowDidLoad() {
         super.windowDidLoad()
-    }
-
-    func windowWillClose(_ notification: Notification) {
-        delegate?.windowWillClose(self)
-    }
-    
-    func windowDidBecomeKey(_ notification: Notification) {
-        delegate?.windowDidBecomekey(self)
     }
 }

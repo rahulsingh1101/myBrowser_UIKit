@@ -7,7 +7,7 @@
 
 import Cocoa
 
-final class UrlLoadingWindowController: BWWindowController, NSWindowDelegate {
+final class UrlLoadingWindowController: BWWindowController {
     init(identifier: String, model: UrlLoadingViewController.Model) {
         let viewController = UrlLoadingViewController()
         viewController.preloadClass(data: model)
@@ -26,13 +26,5 @@ final class UrlLoadingWindowController: BWWindowController, NSWindowDelegate {
     
     override func windowDidLoad() {
         super.windowDidLoad()
-    }
-
-    func windowWillClose(_ notification: Notification) {
-        delegate?.windowWillClose(self)
-    }
-    
-    func windowDidBecomeKey(_ notification: Notification) {
-        delegate?.windowDidBecomekey(self)
     }
 }
