@@ -25,6 +25,7 @@
 		1F63F6FF2DDB3ECC00A31BC1 /* BWWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F63F6FE2DDB3ECC00A31BC1 /* BWWindowController.swift */; };
 		1FB273CF2DDB54840098D73A /* UrlLoadingWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FB273CE2DDB54840098D73A /* UrlLoadingWindowController.swift */; };
 		1FB273D12DDB55090098D73A /* UrlLoadingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FB273D02DDB55090098D73A /* UrlLoadingViewController.swift */; };
+		1FB273D52DDB7CDC0098D73A /* WindowActionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FB273D42DDB7CDC0098D73A /* WindowActionDelegate.swift */; };
 		49F3D6DCF4CD5984163742C4 /* Pods_myBrowser_UIKit_myBrowser_UIKitUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E3AFB3105E922ACFAE4EC9E9 /* Pods_myBrowser_UIKit_myBrowser_UIKitUITests.framework */; };
 		6685C91DB4A1E6D5EA1C2223 /* Pods_myBrowser_UIKitTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FB813E025D5DAEC51597805C /* Pods_myBrowser_UIKitTests.framework */; };
 		E789662E0AF6F9A1D3CC3222 /* Pods_myBrowser_UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 51B4DA391A153C4F1F7DB1F9 /* Pods_myBrowser_UIKit.framework */; };
@@ -71,6 +72,7 @@
 		1F63F6FE2DDB3ECC00A31BC1 /* BWWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BWWindowController.swift; sourceTree = "<group>"; };
 		1FB273CE2DDB54840098D73A /* UrlLoadingWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UrlLoadingWindowController.swift; sourceTree = "<group>"; };
 		1FB273D02DDB55090098D73A /* UrlLoadingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UrlLoadingViewController.swift; sourceTree = "<group>"; };
+		1FB273D42DDB7CDC0098D73A /* WindowActionDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WindowActionDelegate.swift; sourceTree = "<group>"; };
 		271DE9A60BCE4966CAF9E5F1 /* Pods-myBrowser_UIKit-myBrowser_UIKitUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-myBrowser_UIKit-myBrowser_UIKitUITests.debug.xcconfig"; path = "Target Support Files/Pods-myBrowser_UIKit-myBrowser_UIKitUITests/Pods-myBrowser_UIKit-myBrowser_UIKitUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		442754FD8EF0BAC301F21440 /* Pods-myBrowser_UIKit.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-myBrowser_UIKit.release.xcconfig"; path = "Target Support Files/Pods-myBrowser_UIKit/Pods-myBrowser_UIKit.release.xcconfig"; sourceTree = "<group>"; };
 		51B4DA391A153C4F1F7DB1F9 /* Pods_myBrowser_UIKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_myBrowser_UIKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -147,6 +149,7 @@
 		1F63F6672DD8495500A31BC1 /* myBrowser_UIKit */ = {
 			isa = PBXGroup;
 			children = (
+				1FB273D32DDB7CC50098D73A /* Delegates */,
 				1F63F6F92DDB320B00A31BC1 /* BWWindowController */,
 				1FB273CD2DDB539D0098D73A /* UrlLoadingWindow */,
 				1F63F6ED2DDB10F700A31BC1 /* PreloadWindow */,
@@ -214,6 +217,14 @@
 				1FB273D02DDB55090098D73A /* UrlLoadingViewController.swift */,
 			);
 			path = UrlLoadingWindow;
+			sourceTree = "<group>";
+		};
+		1FB273D32DDB7CC50098D73A /* Delegates */ = {
+			isa = PBXGroup;
+			children = (
+				1FB273D42DDB7CDC0098D73A /* WindowActionDelegate.swift */,
+			);
+			path = Delegates;
 			sourceTree = "<group>";
 		};
 		5330A85AA96065DC8FB31608 /* Frameworks */ = {
@@ -471,6 +482,7 @@
 				1F63F6FB2DDB323E00A31BC1 /* PreloadWindowController.swift in Sources */,
 				1F63F6EF2DDB113D00A31BC1 /* PreloadWebsitesController.swift in Sources */,
 				1FB273D12DDB55090098D73A /* UrlLoadingViewController.swift in Sources */,
+				1FB273D52DDB7CDC0098D73A /* WindowActionDelegate.swift in Sources */,
 				1F63F66E2DD8495500A31BC1 /* myBrowser_UIKit.xcdatamodeld in Sources */,
 				1F63F6F72DDB155F00A31BC1 /* PreloadItem.swift in Sources */,
 				1FB273CF2DDB54840098D73A /* UrlLoadingWindowController.swift in Sources */,

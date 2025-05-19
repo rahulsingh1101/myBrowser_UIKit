@@ -21,9 +21,6 @@ final class PreloadWebsitesController: NSViewController, NSCollectionViewDataSou
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        view.wantsLayer = true
-        view.layer?.backgroundColor = NSColor.white.cgColor
         
         setupCollectionView()
         switch loadItemsFromJSON() {
@@ -43,10 +40,10 @@ final class PreloadWebsitesController: NSViewController, NSCollectionViewDataSou
         view.addSubview(scrollView)
         
         NSLayoutConstraint.activate([
-            scrollView.topAnchor.constraint(equalTo: view.topAnchor, constant: 20),
-            scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -20),
-            scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
-            scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20)
+            scrollView.topAnchor.constraint(equalTo: view.topAnchor, constant: 0),
+            scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0),
+            scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 0),
+            scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 0)
         ])
         
         // 2. Create CollectionView
@@ -127,7 +124,7 @@ final class PreloadWebsitesController: NSViewController, NSCollectionViewDataSou
         }
     }
     
-    func showAlert(for error: Error, in window: NSWindow? = nil) {
+    private func showAlert(for error: Error, in window: NSWindow? = nil) {
         DispatchQueue.main.async {
             let alert = NSAlert()
             alert.messageText = "An Error Occurred"

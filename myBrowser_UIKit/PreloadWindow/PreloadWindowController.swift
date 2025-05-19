@@ -7,11 +7,6 @@
 
 import Cocoa
 
-protocol WindowActionDelegate: AnyObject {
-    func windowWillClose(_ window: BWWindowController)
-    func windowDidBecomekey(_ window: BWWindowController)
-}
-
 final class PreloadWindowController: BWWindowController {
     init(identifier: String) {
         let viewController = ViewController()
