@@ -11,21 +11,33 @@ import Cocoa
 class AppDelegate: NSObject, NSApplicationDelegate {
 
     var window: NSWindow!
-    var windowController: DefaultWindowController!
+    var windowController: BWWindowController!
     private let manageWindow = ManageWindowControllerModel()
 
-    fileprivate func loadWindowController(identifier: String) {
+    fileprivate func loadDefaultWindowController(identifier: String) {
         windowController = DefaultWindowController(identifier: NSUserInterfaceItemIdentifier(identifier).rawValue)
         windowController.delegate = self
         windowController?.showWindow(self)
         manageWindow.add(windowController)
     }
     
+    fileprivate func loadUrlLoadingWindowController(identifier: String) {
+        windowController = UrlLoadingWindowController(identifier: NSUserInterfaceItemIdentifier(identifier).rawValue)
+        windowController.delegate = self
+        windowController?.showWindow(self)
+        manageWindow.add(windowController)
+    }
+    
     func applicationDidFinishLaunching(_ aNotification: Notification) {
-        loadWindowController(identifier: #function)
+        loadDefaultWindowController(identifier: #function)
     }
     
     func applicationShouldHandleReopen(_ sender: NSApplication, hasVisibleWindows flag: Bool) -> Bool {
+        openNewWindow(sender)
+        return false
+    }
+    
+    func openNewWindow(_ sender: NSApplication) {
         let currentWindowIdentifier = manageWindow.getCurrentWindow()?.identifier
         let windows = sender.windows.compactMap {
             $0.windowController as? DefaultWindowController
@@ -33,9 +45,12 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             $0.identifier == currentWindowIdentifier
         }
         if windows == nil {
-            loadWindowController(identifier: #function)
+            loadDefaultWindowController(identifier: #function)
         }
-        return false
+    }
+    
+    func openNewWindow(identifier: String, url: String) {
+        loadUrlLoadingWindowController(identifier: identifier)
     }
 
     func applicationWillTerminate(_ aNotification: Notification) {

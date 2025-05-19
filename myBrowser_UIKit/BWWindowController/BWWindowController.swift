@@ -9,6 +9,8 @@ import Cocoa
 
 class BWWindowController: NSWindowController {
     let identifier: String
+    weak var delegate: DefaultWindowControllerDelegate?
+    
     init(window: NSWindow, identifier: String) {
         self.identifier = identifier
         super.init(window: window)

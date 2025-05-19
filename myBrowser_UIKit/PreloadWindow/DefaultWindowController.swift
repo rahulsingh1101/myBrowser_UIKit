@@ -11,9 +11,7 @@ protocol DefaultWindowControllerDelegate: AnyObject {
     func windowWillClose()
 }
 
-class DefaultWindowController: BWWindowController, NSWindowDelegate {
-    weak var delegate: DefaultWindowControllerDelegate?
-
+final class DefaultWindowController: BWWindowController, NSWindowDelegate {
     init(identifier: String) {
         let viewController = ViewController()
         let window = NSWindow(contentViewController: viewController)

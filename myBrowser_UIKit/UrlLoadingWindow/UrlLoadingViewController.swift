@@ -1,23 +1,16 @@
 //
-//  ViewController.swift
+//  UrlLoadingViewController.swift
 //  myBrowser_UIKit
 //
-//  Created by Rahul Singh on 17/05/25.
+//  Created by Rahul Singh on 19/05/25.
 //
 
 import Cocoa
-import WebKit
-import CoreDataManager
 
-protocol UpdateSearchBarDelegate: AnyObject {
-    func updateSearchBar(with searchValue: String)
-}
-
-final class ViewController: NSViewController {
+final class UrlLoadingViewController: NSViewController {
 
     let searchField = NSSearchField()
-//    let webViewController = WebViewController()
-    let webViewController = PreloadWebsitesController()
+    let webViewController = WebViewController()
     
     override func loadView() {
         // Main container view
@@ -55,7 +48,7 @@ final class ViewController: NSViewController {
             
             searchField.heightAnchor.constraint(equalToConstant: 30)
         ])
-//        webViewController.delegate = self
+        webViewController.delegate = self
     }
     
     @objc func loadURL() {
@@ -90,7 +83,7 @@ final class ViewController: NSViewController {
     }
 }
 
-extension ViewController: UpdateSearchBarDelegate {
+extension UrlLoadingViewController: UpdateSearchBarDelegate {
     func updateSearchBar(with searchValue: String) {
         self.searchField.stringValue = searchValue
     }

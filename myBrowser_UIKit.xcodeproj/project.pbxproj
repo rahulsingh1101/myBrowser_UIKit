@@ -16,13 +16,15 @@
 		1F63F6882DD8495700A31BC1 /* myBrowser_UIKitUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F63F6872DD8495700A31BC1 /* myBrowser_UIKitUITests.swift */; };
 		1F63F68A2DD8495700A31BC1 /* myBrowser_UIKitUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F63F6892DD8495700A31BC1 /* myBrowser_UIKitUITestsLaunchTests.swift */; };
 		1F63F6972DD84E7C00A31BC1 /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F63F6962DD84E7C00A31BC1 /* WebViewController.swift */; };
-		1F63F6EF2DDB113D00A31BC1 /* DefaultWebsitesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F63F6EE2DDB113D00A31BC1 /* DefaultWebsitesController.swift */; };
-		1F63F6F12DDB118700A31BC1 /* DefaultWebsites.json in Resources */ = {isa = PBXBuildFile; fileRef = 1F63F6F02DDB118700A31BC1 /* DefaultWebsites.json */; };
+		1F63F6EF2DDB113D00A31BC1 /* PreloadWebsitesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F63F6EE2DDB113D00A31BC1 /* PreloadWebsitesController.swift */; };
+		1F63F6F12DDB118700A31BC1 /* PreloadWebsitesController.json in Resources */ = {isa = PBXBuildFile; fileRef = 1F63F6F02DDB118700A31BC1 /* PreloadWebsitesController.json */; };
 		1F63F6F32DDB14E900A31BC1 /* ItemModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F63F6F22DDB14E900A31BC1 /* ItemModel.swift */; };
-		1F63F6F72DDB155F00A31BC1 /* ItemCollectionViewItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F63F6F42DDB155F00A31BC1 /* ItemCollectionViewItem.swift */; };
+		1F63F6F72DDB155F00A31BC1 /* PreloadItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F63F6F42DDB155F00A31BC1 /* PreloadItem.swift */; };
 		1F63F6FB2DDB323E00A31BC1 /* DefaultWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F63F6FA2DDB323E00A31BC1 /* DefaultWindowController.swift */; };
 		1F63F6FD2DDB34B400A31BC1 /* ManageWindowControllerModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F63F6FC2DDB34B400A31BC1 /* ManageWindowControllerModel.swift */; };
 		1F63F6FF2DDB3ECC00A31BC1 /* BWWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F63F6FE2DDB3ECC00A31BC1 /* BWWindowController.swift */; };
+		1FB273CF2DDB54840098D73A /* UrlLoadingWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FB273CE2DDB54840098D73A /* UrlLoadingWindowController.swift */; };
+		1FB273D12DDB55090098D73A /* UrlLoadingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FB273D02DDB55090098D73A /* UrlLoadingViewController.swift */; };
 		49F3D6DCF4CD5984163742C4 /* Pods_myBrowser_UIKit_myBrowser_UIKitUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E3AFB3105E922ACFAE4EC9E9 /* Pods_myBrowser_UIKit_myBrowser_UIKitUITests.framework */; };
 		6685C91DB4A1E6D5EA1C2223 /* Pods_myBrowser_UIKitTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FB813E025D5DAEC51597805C /* Pods_myBrowser_UIKitTests.framework */; };
 		E789662E0AF6F9A1D3CC3222 /* Pods_myBrowser_UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 51B4DA391A153C4F1F7DB1F9 /* Pods_myBrowser_UIKit.framework */; };
@@ -60,13 +62,15 @@
 		1F63F6872DD8495700A31BC1 /* myBrowser_UIKitUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = myBrowser_UIKitUITests.swift; sourceTree = "<group>"; };
 		1F63F6892DD8495700A31BC1 /* myBrowser_UIKitUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = myBrowser_UIKitUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		1F63F6962DD84E7C00A31BC1 /* WebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
-		1F63F6EE2DDB113D00A31BC1 /* DefaultWebsitesController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultWebsitesController.swift; sourceTree = "<group>"; };
-		1F63F6F02DDB118700A31BC1 /* DefaultWebsites.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = DefaultWebsites.json; sourceTree = "<group>"; };
+		1F63F6EE2DDB113D00A31BC1 /* PreloadWebsitesController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreloadWebsitesController.swift; sourceTree = "<group>"; };
+		1F63F6F02DDB118700A31BC1 /* PreloadWebsitesController.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = PreloadWebsitesController.json; sourceTree = "<group>"; };
 		1F63F6F22DDB14E900A31BC1 /* ItemModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemModel.swift; sourceTree = "<group>"; };
-		1F63F6F42DDB155F00A31BC1 /* ItemCollectionViewItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemCollectionViewItem.swift; sourceTree = "<group>"; };
+		1F63F6F42DDB155F00A31BC1 /* PreloadItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreloadItem.swift; sourceTree = "<group>"; };
 		1F63F6FA2DDB323E00A31BC1 /* DefaultWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultWindowController.swift; sourceTree = "<group>"; };
 		1F63F6FC2DDB34B400A31BC1 /* ManageWindowControllerModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManageWindowControllerModel.swift; sourceTree = "<group>"; };
 		1F63F6FE2DDB3ECC00A31BC1 /* BWWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BWWindowController.swift; sourceTree = "<group>"; };
+		1FB273CE2DDB54840098D73A /* UrlLoadingWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UrlLoadingWindowController.swift; sourceTree = "<group>"; };
+		1FB273D02DDB55090098D73A /* UrlLoadingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UrlLoadingViewController.swift; sourceTree = "<group>"; };
 		271DE9A60BCE4966CAF9E5F1 /* Pods-myBrowser_UIKit-myBrowser_UIKitUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-myBrowser_UIKit-myBrowser_UIKitUITests.debug.xcconfig"; path = "Target Support Files/Pods-myBrowser_UIKit-myBrowser_UIKitUITests/Pods-myBrowser_UIKit-myBrowser_UIKitUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		442754FD8EF0BAC301F21440 /* Pods-myBrowser_UIKit.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-myBrowser_UIKit.release.xcconfig"; path = "Target Support Files/Pods-myBrowser_UIKit/Pods-myBrowser_UIKit.release.xcconfig"; sourceTree = "<group>"; };
 		51B4DA391A153C4F1F7DB1F9 /* Pods_myBrowser_UIKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_myBrowser_UIKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -143,8 +147,9 @@
 		1F63F6672DD8495500A31BC1 /* myBrowser_UIKit */ = {
 			isa = PBXGroup;
 			children = (
-				1F63F6F92DDB320B00A31BC1 /* WindowController */,
-				1F63F6ED2DDB10F700A31BC1 /* DefaultWebsites */,
+				1FB273CD2DDB539D0098D73A /* UrlLoadingWindow */,
+				1F63F6F92DDB320B00A31BC1 /* BWWindowController */,
+				1F63F6ED2DDB10F700A31BC1 /* PreloadWindow */,
 				1F63F6982DD8588D00A31BC1 /* WebViewController */,
 				1F63F6682DD8495500A31BC1 /* AppDelegate.swift */,
 				1F63F6FC2DDB34B400A31BC1 /* ManageWindowControllerModel.swift */,
@@ -182,32 +187,41 @@
 			path = WebViewController;
 			sourceTree = "<group>";
 		};
-		1F63F6ED2DDB10F700A31BC1 /* DefaultWebsites */ = {
+		1F63F6ED2DDB10F700A31BC1 /* PreloadWindow */ = {
 			isa = PBXGroup;
 			children = (
-				1F63F6EE2DDB113D00A31BC1 /* DefaultWebsitesController.swift */,
+				1F63F6FA2DDB323E00A31BC1 /* DefaultWindowController.swift */,
+				1F63F6EE2DDB113D00A31BC1 /* PreloadWebsitesController.swift */,
 				1F63F6F22DDB14E900A31BC1 /* ItemModel.swift */,
 				1F63F6F82DDB156900A31BC1 /* ItemCollectionViewItem */,
-				1F63F6F02DDB118700A31BC1 /* DefaultWebsites.json */,
+				1F63F6F02DDB118700A31BC1 /* PreloadWebsitesController.json */,
 			);
-			path = DefaultWebsites;
+			path = PreloadWindow;
 			sourceTree = "<group>";
 		};
 		1F63F6F82DDB156900A31BC1 /* ItemCollectionViewItem */ = {
 			isa = PBXGroup;
 			children = (
-				1F63F6F42DDB155F00A31BC1 /* ItemCollectionViewItem.swift */,
+				1F63F6F42DDB155F00A31BC1 /* PreloadItem.swift */,
 			);
 			path = ItemCollectionViewItem;
 			sourceTree = "<group>";
 		};
-		1F63F6F92DDB320B00A31BC1 /* WindowController */ = {
+		1F63F6F92DDB320B00A31BC1 /* BWWindowController */ = {
 			isa = PBXGroup;
 			children = (
-				1F63F6FA2DDB323E00A31BC1 /* DefaultWindowController.swift */,
 				1F63F6FE2DDB3ECC00A31BC1 /* BWWindowController.swift */,
 			);
-			path = WindowController;
+			path = BWWindowController;
+			sourceTree = "<group>";
+		};
+		1FB273CD2DDB539D0098D73A /* UrlLoadingWindow */ = {
+			isa = PBXGroup;
+			children = (
+				1FB273CE2DDB54840098D73A /* UrlLoadingWindowController.swift */,
+				1FB273D02DDB55090098D73A /* UrlLoadingViewController.swift */,
+			);
+			path = UrlLoadingWindow;
 			sourceTree = "<group>";
 		};
 		5330A85AA96065DC8FB31608 /* Frameworks */ = {
@@ -329,7 +343,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1F63F6F12DDB118700A31BC1 /* DefaultWebsites.json in Resources */,
+				1F63F6F12DDB118700A31BC1 /* PreloadWebsitesController.json in Resources */,
 				1F63F6702DD8495700A31BC1 /* Assets.xcassets in Resources */,
 				1F63F6732DD8495700A31BC1 /* Base in Resources */,
 			);
@@ -463,9 +477,11 @@
 				1F63F6F32DDB14E900A31BC1 /* ItemModel.swift in Sources */,
 				1F63F6FF2DDB3ECC00A31BC1 /* BWWindowController.swift in Sources */,
 				1F63F6FB2DDB323E00A31BC1 /* DefaultWindowController.swift in Sources */,
-				1F63F6EF2DDB113D00A31BC1 /* DefaultWebsitesController.swift in Sources */,
+				1F63F6EF2DDB113D00A31BC1 /* PreloadWebsitesController.swift in Sources */,
+				1FB273D12DDB55090098D73A /* UrlLoadingViewController.swift in Sources */,
 				1F63F66E2DD8495500A31BC1 /* myBrowser_UIKit.xcdatamodeld in Sources */,
-				1F63F6F72DDB155F00A31BC1 /* ItemCollectionViewItem.swift in Sources */,
+				1F63F6F72DDB155F00A31BC1 /* PreloadItem.swift in Sources */,
+				1FB273CF2DDB54840098D73A /* UrlLoadingWindowController.swift in Sources */,
 				1F63F66B2DD8495500A31BC1 /* ViewController.swift in Sources */,
 				1F63F6692DD8495500A31BC1 /* AppDelegate.swift in Sources */,
 				1F63F6972DD84E7C00A31BC1 /* WebViewController.swift in Sources */,

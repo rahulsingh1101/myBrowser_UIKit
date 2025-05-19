@@ -7,12 +7,17 @@
 
 import Cocoa
 
-class ItemCollectionViewItem: NSCollectionViewItem {
+protocol OpenUrlProtocol: AnyObject {
+    func openAt(_ index: Int?)
+}
+
+class PreloadItem: NSCollectionViewItem {
+    weak var delegate: OpenUrlProtocol?
     private let titleLabel = NSTextField(labelWithString: "")
     private let subtitleLabel = NSTextField(labelWithString: "")
     private let openButton = NSButton(title: "Open", target: nil, action: nil)
     
-    private var itemURL: String?
+    private var tag: Int?
     
     override func loadView() {
         self.view = NSView()
@@ -41,8 +46,7 @@ class ItemCollectionViewItem: NSCollectionViewItem {
     }
     
     @objc private func openURL() {
-        guard let itemURL = itemURL, let url = URL(string: itemURL) else { return }
-        NSWorkspace.shared.open(url)
+        delegate?.openAt(self.tag)
     }
     
     private func setupConstraints() {
@@ -61,9 +65,9 @@ class ItemCollectionViewItem: NSCollectionViewItem {
         ])
     }
     
-    func configure(with item: ItemModel) {
+    func configure(with item: ItemModel, indexPath: Int) {
         titleLabel.stringValue = item.title
         subtitleLabel.stringValue = item.subtitle
-        itemURL = item.url
+        self.tag = indexPath
     }
 }

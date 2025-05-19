@@ -11,7 +11,7 @@ import CoreDataManager
 
 final class WebViewController: NSViewController {
     let webView = WKWebView()
-    weak var delegate: ViewControllerDelegate?
+    weak var delegate: UpdateSearchBarDelegate?
 
     override func loadView() {
         webView.navigationDelegate = self

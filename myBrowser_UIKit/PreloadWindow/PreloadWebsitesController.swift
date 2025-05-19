@@ -1,5 +1,5 @@
 //
-//  DefaultWebsitesController.swift
+//  PreloadWebsitesController.swift
 //  myBrowser_UIKit
 //
 //  Created by Rahul Singh on 19/05/25.
@@ -14,7 +14,7 @@ enum JSONLoadingError: Error {
     case decodingFailed(Error)
 }
 
-final class DefaultWebsitesController: NSViewController, NSCollectionViewDataSource, NSCollectionViewDelegate {
+final class PreloadWebsitesController: NSViewController, NSCollectionViewDataSource, NSCollectionViewDelegate {
     var collectionView: NSCollectionView!
     
     var items: [ItemModel] = []
@@ -62,7 +62,7 @@ final class DefaultWebsitesController: NSViewController, NSCollectionViewDataSou
         collectionView.dataSource = self
         collectionView.delegate = self
         collectionView.isSelectable = true
-        collectionView.register(ItemCollectionViewItem.self, forItemWithIdentifier: NSUserInterfaceItemIdentifier("ItemCollectionViewItem"))
+        collectionView.register(PreloadItem.self, forItemWithIdentifier: NSUserInterfaceItemIdentifier("PreloadItem"))
         
         // 3. Embed in ScrollView
         scrollView.documentView = collectionView
@@ -79,15 +79,16 @@ final class DefaultWebsitesController: NSViewController, NSCollectionViewDataSou
     
     func collectionView(_ collectionView: NSCollectionView,
                         itemForRepresentedObjectAt indexPath: IndexPath) -> NSCollectionViewItem {
-        let identifier = NSUserInterfaceItemIdentifier("ItemCollectionViewItem")
+        let identifier = NSUserInterfaceItemIdentifier("PreloadItem")
         let item = collectionView.makeItem(withIdentifier: identifier, for: indexPath)
-        guard let collectionViewItem = item as? ItemCollectionViewItem else { return item }
-        collectionViewItem.configure(with: items[indexPath.item])
+        guard let collectionViewItem = item as? PreloadItem else { return item }
+        collectionViewItem.configure(with: items[indexPath.item], indexPath: indexPath.item)
+        collectionViewItem.delegate = self
         return collectionViewItem
     }
     
     func loadItemsFromJSON() -> Result<[ItemModel], JSONLoadingError> {
-        guard let url = Bundle.main.url(forResource: "DefaultWebsites", withExtension: "json") else {
+        guard let url = Bundle.main.url(forResource: "PreloadWebsitesController", withExtension: "json") else {
             print("❌ Error: Could not find data.json in the bundle.")
             return .failure(JSONLoadingError.fileNotFound)
         }
@@ -140,6 +141,19 @@ final class DefaultWebsitesController: NSViewController, NSCollectionViewDataSou
             } else {
                 alert.runModal()
             }
+        }
+    }
+}
+
+extension PreloadWebsitesController: OpenUrlProtocol {
+    func openAt(_ index: Int?) {
+        if let index {
+            let item = items[index]
+//            let appDelegate = NSApp.delegate as! AppDelegate
+            let app = NSApplication.shared
+//            let delegate = app.delegate as? AppDelegate
+            let appDelegate = NSApplication.shared.delegate as? AppDelegate
+            appDelegate?.openNewWindow(identifier: item.url, url: item.url)
         }
     }
 }
