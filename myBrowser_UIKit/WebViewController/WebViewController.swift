@@ -33,9 +33,7 @@ extension WebViewController: WKNavigationDelegate {
     // Called when loading finishes successfully
     func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
         print("debug :: Finished loading. ::\(webView.url)")
-        let fileManager = JSONFileManager<SearchResult>(fileName: "SearchUrl")
         let searchItem = SearchResult(searchUrl: webView.url?.absoluteString ?? "")
-        fileManager.add(searchItem)
         delegate?.updateSearchBar(with: webView.url?.absoluteString ?? "")
     }
 
