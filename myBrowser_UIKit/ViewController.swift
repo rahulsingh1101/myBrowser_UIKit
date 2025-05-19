@@ -14,9 +14,7 @@ protocol UpdateSearchBarDelegate: AnyObject {
 }
 
 final class ViewController: NSViewController {
-
     let searchField = NSSearchField()
-//    let webViewController = WebViewController()
     let webViewController = PreloadWebsitesController()
     
     override func loadView() {
@@ -55,7 +53,6 @@ final class ViewController: NSViewController {
             
             searchField.heightAnchor.constraint(equalToConstant: 30)
         ])
-//        webViewController.delegate = self
     }
     
     @objc func loadURL() {
@@ -72,15 +69,13 @@ final class ViewController: NSViewController {
         
         if let url = URL(string: finalURLString) {
             print("debug :: Started loading...::\(url)")
-//            webViewController.load(url: url)
+            let appDelegate = NSApplication.shared.delegate as? AppDelegate
+            appDelegate?.openUrlLoadingWindow(identifier: url.absoluteString, url: url.absoluteString)
         }
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-//        let result = JSONFileManager<SearchResult>(fileName: "SearchUrl").getAll()
-        
     }
 
     override var representedObject: Any? {

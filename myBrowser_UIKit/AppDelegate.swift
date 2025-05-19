@@ -57,7 +57,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         }
     }
     
-    func openNewWindow(identifier: String, url: String) {
+    func openUrlLoadingWindow(identifier: String, url: String) {
         loadWindow(identifier: identifier) {
             return UrlLoadingWindowController(identifier: NSUserInterfaceItemIdentifier(identifier).rawValue, model: .init(urlToLoad: url))
         }

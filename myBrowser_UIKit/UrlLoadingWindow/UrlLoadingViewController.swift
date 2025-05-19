@@ -56,7 +56,6 @@ final class UrlLoadingViewController: NSViewController {
     
     func preloadClass(data: Model) {
         searchField.stringValue = data.urlToLoad
-//        searchField
     }
     
     @objc func loadURL() {
@@ -73,15 +72,12 @@ final class UrlLoadingViewController: NSViewController {
         
         if let url = URL(string: finalURLString) {
             print("debug :: Started loading...::\(url)")
-//            webViewController.load(url: url)
+            webViewController.load(url: url)
         }
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-//        let result = JSONFileManager<SearchResult>(fileName: "SearchUrl").getAll()
-        
     }
 
     override var representedObject: Any? {

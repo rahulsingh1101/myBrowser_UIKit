@@ -18,6 +18,7 @@ final class UrlLoadingWindowController: BWWindowController {
         window.title = "My Custom Window"
         super.init(window: window, identifier: identifier)
         self.window?.delegate = self
+        viewController.loadURL()
     }
     
     required init?(coder: NSCoder) {
