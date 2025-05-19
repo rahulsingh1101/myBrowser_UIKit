@@ -20,9 +20,9 @@ final class ManageWindowControllerModel {
         currentWindow = window
     }
     
-    func remove() {
+    func remove(_ window: BWWindowController) {
         windowControllers.removeAll {
-            $0.identifier == currentWindow?.identifier
+            $0.identifier == window.identifier
         }
         currentWindow = nil
     }
@@ -31,10 +31,20 @@ final class ManageWindowControllerModel {
         return currentWindow
     }
     
-    func isWindowAlreadyPresent(_ identifier: String) -> Bool {
+    func isWindowAlreadyPresent(_ identifier: String) -> (isPresent: Bool, window: BWWindowController?) {
         let value = windowControllers.first {
             $0.identifier == identifier
         }
-        return value != nil
+        return (value != nil, value)
+    }
+    
+    func updateCurrentWindow(_ window: BWWindowController) {
+        if currentWindow?.identifier == window.identifier {
+            return
+        }
+        let value = windowControllers.first {
+            $0.identifier == window.identifier
+        }
+        currentWindow = value
     }
 }

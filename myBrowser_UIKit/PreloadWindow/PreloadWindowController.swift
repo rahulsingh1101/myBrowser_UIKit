@@ -8,7 +8,8 @@
 import Cocoa
 
 protocol WindowDelegate: AnyObject {
-    func windowWillClose()
+    func windowWillClose(_ window: BWWindowController)
+    func windowDidBecomekey(_ window: BWWindowController)
 }
 
 final class PreloadWindowController: BWWindowController, NSWindowDelegate {
@@ -32,6 +33,10 @@ final class PreloadWindowController: BWWindowController, NSWindowDelegate {
     }
 
     func windowWillClose(_ notification: Notification) {
-        delegate?.windowWillClose()
+        delegate?.windowWillClose(self)
+    }
+    
+    func windowDidBecomeKey(_ notification: Notification) {
+        delegate?.windowDidBecomekey(self)
     }
 }

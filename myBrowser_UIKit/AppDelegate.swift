@@ -22,13 +22,15 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
     
     fileprivate func loadUrlLoadingWindowController(identifier: String, model: UrlLoadingViewController.Model) {
-        if !manageWindow.isWindowAlreadyPresent(identifier) {
+        let (isPresent, window) = manageWindow.isWindowAlreadyPresent(identifier)
+        if !isPresent {
             windowController = UrlLoadingWindowController(identifier: NSUserInterfaceItemIdentifier(identifier).rawValue, model: model)
             windowController.delegate = self
             windowController?.showWindow(self)
             manageWindow.add(windowController)
-        } else {
-            windowController?.showWindow(self)
+        } else if let window {
+            window.showWindow(self)
+            manageWindow.updateCurrentWindow(window)
         }
     }
     
@@ -165,7 +167,11 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 }
 
 extension AppDelegate: WindowDelegate {
-    func windowWillClose() {
-        manageWindow.remove()
+    func windowWillClose(_ window: BWWindowController) {
+        manageWindow.remove(window)
+    }
+    
+    func windowDidBecomekey(_ window: BWWindowController) {
+        manageWindow.updateCurrentWindow(window)
     }
 }

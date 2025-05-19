@@ -8,8 +8,6 @@
 import Cocoa
 
 final class UrlLoadingWindowController: BWWindowController, NSWindowDelegate {
-//    weak var delegate: DefaultWindowControllerDelegate?
-
     init(identifier: String, model: UrlLoadingViewController.Model) {
         let viewController = UrlLoadingViewController()
         viewController.preloadClass(data: model)
@@ -31,6 +29,10 @@ final class UrlLoadingWindowController: BWWindowController, NSWindowDelegate {
     }
 
     func windowWillClose(_ notification: Notification) {
-        delegate?.windowWillClose()
+        delegate?.windowWillClose(self)
+    }
+    
+    func windowDidBecomeKey(_ notification: Notification) {
+        delegate?.windowDidBecomekey(self)
     }
 }

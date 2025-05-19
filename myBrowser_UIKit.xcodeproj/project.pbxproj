@@ -147,8 +147,8 @@
 		1F63F6672DD8495500A31BC1 /* myBrowser_UIKit */ = {
 			isa = PBXGroup;
 			children = (
-				1FB273CD2DDB539D0098D73A /* UrlLoadingWindow */,
 				1F63F6F92DDB320B00A31BC1 /* BWWindowController */,
+				1FB273CD2DDB539D0098D73A /* UrlLoadingWindow */,
 				1F63F6ED2DDB10F700A31BC1 /* PreloadWindow */,
 				1F63F6982DD8588D00A31BC1 /* WebViewController */,
 				1F63F6682DD8495500A31BC1 /* AppDelegate.swift */,
