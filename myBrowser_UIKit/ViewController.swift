@@ -16,7 +16,8 @@ protocol ViewControllerDelegate: AnyObject {
 final class ViewController: NSViewController {
 
     let searchField = NSSearchField()
-    let webViewController = WebViewController()
+//    let webViewController = WebViewController()
+    let webViewController = DefaultWebsitesController()
     
     override func loadView() {
         // Main container view
@@ -54,7 +55,7 @@ final class ViewController: NSViewController {
             
             searchField.heightAnchor.constraint(equalToConstant: 30)
         ])
-        webViewController.delegate = self
+//        webViewController.delegate = self
     }
     
     @objc func loadURL() {
@@ -71,14 +72,14 @@ final class ViewController: NSViewController {
         
         if let url = URL(string: finalURLString) {
             print("debug :: Started loading...::\(url)")
-            webViewController.load(url: url)
+//            webViewController.load(url: url)
         }
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let result = JSONFileManager<SearchResult>(fileName: "SearchUrl").getAll()
+//        let result = JSONFileManager<SearchResult>(fileName: "SearchUrl").getAll()
         
     }
 

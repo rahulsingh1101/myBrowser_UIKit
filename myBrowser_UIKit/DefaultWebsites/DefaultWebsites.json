@@ -1,0 +1,17 @@
+[
+  {
+    "title": "Kavsoft YouTube Playlists",
+    "subtitle": "SwiftUI tutorials and UI/UX tips",
+    "url": "https://www.youtube.com/@Kavsoft/playlists"
+  },
+  {
+    "title": "TuteDude DSA with Python",
+    "subtitle": "Full course on DSA using Python",
+    "url": "https://upskill.tutedude.com/course/lecture-dsawithpython"
+  },
+  {
+    "title": "LeetCode Problem Set",
+    "subtitle": "Practice coding problems by difficulty",
+    "url": "https://leetcode.com/problemset/"
+  }
+]
