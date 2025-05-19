@@ -87,7 +87,7 @@ final class DefaultWebsitesController: NSViewController, NSCollectionViewDataSou
     }
     
     func loadItemsFromJSON() -> Result<[ItemModel], JSONLoadingError> {
-        guard let url = Bundle.main.url(forResource: "DefaultWebsites", withExtension: "json") else {
+        guard let url = Bundle.main.url(forResource: "DefaultWebsitess", withExtension: "json") else {
             print("❌ Error: Could not find data.json in the bundle.")
             return .failure(JSONLoadingError.fileNotFound)
         }
@@ -126,14 +126,20 @@ final class DefaultWebsitesController: NSViewController, NSCollectionViewDataSou
         }
     }
     
-    func showAlert(for error: Error) {
+    func showAlert(for error: Error, in window: NSWindow? = nil) {
         DispatchQueue.main.async {
             let alert = NSAlert()
             alert.messageText = "An Error Occurred"
             alert.informativeText = error.localizedDescription
             alert.alertStyle = .warning
             alert.addButton(withTitle: "OK")
-            alert.runModal()
+            if let window {
+                alert.beginSheetModal(for: window) { response in
+                    print("debug :: response:: \(response)")
+                }
+            } else {
+                alert.runModal()
+            }
         }
     }
 }
