@@ -87,7 +87,7 @@ final class DefaultWebsitesController: NSViewController, NSCollectionViewDataSou
     }
     
     func loadItemsFromJSON() -> Result<[ItemModel], JSONLoadingError> {
-        guard let url = Bundle.main.url(forResource: "DefaultWebsitess", withExtension: "json") else {
+        guard let url = Bundle.main.url(forResource: "DefaultWebsites", withExtension: "json") else {
             print("❌ Error: Could not find data.json in the bundle.")
             return .failure(JSONLoadingError.fileNotFound)
         }

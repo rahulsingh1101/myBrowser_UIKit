@@ -11,26 +11,31 @@ import Cocoa
 class AppDelegate: NSObject, NSApplicationDelegate {
 
     var window: NSWindow!
+    var windowController: DefaultWindowController!
+    private let manageWindow = ManageWindowControllerModel()
 
+    fileprivate func loadWindowController(identifier: String) {
+        windowController = DefaultWindowController(identifier: NSUserInterfaceItemIdentifier(identifier).rawValue)
+        windowController.delegate = self
+        windowController?.showWindow(self)
+        manageWindow.add(windowController)
+    }
+    
     func applicationDidFinishLaunching(_ aNotification: Notification) {
-        if let screen = NSScreen.main {
-            let visibleFrame = screen.visibleFrame
-            
-            window = NSWindow(
-                contentRect: visibleFrame,
-                styleMask: [.titled, .closable, .resizable, .miniaturizable],
-                backing: .buffered,
-                defer: false
-            )
-            window.title = "My macOS Browser"
-            window.makeKeyAndOrderFront(nil)
-            
-            // Set your main view controller here
-            window.contentViewController = ViewController()
-            
-            // Position and resize window to match the screen’s visible area
-            window.setFrame(visibleFrame, display: true)
+        loadWindowController(identifier: #function)
+    }
+    
+    func applicationShouldHandleReopen(_ sender: NSApplication, hasVisibleWindows flag: Bool) -> Bool {
+        let currentWindowIdentifier = manageWindow.getCurrentWindow()?.identifier
+        let windows = sender.windows.compactMap {
+            $0.windowController as? DefaultWindowController
+        }.first {
+            $0.identifier == currentWindowIdentifier
         }
+        if windows == nil {
+            loadWindowController(identifier: #function)
+        }
+        return false
     }
 
     func applicationWillTerminate(_ aNotification: Notification) {
@@ -140,3 +145,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
 }
 
+extension AppDelegate: DefaultWindowControllerDelegate {
+    func windowWillClose() {
+        manageWindow.remove()
+    }
+}
