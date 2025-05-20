@@ -33,6 +33,7 @@ class PreloadItem: NSCollectionViewItem {
         subtitleLabel.font = .systemFont(ofSize: 12)
         subtitleLabel.textColor = .white
         subtitleLabel.lineBreakMode = .byTruncatingTail
+        subtitleLabel.maximumNumberOfLines = 0
         
         openButton.target = self
         openButton.action = #selector(openURL)
