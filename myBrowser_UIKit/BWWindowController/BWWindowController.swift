@@ -7,10 +7,14 @@
 
 import Cocoa
 
-protocol BWWindowControllerProtocol: AnyObject {
+protocol BWWindowControllerProtocol: BWWindowControllerURLProtocol, AnyObject {
     var identifier: String { get }
     var delegate: WindowActionDelegate? { get set }
     func showWindoww(_ sender: Any?)
+}
+
+protocol BWWindowControllerURLProtocol: AnyObject {
+    func reloadURL()
 }
 
 class BWWindowController: NSWindowController, BWWindowControllerProtocol, NSWindowDelegate {
@@ -37,5 +41,9 @@ class BWWindowController: NSWindowController, BWWindowControllerProtocol, NSWind
     
     func showWindoww(_ sender: Any?) {
         showWindow(sender)
+    }
+    
+    func reloadURL() {
+        fatalError("Subclasses must override \(#function)")
     }
 }

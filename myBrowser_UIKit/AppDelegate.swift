@@ -18,17 +18,18 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         identifier: String,
         createWindowController: () -> BWWindowControllerProtocol
     ) {
-        let (isPresent, window) = manageWindow.isWindowAlreadyPresent(identifier)
+        let (isWindowAlreadyPresent, windowWithId) = manageWindow.isWindowAlreadyPresent(identifier)
         
-        if !isPresent {
+        if !isWindowAlreadyPresent {
             let controller = createWindowController()
             controller.delegate = self
             controller.showWindoww(self)
             manageWindow.add(controller)
             windowController = controller
-        } else if let window {
-            window.showWindoww(self)
-            manageWindow.updateCurrentWindow(window)
+        } else if let windowWithId {
+            windowWithId.showWindoww(self)
+            manageWindow.updateCurrentWindow(windowWithId)
+            windowController.reloadURL()
         }
     }
     

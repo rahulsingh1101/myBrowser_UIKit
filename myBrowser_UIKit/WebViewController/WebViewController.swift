@@ -9,9 +9,13 @@ import Cocoa
 import WebKit
 import CoreDataManager
 
+protocol WebViewDelegateProtocol: AnyObject {
+    func webView(didFinish navigation: String)
+}
+
 final class WebViewController: NSViewController {
     let webView = WKWebView()
-    weak var delegate: UpdateSearchBarDelegate?
+    weak var delegate: WebViewDelegateProtocol?
 
     override func loadView() {
         webView.navigationDelegate = self
@@ -34,7 +38,7 @@ extension WebViewController: WKNavigationDelegate {
     func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
         print("debug :: Finished loading. ::\(webView.url)")
         let searchItem = SearchResult(searchUrl: webView.url?.absoluteString ?? "")
-        delegate?.updateSearchBar(with: webView.url?.absoluteString ?? "")
+        delegate?.webView(didFinish: webView.url?.absoluteString ?? "")
     }
 
     // Called when loading fails

@@ -25,4 +25,9 @@ final class PreloadWindowController: BWWindowController {
     override func windowDidLoad() {
         super.windowDidLoad()
     }
+    
+    override func reloadURL() {
+        //
+        print("reloadURL called :: \(PreloadWindowController.className())")
+    }
 }

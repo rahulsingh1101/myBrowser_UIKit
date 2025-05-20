@@ -26,6 +26,7 @@
 		1FB273CF2DDB54840098D73A /* UrlLoadingWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FB273CE2DDB54840098D73A /* UrlLoadingWindowController.swift */; };
 		1FB273D12DDB55090098D73A /* UrlLoadingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FB273D02DDB55090098D73A /* UrlLoadingViewController.swift */; };
 		1FB273D52DDB7CDC0098D73A /* WindowActionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FB273D42DDB7CDC0098D73A /* WindowActionDelegate.swift */; };
+		1FB273D72DDC1EA10098D73A /* WindowCreationHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FB273D62DDC1EA10098D73A /* WindowCreationHandler.swift */; };
 		49F3D6DCF4CD5984163742C4 /* Pods_myBrowser_UIKit_myBrowser_UIKitUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E3AFB3105E922ACFAE4EC9E9 /* Pods_myBrowser_UIKit_myBrowser_UIKitUITests.framework */; };
 		6685C91DB4A1E6D5EA1C2223 /* Pods_myBrowser_UIKitTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FB813E025D5DAEC51597805C /* Pods_myBrowser_UIKitTests.framework */; };
 		E789662E0AF6F9A1D3CC3222 /* Pods_myBrowser_UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 51B4DA391A153C4F1F7DB1F9 /* Pods_myBrowser_UIKit.framework */; };
@@ -73,6 +74,7 @@
 		1FB273CE2DDB54840098D73A /* UrlLoadingWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UrlLoadingWindowController.swift; sourceTree = "<group>"; };
 		1FB273D02DDB55090098D73A /* UrlLoadingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UrlLoadingViewController.swift; sourceTree = "<group>"; };
 		1FB273D42DDB7CDC0098D73A /* WindowActionDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WindowActionDelegate.swift; sourceTree = "<group>"; };
+		1FB273D62DDC1EA10098D73A /* WindowCreationHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WindowCreationHandler.swift; sourceTree = "<group>"; };
 		271DE9A60BCE4966CAF9E5F1 /* Pods-myBrowser_UIKit-myBrowser_UIKitUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-myBrowser_UIKit-myBrowser_UIKitUITests.debug.xcconfig"; path = "Target Support Files/Pods-myBrowser_UIKit-myBrowser_UIKitUITests/Pods-myBrowser_UIKit-myBrowser_UIKitUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		442754FD8EF0BAC301F21440 /* Pods-myBrowser_UIKit.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-myBrowser_UIKit.release.xcconfig"; path = "Target Support Files/Pods-myBrowser_UIKit/Pods-myBrowser_UIKit.release.xcconfig"; sourceTree = "<group>"; };
 		51B4DA391A153C4F1F7DB1F9 /* Pods_myBrowser_UIKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_myBrowser_UIKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -157,6 +159,7 @@
 				1F63F6682DD8495500A31BC1 /* AppDelegate.swift */,
 				1F63F6FC2DDB34B400A31BC1 /* ManageWindowControllerModel.swift */,
 				1F63F66A2DD8495500A31BC1 /* ViewController.swift */,
+				1FB273D62DDC1EA10098D73A /* WindowCreationHandler.swift */,
 				1F63F66F2DD8495700A31BC1 /* Assets.xcassets */,
 				1F63F6712DD8495700A31BC1 /* Main.storyboard */,
 				1F63F6742DD8495700A31BC1 /* myBrowser_UIKit.entitlements */,
@@ -487,6 +490,7 @@
 				1F63F6F72DDB155F00A31BC1 /* PreloadItem.swift in Sources */,
 				1FB273CF2DDB54840098D73A /* UrlLoadingWindowController.swift in Sources */,
 				1F63F66B2DD8495500A31BC1 /* ViewController.swift in Sources */,
+				1FB273D72DDC1EA10098D73A /* WindowCreationHandler.swift in Sources */,
 				1F63F6692DD8495500A31BC1 /* AppDelegate.swift in Sources */,
 				1F63F6972DD84E7C00A31BC1 /* WebViewController.swift in Sources */,
 			);

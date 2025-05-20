@@ -28,4 +28,9 @@ final class UrlLoadingWindowController: BWWindowController {
     override func windowDidLoad() {
         super.windowDidLoad()
     }
+    
+    override func reloadURL() {
+        let viewController = self.window?.contentViewController as? UrlLoadingViewController
+        viewController?.loadURL()
+    }
 }

@@ -50,10 +50,10 @@ final class PreloadWebsitesController: NSViewController, NSCollectionViewDataSou
         let layout = NSCollectionViewFlowLayout()
         layout.itemSize = NSSize(width: 300, height: 100)
         layout.sectionInset = NSEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
-        layout.minimumInteritemSpacing = 10
-        layout.minimumLineSpacing = 10
+        layout.minimumInteritemSpacing = 4
+        layout.minimumLineSpacing = 4
         
-        collectionView = NSCollectionView()
+        collectionView = NSCollectionView(frame: .zero)
         collectionView.collectionViewLayout = layout
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         collectionView.dataSource = self

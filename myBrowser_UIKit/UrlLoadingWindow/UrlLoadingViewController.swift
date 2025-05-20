@@ -87,8 +87,8 @@ final class UrlLoadingViewController: NSViewController {
     }
 }
 
-extension UrlLoadingViewController: UpdateSearchBarDelegate {
-    func updateSearchBar(with searchValue: String) {
-        self.searchField.stringValue = searchValue
+extension UrlLoadingViewController: WebViewDelegateProtocol {
+    func webView(didFinish navigation: String) {
+        self.searchField.stringValue = navigation
     }
 }

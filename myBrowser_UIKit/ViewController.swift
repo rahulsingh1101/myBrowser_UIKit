@@ -9,10 +9,6 @@ import Cocoa
 import WebKit
 import CoreDataManager
 
-protocol UpdateSearchBarDelegate: AnyObject {
-    func updateSearchBar(with searchValue: String)
-}
-
 final class ViewController: NSViewController {
     let searchField = NSSearchField()
     let webViewController = PreloadWebsitesController()
@@ -85,8 +81,14 @@ final class ViewController: NSViewController {
     }
 }
 
-extension ViewController: UpdateSearchBarDelegate {
-    func updateSearchBar(with searchValue: String) {
-        self.searchField.stringValue = searchValue
+extension ViewController: WebViewDelegateProtocol {
+    func webView(didFinish navigation: String) {
+        self.searchField.stringValue = navigation
+    }
+}
+
+extension NSObject {
+    class var className: String {
+        String(describing: self)
     }
 }
