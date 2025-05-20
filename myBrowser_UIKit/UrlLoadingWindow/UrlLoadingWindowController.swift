@@ -15,7 +15,7 @@ final class UrlLoadingWindowController: BWWindowController {
         let visibleFrame = NSScreen.main!.visibleFrame
         window.setContentSize(visibleFrame.size)
         window.styleMask = [.titled, .closable, .resizable, .miniaturizable]
-        window.title = "My Custom Window"
+        window.title = model.title
         super.init(window: window, identifier: identifier)
         self.window?.delegate = self
         viewController.loadURL()

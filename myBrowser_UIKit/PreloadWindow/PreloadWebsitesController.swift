@@ -147,7 +147,7 @@ extension PreloadWebsitesController: OpenUrlProtocol {
         if let index {
             let item = items[index]
             let appDelegate = NSApplication.shared.delegate as? AppDelegate
-            appDelegate?.openUrlLoadingWindow(identifier: item.url, url: item.url)
+            appDelegate?.openUrlLoadingWindow(identifier: item.url, model: .init(urlToLoad: item.url, title: item.title))
         }
     }
 }

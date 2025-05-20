@@ -10,6 +10,7 @@ import Cocoa
 final class UrlLoadingViewController: NSViewController {
     struct Model {
         let urlToLoad: String
+        let title: String
     }
 
     let searchField = NSSearchField()

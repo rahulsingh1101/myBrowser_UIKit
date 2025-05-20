@@ -66,7 +66,7 @@ final class ViewController: NSViewController {
         if let url = URL(string: finalURLString) {
             print("debug :: Started loading...::\(url)")
             let appDelegate = NSApplication.shared.delegate as? AppDelegate
-            appDelegate?.openUrlLoadingWindow(identifier: url.absoluteString, url: url.absoluteString)
+            appDelegate?.openUrlLoadingWindow(identifier: url.absoluteString, model: .init(urlToLoad: url.absoluteString, title: "Search Result"))
         }
     }
     

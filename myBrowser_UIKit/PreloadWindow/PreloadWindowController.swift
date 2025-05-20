@@ -8,13 +8,13 @@
 import Cocoa
 
 final class PreloadWindowController: BWWindowController {
-    init(identifier: String) {
+    init(identifier: String, title: String) {
         let viewController = ViewController()
         let window = NSWindow(contentViewController: viewController)
         let visibleFrame = NSScreen.main!.visibleFrame
         window.setContentSize(visibleFrame.size)
         window.styleMask = [.titled, .closable, .resizable, .miniaturizable]
-        window.title = "My Custom Window"
+        window.title = title
         super.init(window: window, identifier: identifier)
     }
     

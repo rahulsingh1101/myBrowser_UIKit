@@ -35,7 +35,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         loadWindow(identifier: #function) {
-            return PreloadWindowController(identifier: NSUserInterfaceItemIdentifier(#function).rawValue)
+            return PreloadWindowController(identifier: NSUserInterfaceItemIdentifier(#function).rawValue, title: "Search / Bookmark - 1")
         }
     }
     
@@ -53,14 +53,14 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         }
         if windows == nil {
             loadWindow(identifier: #function) {
-                return PreloadWindowController(identifier: NSUserInterfaceItemIdentifier(#function).rawValue)
+                return PreloadWindowController(identifier: NSUserInterfaceItemIdentifier(#function).rawValue, title: "Search / Bookmark - 2")
             }
         }
     }
     
-    func openUrlLoadingWindow(identifier: String, url: String) {
+    func openUrlLoadingWindow(identifier: String, model: UrlLoadingViewController.Model) {
         loadWindow(identifier: identifier) {
-            return UrlLoadingWindowController(identifier: NSUserInterfaceItemIdentifier(identifier).rawValue, model: .init(urlToLoad: url))
+            return UrlLoadingWindowController(identifier: NSUserInterfaceItemIdentifier(identifier).rawValue, model: .init(urlToLoad: model.urlToLoad, title: model.title))
         }
     }
 
