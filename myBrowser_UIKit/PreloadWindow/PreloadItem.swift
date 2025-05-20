@@ -31,7 +31,7 @@ class PreloadItem: NSCollectionViewItem {
         
         titleLabel.font = .boldSystemFont(ofSize: 14)
         subtitleLabel.font = .systemFont(ofSize: 12)
-        subtitleLabel.textColor = .darkGray
+        subtitleLabel.textColor = .white
         subtitleLabel.lineBreakMode = .byTruncatingTail
         
         openButton.target = self
