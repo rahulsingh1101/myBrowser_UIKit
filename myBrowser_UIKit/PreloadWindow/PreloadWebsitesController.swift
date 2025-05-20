@@ -16,6 +16,7 @@ enum JSONLoadingError: Error {
 
 final class PreloadWebsitesController: NSViewController, NSCollectionViewDataSource, NSCollectionViewDelegate {
     var collectionView: NSCollectionView!
+    var taskListController: TaskListController!
     
     var items: [ItemModel] = []
     
@@ -39,19 +40,32 @@ final class PreloadWebsitesController: NSViewController, NSCollectionViewDataSou
         scrollView.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(scrollView)
         
+        // 2. View Controller
+        let screenWidth = NSScreen.main?.frame.width ?? 800
+        taskListController = TaskListController()
+        taskListController.view.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(taskListController.view)
+        
         NSLayoutConstraint.activate([
             scrollView.topAnchor.constraint(equalTo: view.topAnchor, constant: 0),
-            scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0),
             scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 0),
-            scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 0)
+            scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0)
+        ])
+        
+        NSLayoutConstraint.activate([
+            taskListController.view.topAnchor.constraint(equalTo: view.topAnchor, constant: 0),
+            taskListController.view.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0),
+            taskListController.view.leadingAnchor.constraint(equalTo: scrollView.trailingAnchor, constant: 0),
+            taskListController.view.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 0),
+            taskListController.view.widthAnchor.constraint(equalToConstant: screenWidth/3)
         ])
         
         // 2. Create CollectionView
         let layout = NSCollectionViewFlowLayout()
         layout.itemSize = NSSize(width: 300, height: 100)
         layout.sectionInset = NSEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
-        layout.minimumInteritemSpacing = 4
-        layout.minimumLineSpacing = 4
+        layout.minimumInteritemSpacing = 0
+        layout.minimumLineSpacing = 10
         
         collectionView = NSCollectionView(frame: .zero)
         collectionView.collectionViewLayout = layout

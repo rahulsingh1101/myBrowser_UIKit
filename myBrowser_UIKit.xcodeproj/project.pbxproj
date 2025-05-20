@@ -7,6 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1F4E02C42DDCA1FD00A76078 /* TaskListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F4E02C32DDCA1FD00A76078 /* TaskListController.swift */; };
+		1F4E02C62DDCA24C00A76078 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F4E02C52DDCA24C00A76078 /* ContentView.swift */; };
+		1F4E02C82DDCA26700A76078 /* DataLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F4E02C72DDCA26700A76078 /* DataLoader.swift */; };
+		1F4E02CA2DDCA28000A76078 /* Color+String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F4E02C92DDCA28000A76078 /* Color+String.swift */; };
+		1F4E02CC2DDCA29600A76078 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F4E02CB2DDCA29600A76078 /* Model.swift */; };
+		1F4E02CE2DDCA2AC00A76078 /* data.json in Resources */ = {isa = PBXBuildFile; fileRef = 1F4E02CD2DDCA2AC00A76078 /* data.json */; };
+		1F4E02D02DDCA2FE00A76078 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F4E02CF2DDCA2FE00A76078 /* SwiftUI.framework */; };
+		1F4E02D22DDCA30400A76078 /* Combine.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F4E02D12DDCA30400A76078 /* Combine.framework */; };
 		1F63F6692DD8495500A31BC1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F63F6682DD8495500A31BC1 /* AppDelegate.swift */; };
 		1F63F66B2DD8495500A31BC1 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F63F66A2DD8495500A31BC1 /* ViewController.swift */; };
 		1F63F66E2DD8495500A31BC1 /* myBrowser_UIKit.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 1F63F66C2DD8495500A31BC1 /* myBrowser_UIKit.xcdatamodeld */; };
@@ -51,6 +59,14 @@
 
 /* Begin PBXFileReference section */
 		138FAC5E07671159E75D490C /* Pods-myBrowser_UIKitTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-myBrowser_UIKitTests.debug.xcconfig"; path = "Target Support Files/Pods-myBrowser_UIKitTests/Pods-myBrowser_UIKitTests.debug.xcconfig"; sourceTree = "<group>"; };
+		1F4E02C32DDCA1FD00A76078 /* TaskListController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskListController.swift; sourceTree = "<group>"; };
+		1F4E02C52DDCA24C00A76078 /* ContentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		1F4E02C72DDCA26700A76078 /* DataLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataLoader.swift; sourceTree = "<group>"; };
+		1F4E02C92DDCA28000A76078 /* Color+String.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Color+String.swift"; sourceTree = "<group>"; };
+		1F4E02CB2DDCA29600A76078 /* Model.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
+		1F4E02CD2DDCA2AC00A76078 /* data.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = data.json; sourceTree = "<group>"; };
+		1F4E02CF2DDCA2FE00A76078 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
+		1F4E02D12DDCA30400A76078 /* Combine.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Combine.framework; path = System/Library/Frameworks/Combine.framework; sourceTree = SDKROOT; };
 		1F63F6652DD8495500A31BC1 /* myBrowser_UIKit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = myBrowser_UIKit.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1F63F6682DD8495500A31BC1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1F63F66A2DD8495500A31BC1 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -90,6 +106,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1F4E02D22DDCA30400A76078 /* Combine.framework in Frameworks */,
+				1F4E02D02DDCA2FE00A76078 /* SwiftUI.framework in Frameworks */,
 				E789662E0AF6F9A1D3CC3222 /* Pods_myBrowser_UIKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -124,6 +142,19 @@
 				A3FD10D1BD2E8E95A96686EE /* Pods-myBrowser_UIKitTests.release.xcconfig */,
 			);
 			path = Pods;
+			sourceTree = "<group>";
+		};
+		1F4E02D32DDCA76D00A76078 /* TaskListController */ = {
+			isa = PBXGroup;
+			children = (
+				1F4E02C32DDCA1FD00A76078 /* TaskListController.swift */,
+				1F4E02C52DDCA24C00A76078 /* ContentView.swift */,
+				1F4E02C72DDCA26700A76078 /* DataLoader.swift */,
+				1F4E02C92DDCA28000A76078 /* Color+String.swift */,
+				1F4E02CB2DDCA29600A76078 /* Model.swift */,
+				1F4E02CD2DDCA2AC00A76078 /* data.json */,
+			);
+			path = TaskListController;
 			sourceTree = "<group>";
 		};
 		1F63F65C2DD8495500A31BC1 = {
@@ -196,6 +227,7 @@
 		1F63F6ED2DDB10F700A31BC1 /* PreloadWindow */ = {
 			isa = PBXGroup;
 			children = (
+				1F4E02D32DDCA76D00A76078 /* TaskListController */,
 				1F63F6FA2DDB323E00A31BC1 /* PreloadWindowController.swift */,
 				1F63F6EE2DDB113D00A31BC1 /* PreloadWebsitesController.swift */,
 				1F63F6F42DDB155F00A31BC1 /* PreloadItem.swift */,
@@ -233,6 +265,8 @@
 		5330A85AA96065DC8FB31608 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				1F4E02D12DDCA30400A76078 /* Combine.framework */,
+				1F4E02CF2DDCA2FE00A76078 /* SwiftUI.framework */,
 				51B4DA391A153C4F1F7DB1F9 /* Pods_myBrowser_UIKit.framework */,
 				E3AFB3105E922ACFAE4EC9E9 /* Pods_myBrowser_UIKit_myBrowser_UIKitUITests.framework */,
 				FB813E025D5DAEC51597805C /* Pods_myBrowser_UIKitTests.framework */,
@@ -352,6 +386,7 @@
 				1F63F6F12DDB118700A31BC1 /* PreloadWebsitesController.json in Resources */,
 				1F63F6702DD8495700A31BC1 /* Assets.xcassets in Resources */,
 				1F63F6732DD8495700A31BC1 /* Base in Resources */,
+				1F4E02CE2DDCA2AC00A76078 /* data.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -481,16 +516,21 @@
 			files = (
 				1F63F6FD2DDB34B400A31BC1 /* ManageWindowControllerModel.swift in Sources */,
 				1F63F6F32DDB14E900A31BC1 /* ItemModel.swift in Sources */,
+				1F4E02C62DDCA24C00A76078 /* ContentView.swift in Sources */,
 				1F63F6FF2DDB3ECC00A31BC1 /* BWWindowController.swift in Sources */,
 				1F63F6FB2DDB323E00A31BC1 /* PreloadWindowController.swift in Sources */,
+				1F4E02C82DDCA26700A76078 /* DataLoader.swift in Sources */,
+				1F4E02CA2DDCA28000A76078 /* Color+String.swift in Sources */,
 				1F63F6EF2DDB113D00A31BC1 /* PreloadWebsitesController.swift in Sources */,
 				1FB273D12DDB55090098D73A /* UrlLoadingViewController.swift in Sources */,
 				1FB273D52DDB7CDC0098D73A /* WindowActionDelegate.swift in Sources */,
 				1F63F66E2DD8495500A31BC1 /* myBrowser_UIKit.xcdatamodeld in Sources */,
+				1F4E02C42DDCA1FD00A76078 /* TaskListController.swift in Sources */,
 				1F63F6F72DDB155F00A31BC1 /* PreloadItem.swift in Sources */,
 				1FB273CF2DDB54840098D73A /* UrlLoadingWindowController.swift in Sources */,
 				1F63F66B2DD8495500A31BC1 /* ViewController.swift in Sources */,
 				1FB273D72DDC1EA10098D73A /* WindowCreationHandler.swift in Sources */,
+				1F4E02CC2DDCA29600A76078 /* Model.swift in Sources */,
 				1F63F6692DD8495500A31BC1 /* AppDelegate.swift in Sources */,
 				1F63F6972DD84E7C00A31BC1 /* WebViewController.swift in Sources */,
 			);

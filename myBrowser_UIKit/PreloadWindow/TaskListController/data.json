@@ -1,0 +1,39 @@
+[
+  {
+    "title": "Red Group",
+    "borderColor": "red",
+    "items": [
+      { "title": "ToDo application using SwiftUI" },
+      { "title": "ReactJS - load home page with coming soon" }
+    ]
+  },
+  {
+    "title": "Green Group",
+    "borderColor": "green",
+    "items": [
+      { "title": "CRED payment" },
+      { "title": "Add Github url to bookmark" },
+      { "title": "Green Item 3" },
+      { "title": "Green Item 4" }
+    ]
+  },
+  {
+    "title": "Blue Group",
+    "borderColor": "blue",
+    "items": [
+      { "title": "KMP" },
+      { "title": "ReactJS - Home Page decoration" }
+    ]
+  },
+  {
+    "title": "Pink Group",
+    "borderColor": "pink",
+    "items": [
+      { "title": "Cache Clean Application for macOS" },
+      { "title": "Cocoapods -> SPM" },
+      { "title": "CoreData through module" },
+      { "title": "Feature Upgradation" }
+    ]
+  }
+]
+
