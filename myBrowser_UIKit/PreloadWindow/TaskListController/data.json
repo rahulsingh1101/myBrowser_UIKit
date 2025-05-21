@@ -19,14 +19,6 @@
     ]
   },
   {
-    "title": "Blue Group",
-    "borderColor": "blue",
-    "items": [
-      { "title": "KMP" },
-      { "title": "ReactJS - Home Page decoration" }
-    ]
-  },
-  {
     "title": "Pink Group",
     "borderColor": "pink",
     "items": [
@@ -44,9 +36,14 @@
       { "title": "ChatGPT printer" },
       { "title": "Prompt Engineering" },
       { "title": "Duplicate Browser Tab" },
-      { "title": "Save Day Wise with done/not-done/swapForTomorrow" }
+      { "title": "Save Day Wise with done/not-done/swapForTomorrow" },
+      { "title": "Pomodoro timer" },
+      { "title": "Un-limited Pomodoro" },
+      { "title": "Mark in progress to Orange goals" },
+      { "title": "Open youtube in Incognito Mode" },
+      { "title": "Tiffin services/Home cooked food" },
+      { "title": "Delivery App for Tiffin Services" },
+      { "title": "Tiffin service provider App for Tiffin Services" }
     ]
   }
 }
-
-
