@@ -30,6 +30,15 @@ struct ContentView: View {
                     .borderColor(group.borderColor)
                     .padding(.horizontal)
                 }
+                BoxView(content: {
+                    ForEach(viewModel.data.boxView) { item in
+                        LabelWithSpacer(text: item.title)
+                            .foregroundColor(viewModel.data.boxView.borderColor.customColor())
+                            .padding(.horizontal, 8)
+                    }
+                })
+                .borderColor(viewModel.data.boxView.borderColor)
+                .padding(.horizontal)
             }
             .padding(.vertical)
         }
@@ -38,15 +47,5 @@ struct ContentView: View {
         .onAppear {
             viewModel.loadDataIfNeeded()
         }
-        
-        BoxView(content: {
-            ForEach(viewModel.data.boxView) { item in
-                LabelWithSpacer(text: item.title)
-                    .foregroundColor(viewModel.data.boxView.borderColor.customColor())
-                    .padding(.horizontal, 8)
-            }
-        })
-        .borderColor(viewModel.data.boxView.borderColor)
-        .padding(.horizontal)
     }
 }

@@ -13,7 +13,7 @@ extension String {
         case "red":
             return Color(red: 255/255, green: 160/255, blue: 122/255)
         case "green":
-            return Color(red: 0, green: 100/255, blue: 0)
+            return Color(red: 152/255, green: 255/255, blue: 152/255)
         case "blue":
             return .blue
         case "pink":
