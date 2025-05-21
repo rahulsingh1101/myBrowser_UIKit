@@ -11,7 +11,7 @@ extension String {
     func customColor() -> Color {
         switch self.lowercased() {
         case "red":
-            return Color(red: 255/255, green: 160/255, blue: 122/255)
+            return Color(red: 255/255, green: 105/255, blue: 97/255)
         case "green":
             return Color(red: 152/255, green: 255/255, blue: 152/255)
         case "blue":
