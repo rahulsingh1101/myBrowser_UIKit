@@ -7,22 +7,47 @@
 
 import Foundation
 
+struct ListViewModel: Codable {
+    let scrollView: [BoxViewModel]
+    let boxView: BoxViewModel
+
+    enum CodingKeys: String, CodingKey {
+        case scrollView = "ScrollView"
+        case boxView = "BoxView"
+    }
+    
+    static let defaultValue = ListViewModel(scrollView: [], boxView: .init(title: "", borderColor: "", items: []))
+}
+
+struct BoxViewModel: Codable, Identifiable, RandomAccessCollection {
+    private(set) var id = UUID()
+    let title, borderColor: String
+    let items: [GroupItem]
+    
+    // MARK: - Collection Conformance
+    
+    typealias Index = Int
+    typealias Element = GroupItem
+    
+    var startIndex: Int { items.startIndex }
+    var endIndex: Int { items.endIndex }
+    
+    subscript(position: Int) -> GroupItem {
+        items[position]
+    }
+    
+    // MARK: - Codable
+    
+    private enum CodingKeys: String, CodingKey {
+        case title, borderColor, items
+    }
+}
+
 struct GroupItem: Identifiable, Codable {
     private(set) var id = UUID()
     let title: String
     
     private enum CodingKeys: String, CodingKey {
         case title
-    }
-}
-
-struct GroupBox: Identifiable, Codable {
-    private(set) var id = UUID()
-    let title: String
-    let borderColor: String
-    let items: [GroupItem]
-    
-    private enum CodingKeys: String, CodingKey {
-        case title, borderColor, items
     }
 }

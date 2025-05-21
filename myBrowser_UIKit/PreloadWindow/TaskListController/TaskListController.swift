@@ -12,7 +12,7 @@ final class TaskListController: NSViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        let contentView = ContentView() // your SwiftUI view
+        let contentView = ContentView()
         let hostingController = NSHostingController(rootView: contentView)
 
         // Add hosting controller as child

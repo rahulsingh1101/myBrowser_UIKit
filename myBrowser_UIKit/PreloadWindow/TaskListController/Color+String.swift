@@ -18,6 +18,8 @@ extension String {
             return .blue
         case "pink":
             return Color(red: 255/225, green: 192/255, blue: 203/255)
+        case "orange":
+            return Color(red: 255/225, green: 171/255, blue: 91/255)
         default:
             return .gray
         }

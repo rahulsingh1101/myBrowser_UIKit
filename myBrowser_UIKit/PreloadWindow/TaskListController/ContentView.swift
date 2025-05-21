@@ -10,30 +10,24 @@ import SwiftData
 import Cocoa
 
 struct ContentView: View {
-    @State private var groupBoxes: [GroupBox] = []
+    @StateObject private var viewModel: MyViewModel
+    
+    init() {
+        _viewModel = StateObject(wrappedValue: MyViewModel())
+    }
 
     var body: some View {
         ScrollView {
             VStack(spacing: 16) {
-                ForEach(groupBoxes) { group in
-                    VStack(alignment: .leading, spacing: 12) {
+                ForEach(viewModel.data.scrollView) { group in
+                    BoxView(content: {
                         ForEach(group.items) { item in
-                            HStack {
-                                Text(item.title)
-                                    .foregroundColor(group.borderColor.customColor())
-                                Spacer()
-                            }
-                            .padding(.horizontal, 8)
+                            LabelWithSpacer(text: item.title)
+                                .foregroundColor(group.borderColor.customColor())
+                                .padding(.horizontal, 8)
                         }
-                    }
-                    .padding()
-                    .background(group.borderColor.customColor().opacity(0.1))
-                    .cornerRadius(10)
-                    .overlay(
-                        RoundedRectangle(cornerRadius: 10)
-                            .stroke(group.borderColor.customColor(), lineWidth: 2)
-                    )
-                    .shadow(color: group.borderColor.customColor().opacity(0.4), radius: 4)
+                    })
+                    .borderColor(group.borderColor)
                     .padding(.horizontal)
                 }
             }
@@ -42,7 +36,17 @@ struct ContentView: View {
         .background(Color(nsColor: .controlBackgroundColor))
         .edgesIgnoringSafeArea(.all)
         .onAppear {
-            groupBoxes = loadGroupBoxes()
+            viewModel.loadDataIfNeeded()
         }
+        
+        BoxView(content: {
+            ForEach(viewModel.data.boxView) { item in
+                LabelWithSpacer(text: item.title)
+                    .foregroundColor(viewModel.data.boxView.borderColor.customColor())
+                    .padding(.horizontal, 8)
+            }
+        })
+        .borderColor(viewModel.data.boxView.borderColor)
+        .padding(.horizontal)
     }
 }

@@ -7,9 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1F3B5EEC2DDE27AF00094BE1 /* LabelWithSpacer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F3B5EEB2DDE27AF00094BE1 /* LabelWithSpacer.swift */; };
+		1F3B5EEE2DDE28AF00094BE1 /* BoxVStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F3B5EED2DDE28AF00094BE1 /* BoxVStack.swift */; };
+		1F3B5EF02DDE39AB00094BE1 /* MyViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F3B5EEF2DDE39AB00094BE1 /* MyViewModel.swift */; };
 		1F4E02C42DDCA1FD00A76078 /* TaskListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F4E02C32DDCA1FD00A76078 /* TaskListController.swift */; };
 		1F4E02C62DDCA24C00A76078 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F4E02C52DDCA24C00A76078 /* ContentView.swift */; };
-		1F4E02C82DDCA26700A76078 /* DataLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F4E02C72DDCA26700A76078 /* DataLoader.swift */; };
 		1F4E02CA2DDCA28000A76078 /* Color+String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F4E02C92DDCA28000A76078 /* Color+String.swift */; };
 		1F4E02CC2DDCA29600A76078 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F4E02CB2DDCA29600A76078 /* Model.swift */; };
 		1F4E02CE2DDCA2AC00A76078 /* data.json in Resources */ = {isa = PBXBuildFile; fileRef = 1F4E02CD2DDCA2AC00A76078 /* data.json */; };
@@ -59,9 +61,11 @@
 
 /* Begin PBXFileReference section */
 		138FAC5E07671159E75D490C /* Pods-myBrowser_UIKitTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-myBrowser_UIKitTests.debug.xcconfig"; path = "Target Support Files/Pods-myBrowser_UIKitTests/Pods-myBrowser_UIKitTests.debug.xcconfig"; sourceTree = "<group>"; };
+		1F3B5EEB2DDE27AF00094BE1 /* LabelWithSpacer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelWithSpacer.swift; sourceTree = "<group>"; };
+		1F3B5EED2DDE28AF00094BE1 /* BoxVStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoxVStack.swift; sourceTree = "<group>"; };
+		1F3B5EEF2DDE39AB00094BE1 /* MyViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyViewModel.swift; sourceTree = "<group>"; };
 		1F4E02C32DDCA1FD00A76078 /* TaskListController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskListController.swift; sourceTree = "<group>"; };
 		1F4E02C52DDCA24C00A76078 /* ContentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
-		1F4E02C72DDCA26700A76078 /* DataLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataLoader.swift; sourceTree = "<group>"; };
 		1F4E02C92DDCA28000A76078 /* Color+String.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Color+String.swift"; sourceTree = "<group>"; };
 		1F4E02CB2DDCA29600A76078 /* Model.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		1F4E02CD2DDCA2AC00A76078 /* data.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = data.json; sourceTree = "<group>"; };
@@ -149,7 +153,9 @@
 			children = (
 				1F4E02C32DDCA1FD00A76078 /* TaskListController.swift */,
 				1F4E02C52DDCA24C00A76078 /* ContentView.swift */,
-				1F4E02C72DDCA26700A76078 /* DataLoader.swift */,
+				1F3B5EEF2DDE39AB00094BE1 /* MyViewModel.swift */,
+				1F3B5EEB2DDE27AF00094BE1 /* LabelWithSpacer.swift */,
+				1F3B5EED2DDE28AF00094BE1 /* BoxVStack.swift */,
 				1F4E02C92DDCA28000A76078 /* Color+String.swift */,
 				1F4E02CB2DDCA29600A76078 /* Model.swift */,
 				1F4E02CD2DDCA2AC00A76078 /* data.json */,
@@ -519,11 +525,12 @@
 				1F4E02C62DDCA24C00A76078 /* ContentView.swift in Sources */,
 				1F63F6FF2DDB3ECC00A31BC1 /* BWWindowController.swift in Sources */,
 				1F63F6FB2DDB323E00A31BC1 /* PreloadWindowController.swift in Sources */,
-				1F4E02C82DDCA26700A76078 /* DataLoader.swift in Sources */,
 				1F4E02CA2DDCA28000A76078 /* Color+String.swift in Sources */,
 				1F63F6EF2DDB113D00A31BC1 /* PreloadWebsitesController.swift in Sources */,
 				1FB273D12DDB55090098D73A /* UrlLoadingViewController.swift in Sources */,
 				1FB273D52DDB7CDC0098D73A /* WindowActionDelegate.swift in Sources */,
+				1F3B5EF02DDE39AB00094BE1 /* MyViewModel.swift in Sources */,
+				1F3B5EEC2DDE27AF00094BE1 /* LabelWithSpacer.swift in Sources */,
 				1F63F66E2DD8495500A31BC1 /* myBrowser_UIKit.xcdatamodeld in Sources */,
 				1F4E02C42DDCA1FD00A76078 /* TaskListController.swift in Sources */,
 				1F63F6F72DDB155F00A31BC1 /* PreloadItem.swift in Sources */,
@@ -533,6 +540,7 @@
 				1F4E02CC2DDCA29600A76078 /* Model.swift in Sources */,
 				1F63F6692DD8495500A31BC1 /* AppDelegate.swift in Sources */,
 				1F63F6972DD84E7C00A31BC1 /* WebViewController.swift in Sources */,
+				1F3B5EEE2DDE28AF00094BE1 /* BoxVStack.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

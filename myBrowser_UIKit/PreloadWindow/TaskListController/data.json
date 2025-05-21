@@ -1,4 +1,5 @@
-[
+{
+  "ScrollView":[
   {
     "title": "Red Group",
     "borderColor": "red",
@@ -35,5 +36,17 @@
       { "title": "Feature Upgradation" }
     ]
   }
-]
+],
+  "BoxView": {
+    "title": "Long term but immediate",
+    "borderColor": "orange",
+    "items": [
+      { "title": "ChatGPT printer" },
+      { "title": "Prompt Engineering" },
+      { "title": "Duplicate Browser Tab" },
+      { "title": "Save Day Wise with done/not-done/swapForTomorrow" }
+    ]
+  }
+}
+
 
