@@ -20,23 +20,23 @@ struct ContentView: View {
         ScrollView {
             VStack(spacing: 16) {
                 ForEach(viewModel.data.scrollView) { group in
-                    BoxView(content: {
+                    BoxView {
                         ForEach(group.items) { item in
                             LabelWithSpacer(text: item.title)
                                 .foregroundColor(group.borderColor.customColor())
                                 .padding(.horizontal, 8)
                         }
-                    })
+                    }
                     .borderColor(group.borderColor)
                     .padding(.horizontal)
                 }
-                BoxView(content: {
+                BoxView {
                     ForEach(viewModel.data.boxView) { item in
                         LabelWithSpacer(text: item.title)
                             .foregroundColor(viewModel.data.boxView.borderColor.customColor())
                             .padding(.horizontal, 8)
                     }
-                })
+                }
                 .borderColor(viewModel.data.boxView.borderColor)
                 .padding(.horizontal)
             }

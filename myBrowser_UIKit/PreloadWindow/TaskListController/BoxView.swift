@@ -1,5 +1,5 @@
 //
-//  BoxVStack.swift
+//  BoxView.swift
 //  myBrowser_UIKit
 //
 //  Created by Rahul Singh on 21/05/25.
@@ -11,15 +11,15 @@ import SwiftUI
 
 struct BoxView<Content: View>: View {
     var borderColor: String = "pink"
-    let content: () -> Content
+    let content: Content
 
-    init(@ViewBuilder content: @escaping () -> Content) {
-        self.content = content
+    init(@ViewBuilder content: () -> Content) {
+        self.content = content()
     }
 
     var body: some View {
         VStack(alignment: .leading, spacing: 12) {
-            content()
+            content
         }
         .padding()
         .background(borderColor.customColor().opacity(0.1))
