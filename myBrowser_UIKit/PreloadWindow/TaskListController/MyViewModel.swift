@@ -13,6 +13,14 @@ class MyViewModel: ObservableObject {
     private var isLoaded = false
     
     func loadDataIfNeeded() {
+//        let userService = CoreDataService<ToDoItem>()
+//        let value = userService.fetch()
+//        value.forEach {
+//            print("debug :: isCompleted ::\($0.isCompleted)")
+//            print("debug :: name ::\($0.name ?? "")")
+//            print("debug :: family ::\($0.family ?? "")")
+//        }
+        
         guard !isLoaded else {
             data = ListViewModel.defaultValue
             return

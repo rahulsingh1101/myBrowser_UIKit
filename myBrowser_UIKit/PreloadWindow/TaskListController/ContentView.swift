@@ -40,6 +40,12 @@ struct ContentView: View {
                             .padding(.horizontal, 8)
                             .onTapGesture {
                                 print("debug :: onTapGesture ::\(item.title)")
+//                                let userService = CoreDataService<ToDoItem>()
+//                                let newUser = userService.create { user in
+//                                    user.name = "Prompt Engineering"
+//                                    user.family = ItemFamily.diamond.rawValue
+//                                    user.isCompleted = false
+//                                }
                             }
                     }
                 }
