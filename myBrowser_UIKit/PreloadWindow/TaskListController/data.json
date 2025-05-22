@@ -1,8 +1,8 @@
 {
   "ScrollView":[
   {
-    "title": "Red Group",
-    "borderColor": "red",
+    "title": "Gold Group",
+    "borderColor": "gold",
     "items": [
       { "title": "ToDo application using SwiftUI" },
       { "title": "ReactJS - load home page with coming soon" }
@@ -19,7 +19,7 @@
     ]
   },
   {
-    "title": "Pink Group",
+    "title": "Make it leasure",
     "borderColor": "pink",
     "items": [
       { "title": "Cache Clean Application for macOS" },
@@ -27,10 +27,18 @@
       { "title": "CoreData through module" },
       { "title": "Feature Upgradation" }
     ]
+  },
+  {
+      "title": "Blue Group",
+      "borderColor": "blue",
+      "items": [
+          { "title": "KMP" },
+          { "title": "ReactJS - Home Page decoration" }
+      ]
   }
 ],
   "BoxView": {
-    "title": "Long term but immediate",
+    "title": "Diamond",
     "borderColor": "orange",
     "items": [
       { "title": "ChatGPT printer" },
