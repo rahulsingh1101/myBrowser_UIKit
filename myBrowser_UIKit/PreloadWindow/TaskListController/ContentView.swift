@@ -25,6 +25,9 @@ struct ContentView: View {
                             LabelWithSpacer(text: item.title)
                                 .foregroundColor(group.borderColor.customColor())
                                 .padding(.horizontal, 8)
+                                .onTapGesture {
+                                    print("debug :: onTapGesture ::\(item.title)")
+                                }
                         }
                     }
                     .borderColor(group.borderColor)
@@ -35,10 +38,16 @@ struct ContentView: View {
                         LabelWithSpacer(text: item.title)
                             .foregroundColor(viewModel.data.boxView.borderColor.customColor())
                             .padding(.horizontal, 8)
+                            .onTapGesture {
+                                print("debug :: onTapGesture ::\(item.title)")
+                            }
                     }
                 }
                 .borderColor(viewModel.data.boxView.borderColor)
                 .padding(.horizontal)
+                .onTapGesture {
+                    print("debug :: onTapGesture BoxView")
+                }
             }
             .padding(.vertical)
         }
