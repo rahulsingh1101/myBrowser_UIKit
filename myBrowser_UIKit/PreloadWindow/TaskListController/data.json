@@ -1,16 +1,14 @@
 {
     "ScrollView":[
         {
-            "title": "Gold Group",
-            "borderColor": "gold",
+            "title": "P0",
             "items": [
                 { "title": "ToDo application using SwiftUI" },
                 { "title": "ReactJS - load home page with coming soon" }
             ]
         },
         {
-            "title": "Green Group",
-            "borderColor": "green",
+            "title": "P1",
             "items": [
                 { "title": "CRED payment" },
                 { "title": "Add Github url to bookmark" },
@@ -19,8 +17,7 @@
             ]
         },
         {
-            "title": "Make it leasure",
-            "borderColor": "pink",
+            "title": "P2",
             "items": [
                 { "title": "Cache Clean Application for macOS" },
                 { "title": "Cocoapods -> SPM" },
@@ -29,8 +26,14 @@
             ]
         },
         {
-            "title": "Blue Group",
-            "borderColor": "blue",
+            "title": "P3",
+            "items": [
+                { "title": "KMP" },
+                { "title": "ReactJS - Home Page decoration" }
+            ]
+        },
+        {
+            "title": "P4",
             "items": [
                 { "title": "KMP" },
                 { "title": "ReactJS - Home Page decoration" }
@@ -38,8 +41,7 @@
         }
     ],
     "BoxView": {
-        "title": "Diamond",
-        "borderColor": "orange",
+        "title": "P5",
         "items": [
             { "title": "NodeJS - My Profile - Home Page" },
             { "title": "ChatGPT printer" },

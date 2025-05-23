@@ -2,10 +2,10 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "group:myBrowser_UIKit/CoreDataModel/ToDoItem+CoreDataClass.swift">
+      location = "group:/Users/rahulsingh/Documents/GitHub/myBrowser_UIKit/myBrowser_UIKit/CoreDataModel/ToDoItem+CoreDataClass.swift">
    </FileRef>
    <FileRef
-      location = "group:myBrowser_UIKit/CoreDataModel/ToDoItem+CoreDataProperties.swift">
+      location = "group:/Users/rahulsingh/Documents/GitHub/myBrowser_UIKit/myBrowser_UIKit/CoreDataModel/ToDoItem+CoreDataProperties.swift">
    </FileRef>
    <FileRef
       location = "group:myBrowser_UIKit.xcodeproj">

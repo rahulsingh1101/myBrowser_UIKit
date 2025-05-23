@@ -23,20 +23,20 @@ struct ContentView: View {
                     BoxView {
                         ForEach(group.items) { item in
                             LabelWithSpacer(text: item.title)
-                                .foregroundColor(group.borderColor.customColor())
+                                .foregroundColor(group.title.customColor())
                                 .padding(.horizontal, 8)
                                 .onTapGesture {
                                     print("debug :: onTapGesture ::\(item.title)")
                                 }
                         }
                     }
-                    .borderColor(group.borderColor)
+                    .borderColor(group.title)
                     .padding(.horizontal)
                 }
                 BoxView {
                     ForEach(viewModel.data.boxView) { item in
                         LabelWithSpacer(text: item.title)
-                            .foregroundColor(viewModel.data.boxView.borderColor.customColor())
+                            .foregroundColor(viewModel.data.boxView.title.customColor())
                             .padding(.horizontal, 8)
                             .onTapGesture {
                                 print("debug :: onTapGesture ::\(item.title)")
@@ -49,7 +49,7 @@ struct ContentView: View {
                             }
                     }
                 }
-                .borderColor(viewModel.data.boxView.borderColor)
+                .borderColor(viewModel.data.boxView.title)
                 .padding(.horizontal)
                 .onTapGesture {
                     print("debug :: onTapGesture BoxView")
