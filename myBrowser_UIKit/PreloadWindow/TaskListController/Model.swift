@@ -16,12 +16,12 @@ struct ListViewModel: Codable {
         case boxView = "BoxView"
     }
     
-    static let defaultValue = ListViewModel(scrollView: [], boxView: .init(title: "", items: []))
+    static let defaultValue = ListViewModel(scrollView: [], boxView: .init(itemPriority: "", items: []))
 }
 
 struct BoxViewModel: Codable, Identifiable, RandomAccessCollection {
     private(set) var id = UUID()
-    let title: String
+    let itemPriority: String
     let items: [GroupItem]
     
     // MARK: - Collection Conformance
@@ -39,7 +39,7 @@ struct BoxViewModel: Codable, Identifiable, RandomAccessCollection {
     // MARK: - Codable
     
     private enum CodingKeys: String, CodingKey {
-        case title, items
+        case itemPriority, items
     }
 }
 
