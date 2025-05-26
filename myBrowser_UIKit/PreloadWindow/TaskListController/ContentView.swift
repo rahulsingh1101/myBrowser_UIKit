@@ -20,6 +20,7 @@ struct ContentView: View {
         ScrollView {
             VStack(spacing: 16) {
                 ForEach(viewModel.data.scrollView) { group in
+                    Text(group.itemGroupTitle).multilineTextAlignment(.leading)
                     BoxView {
                         ForEach(group.items) { item in
                             LabelWithSpacer(text: item.title)
@@ -33,6 +34,7 @@ struct ContentView: View {
                     .borderColor(group.itemPriority)
                     .padding(.horizontal)
                 }
+                Text(viewModel.data.boxView.itemGroupTitle).multilineTextAlignment(.leading)
                 BoxView {
                     ForEach(viewModel.data.boxView) { item in
                         LabelWithSpacer(text: item.title)
