@@ -18,7 +18,7 @@ struct ContentView: View {
 
     var body: some View {
         ScrollView {
-            VStack(spacing: 16) {
+            VStack(alignment: .leading, spacing: 16) {
                 ForEach(viewModel.data.scrollView) { group in
                     Text(group.itemGroupTitle).multilineTextAlignment(.leading)
                     BoxView {
@@ -57,7 +57,7 @@ struct ContentView: View {
                     print("debug :: onTapGesture BoxView")
                 }
             }
-            .padding(.vertical)
+            .padding(.horizontal)
         }
         .background(Color(nsColor: .controlBackgroundColor))
         .edgesIgnoringSafeArea(.all)
