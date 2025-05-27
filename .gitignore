@@ -5,3 +5,6 @@ myBrowser_UIKit.xcworkspace/xcuserdata/rahulsingh.xcuserdatad/UserInterfaceState
 
 # Cocoapods
 Pods/
+
+*xcworkspace/xcuserdata/*
+*/xcuserdata/*
