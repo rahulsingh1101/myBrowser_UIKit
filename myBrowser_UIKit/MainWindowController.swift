@@ -1,5 +1,5 @@
 //
-//  UrlLoadingWindowController.swift
+//  DefaultWindowController.swift
 //  myBrowser_UIKit
 //
 //  Created by Rahul Singh on 19/05/25.
@@ -7,18 +7,15 @@
 
 import Cocoa
 
-final class UrlLoadingWindowController: BWWindowController {
-    init(identifier: String, model: UrlLoadingViewController.Model) {
-        let viewController = UrlLoadingViewController()
-        viewController.preloadClass(data: model)
+final class MainWindowController: RootWindowController {
+    init(identifier: String, title: String, windowTracker: WindowTracker) {
+        let viewController = ViewController()
         let window = NSWindow(contentViewController: viewController)
         let visibleFrame = NSScreen.main!.visibleFrame
         window.setContentSize(visibleFrame.size)
         window.styleMask = [.titled, .closable, .resizable, .miniaturizable]
-        window.title = model.title
-        super.init(window: window, identifier: identifier)
-        self.window?.delegate = self
-        viewController.loadURL()
+        window.title = title
+        super.init(window: window, identifier: identifier, windowTracker: windowTracker)
     }
     
     required init?(coder: NSCoder) {
@@ -30,7 +27,6 @@ final class UrlLoadingWindowController: BWWindowController {
     }
     
     override func reloadURL() {
-        let viewController = self.window?.contentViewController as? UrlLoadingViewController
-        viewController?.loadURL()
+        print("reloadURL called :: \(MainWindowController.className())")
     }
 }

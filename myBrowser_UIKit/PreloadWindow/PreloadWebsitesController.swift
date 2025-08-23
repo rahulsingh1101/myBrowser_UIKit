@@ -17,6 +17,7 @@ enum JSONLoadingError: Error {
 final class PreloadWebsitesController: NSViewController, NSCollectionViewDataSource, NSCollectionViewDelegate {
     var collectionView: NSCollectionView!
     var taskListController: TaskListController!
+    var browser: RootWindowControllerProtocol?
     
     var items: [ItemModel] = []
     
@@ -161,7 +162,9 @@ extension PreloadWebsitesController: OpenUrlProtocol {
         if let index {
             let item = items[index]
             let appDelegate = NSApplication.shared.delegate as? AppDelegate
-            appDelegate?.openUrlLoadingWindow(identifier: item.url, model: .init(urlToLoad: item.url, title: item.title))
+            guard let windowFactory = appDelegate?.windowFactory else { return }
+            browser = windowFactory.create(windowType: .browser(item.url))
+            browser?.showWindoww(self)
         }
     }
 }

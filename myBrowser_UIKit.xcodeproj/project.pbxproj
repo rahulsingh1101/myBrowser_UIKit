@@ -3,11 +3,10 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 56;
+	objectVersion = 70;
 	objects = {
 
 /* Begin PBXBuildFile section */
-		16B4E990705C6C0AF1FD8A7A /* Pods_myBrowser_UIKitTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F5731F446876BA83A0CA3E6F /* Pods_myBrowser_UIKitTests.framework */; };
 		1F3B5EEC2DDE27AF00094BE1 /* LabelWithSpacer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F3B5EEB2DDE27AF00094BE1 /* LabelWithSpacer.swift */; };
 		1F3B5EEE2DDE28AF00094BE1 /* BoxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F3B5EED2DDE28AF00094BE1 /* BoxView.swift */; };
 		1F3B5EF02DDE39AB00094BE1 /* MyViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F3B5EEF2DDE39AB00094BE1 /* MyViewModel.swift */; };
@@ -30,20 +29,17 @@
 		1F63F67E2DD8495700A31BC1 /* myBrowser_UIKitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F63F67D2DD8495700A31BC1 /* myBrowser_UIKitTests.swift */; };
 		1F63F6882DD8495700A31BC1 /* myBrowser_UIKitUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F63F6872DD8495700A31BC1 /* myBrowser_UIKitUITests.swift */; };
 		1F63F68A2DD8495700A31BC1 /* myBrowser_UIKitUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F63F6892DD8495700A31BC1 /* myBrowser_UIKitUITestsLaunchTests.swift */; };
-		1F63F6972DD84E7C00A31BC1 /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F63F6962DD84E7C00A31BC1 /* WebViewController.swift */; };
 		1F63F6EF2DDB113D00A31BC1 /* PreloadWebsitesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F63F6EE2DDB113D00A31BC1 /* PreloadWebsitesController.swift */; };
 		1F63F6F12DDB118700A31BC1 /* PreloadWebsitesController.json in Resources */ = {isa = PBXBuildFile; fileRef = 1F63F6F02DDB118700A31BC1 /* PreloadWebsitesController.json */; };
 		1F63F6F32DDB14E900A31BC1 /* ItemModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F63F6F22DDB14E900A31BC1 /* ItemModel.swift */; };
 		1F63F6F72DDB155F00A31BC1 /* PreloadItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F63F6F42DDB155F00A31BC1 /* PreloadItem.swift */; };
-		1F63F6FB2DDB323E00A31BC1 /* PreloadWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F63F6FA2DDB323E00A31BC1 /* PreloadWindowController.swift */; };
-		1F63F6FD2DDB34B400A31BC1 /* ManageWindowControllerModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F63F6FC2DDB34B400A31BC1 /* ManageWindowControllerModel.swift */; };
-		1F63F6FF2DDB3ECC00A31BC1 /* BWWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F63F6FE2DDB3ECC00A31BC1 /* BWWindowController.swift */; };
-		1FB273CF2DDB54840098D73A /* UrlLoadingWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FB273CE2DDB54840098D73A /* UrlLoadingWindowController.swift */; };
-		1FB273D12DDB55090098D73A /* UrlLoadingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FB273D02DDB55090098D73A /* UrlLoadingViewController.swift */; };
-		1FB273D52DDB7CDC0098D73A /* WindowActionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FB273D42DDB7CDC0098D73A /* WindowActionDelegate.swift */; };
+		1F63F6FB2DDB323E00A31BC1 /* MainWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F63F6FA2DDB323E00A31BC1 /* MainWindowController.swift */; };
+		1F63F6FF2DDB3ECC00A31BC1 /* RootWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F63F6FE2DDB3ECC00A31BC1 /* RootWindowController.swift */; };
+		1F78BC0C2E5A403600CDF50B /* WindowTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F78BC0B2E5A402E00CDF50B /* WindowTracker.swift */; };
+		1F78BC0F2E5A463600CDF50B /* AppWindowFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F78BC0E2E5A463500CDF50B /* AppWindowFactory.swift */; };
+		1FB273CF2DDB54840098D73A /* BrowserWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FB273CE2DDB54840098D73A /* BrowserWindowController.swift */; };
+		1FB273D12DDB55090098D73A /* BrowserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FB273D02DDB55090098D73A /* BrowserViewController.swift */; };
 		1FB273D72DDC1EA10098D73A /* WindowCreationHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FB273D62DDC1EA10098D73A /* WindowCreationHandler.swift */; };
-		8320911FE0B219EF0E073948 /* Pods_myBrowser_UIKit_myBrowser_UIKitUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7F04C54C742BA813A71A3DA7 /* Pods_myBrowser_UIKit_myBrowser_UIKitUITests.framework */; };
-		C4F1FD311A7021CF66F5EF36 /* Pods_myBrowser_UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9CC4F91978E142C43FB06402 /* Pods_myBrowser_UIKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -90,28 +86,22 @@
 		1F63F6832DD8495700A31BC1 /* myBrowser_UIKitUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = myBrowser_UIKitUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		1F63F6872DD8495700A31BC1 /* myBrowser_UIKitUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = myBrowser_UIKitUITests.swift; sourceTree = "<group>"; };
 		1F63F6892DD8495700A31BC1 /* myBrowser_UIKitUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = myBrowser_UIKitUITestsLaunchTests.swift; sourceTree = "<group>"; };
-		1F63F6962DD84E7C00A31BC1 /* WebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
 		1F63F6EE2DDB113D00A31BC1 /* PreloadWebsitesController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreloadWebsitesController.swift; sourceTree = "<group>"; };
 		1F63F6F02DDB118700A31BC1 /* PreloadWebsitesController.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = PreloadWebsitesController.json; sourceTree = "<group>"; };
 		1F63F6F22DDB14E900A31BC1 /* ItemModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemModel.swift; sourceTree = "<group>"; };
 		1F63F6F42DDB155F00A31BC1 /* PreloadItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreloadItem.swift; sourceTree = "<group>"; };
-		1F63F6FA2DDB323E00A31BC1 /* PreloadWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreloadWindowController.swift; sourceTree = "<group>"; };
-		1F63F6FC2DDB34B400A31BC1 /* ManageWindowControllerModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManageWindowControllerModel.swift; sourceTree = "<group>"; };
-		1F63F6FE2DDB3ECC00A31BC1 /* BWWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BWWindowController.swift; sourceTree = "<group>"; };
-		1FB273CE2DDB54840098D73A /* UrlLoadingWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UrlLoadingWindowController.swift; sourceTree = "<group>"; };
-		1FB273D02DDB55090098D73A /* UrlLoadingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UrlLoadingViewController.swift; sourceTree = "<group>"; };
-		1FB273D42DDB7CDC0098D73A /* WindowActionDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WindowActionDelegate.swift; sourceTree = "<group>"; };
+		1F63F6FA2DDB323E00A31BC1 /* MainWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainWindowController.swift; sourceTree = "<group>"; };
+		1F63F6FE2DDB3ECC00A31BC1 /* RootWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootWindowController.swift; sourceTree = "<group>"; };
+		1F78BC0B2E5A402E00CDF50B /* WindowTracker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WindowTracker.swift; sourceTree = "<group>"; };
+		1F78BC0E2E5A463500CDF50B /* AppWindowFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppWindowFactory.swift; sourceTree = "<group>"; };
+		1FB273CE2DDB54840098D73A /* BrowserWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrowserWindowController.swift; sourceTree = "<group>"; };
+		1FB273D02DDB55090098D73A /* BrowserViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrowserViewController.swift; sourceTree = "<group>"; };
 		1FB273D62DDC1EA10098D73A /* WindowCreationHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WindowCreationHandler.swift; sourceTree = "<group>"; };
-		25A308FE6482FFA7B50CCEB4 /* Pods-myBrowser_UIKit-myBrowser_UIKitUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-myBrowser_UIKit-myBrowser_UIKitUITests.release.xcconfig"; path = "Target Support Files/Pods-myBrowser_UIKit-myBrowser_UIKitUITests/Pods-myBrowser_UIKit-myBrowser_UIKitUITests.release.xcconfig"; sourceTree = "<group>"; };
-		7F04C54C742BA813A71A3DA7 /* Pods_myBrowser_UIKit_myBrowser_UIKitUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_myBrowser_UIKit_myBrowser_UIKitUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		8167DBD23C7D6E3FCCEE7784 /* Pods-myBrowser_UIKit.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-myBrowser_UIKit.debug.xcconfig"; path = "Target Support Files/Pods-myBrowser_UIKit/Pods-myBrowser_UIKit.debug.xcconfig"; sourceTree = "<group>"; };
-		9CC4F91978E142C43FB06402 /* Pods_myBrowser_UIKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_myBrowser_UIKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		D51E3D8A09A4EAE177D92ABD /* Pods-myBrowser_UIKitTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-myBrowser_UIKitTests.release.xcconfig"; path = "Target Support Files/Pods-myBrowser_UIKitTests/Pods-myBrowser_UIKitTests.release.xcconfig"; sourceTree = "<group>"; };
-		DF82520498EE85AF1B6EE557 /* Pods-myBrowser_UIKitTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-myBrowser_UIKitTests.debug.xcconfig"; path = "Target Support Files/Pods-myBrowser_UIKitTests/Pods-myBrowser_UIKitTests.debug.xcconfig"; sourceTree = "<group>"; };
-		EA9EF0E67C34A425F2696F52 /* Pods-myBrowser_UIKit-myBrowser_UIKitUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-myBrowser_UIKit-myBrowser_UIKitUITests.debug.xcconfig"; path = "Target Support Files/Pods-myBrowser_UIKit-myBrowser_UIKitUITests/Pods-myBrowser_UIKit-myBrowser_UIKitUITests.debug.xcconfig"; sourceTree = "<group>"; };
-		EB064A91583D34F6C494C151 /* Pods-myBrowser_UIKit.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-myBrowser_UIKit.release.xcconfig"; path = "Target Support Files/Pods-myBrowser_UIKit/Pods-myBrowser_UIKit.release.xcconfig"; sourceTree = "<group>"; };
-		F5731F446876BA83A0CA3E6F /* Pods_myBrowser_UIKitTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_myBrowser_UIKitTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		1F78BBD52E5A078300CDF50B /* PopupWindowController */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = PopupWindowController; sourceTree = "<group>"; };
+/* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		1F63F6622DD8495500A31BC1 /* Frameworks */ = {
@@ -120,7 +110,6 @@
 			files = (
 				1F4E02D22DDCA30400A76078 /* Combine.framework in Frameworks */,
 				1F4E02D02DDCA2FE00A76078 /* SwiftUI.framework in Frameworks */,
-				C4F1FD311A7021CF66F5EF36 /* Pods_myBrowser_UIKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -128,7 +117,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				16B4E990705C6C0AF1FD8A7A /* Pods_myBrowser_UIKitTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -136,26 +124,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8320911FE0B219EF0E073948 /* Pods_myBrowser_UIKit_myBrowser_UIKitUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		1215F1EA545609A84037EDEE /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				8167DBD23C7D6E3FCCEE7784 /* Pods-myBrowser_UIKit.debug.xcconfig */,
-				EB064A91583D34F6C494C151 /* Pods-myBrowser_UIKit.release.xcconfig */,
-				EA9EF0E67C34A425F2696F52 /* Pods-myBrowser_UIKit-myBrowser_UIKitUITests.debug.xcconfig */,
-				25A308FE6482FFA7B50CCEB4 /* Pods-myBrowser_UIKit-myBrowser_UIKitUITests.release.xcconfig */,
-				DF82520498EE85AF1B6EE557 /* Pods-myBrowser_UIKitTests.debug.xcconfig */,
-				D51E3D8A09A4EAE177D92ABD /* Pods-myBrowser_UIKitTests.release.xcconfig */,
-			);
-			path = Pods;
-			sourceTree = "<group>";
-		};
 		1F3B5EF32DDF45D300094BE1 /* CoreDataModule */ = {
 			isa = PBXGroup;
 			children = (
@@ -196,7 +170,6 @@
 				1F63F67C2DD8495700A31BC1 /* myBrowser_UIKitTests */,
 				1F63F6862DD8495700A31BC1 /* myBrowser_UIKitUITests */,
 				1F63F6662DD8495500A31BC1 /* Products */,
-				1215F1EA545609A84037EDEE /* Pods */,
 				5330A85AA96065DC8FB31608 /* Frameworks */,
 			);
 			sourceTree = "<group>";
@@ -214,15 +187,14 @@
 		1F63F6672DD8495500A31BC1 /* myBrowser_UIKit */ = {
 			isa = PBXGroup;
 			children = (
+				1F78BC0D2E5A45F000CDF50B /* RootWindow */,
+				1F78BBD52E5A078300CDF50B /* PopupWindowController */,
 				1F3B5EF82DDF4AD000094BE1 /* CoreDataModel */,
 				1F3B5EF32DDF45D300094BE1 /* CoreDataModule */,
-				1FB273D32DDB7CC50098D73A /* Delegates */,
-				1F63F6F92DDB320B00A31BC1 /* BWWindowController */,
-				1FB273CD2DDB539D0098D73A /* UrlLoadingWindow */,
+				1FB273CD2DDB539D0098D73A /* BrowserViewController */,
 				1F63F6ED2DDB10F700A31BC1 /* PreloadWindow */,
-				1F63F6982DD8588D00A31BC1 /* WebViewController */,
 				1F63F6682DD8495500A31BC1 /* AppDelegate.swift */,
-				1F63F6FC2DDB34B400A31BC1 /* ManageWindowControllerModel.swift */,
+				1F63F6FA2DDB323E00A31BC1 /* MainWindowController.swift */,
 				1F63F66A2DD8495500A31BC1 /* ViewController.swift */,
 				1FB273D62DDC1EA10098D73A /* WindowCreationHandler.swift */,
 				1F63F66F2DD8495700A31BC1 /* Assets.xcassets */,
@@ -250,19 +222,10 @@
 			path = myBrowser_UIKitUITests;
 			sourceTree = "<group>";
 		};
-		1F63F6982DD8588D00A31BC1 /* WebViewController */ = {
-			isa = PBXGroup;
-			children = (
-				1F63F6962DD84E7C00A31BC1 /* WebViewController.swift */,
-			);
-			path = WebViewController;
-			sourceTree = "<group>";
-		};
 		1F63F6ED2DDB10F700A31BC1 /* PreloadWindow */ = {
 			isa = PBXGroup;
 			children = (
 				1F4E02D32DDCA76D00A76078 /* TaskListController */,
-				1F63F6FA2DDB323E00A31BC1 /* PreloadWindowController.swift */,
 				1F63F6EE2DDB113D00A31BC1 /* PreloadWebsitesController.swift */,
 				1F63F6F42DDB155F00A31BC1 /* PreloadItem.swift */,
 				1F63F6F22DDB14E900A31BC1 /* ItemModel.swift */,
@@ -271,29 +234,23 @@
 			path = PreloadWindow;
 			sourceTree = "<group>";
 		};
-		1F63F6F92DDB320B00A31BC1 /* BWWindowController */ = {
+		1F78BC0D2E5A45F000CDF50B /* RootWindow */ = {
 			isa = PBXGroup;
 			children = (
-				1F63F6FE2DDB3ECC00A31BC1 /* BWWindowController.swift */,
+				1F78BC0B2E5A402E00CDF50B /* WindowTracker.swift */,
+				1F78BC0E2E5A463500CDF50B /* AppWindowFactory.swift */,
+				1F63F6FE2DDB3ECC00A31BC1 /* RootWindowController.swift */,
 			);
-			path = BWWindowController;
+			path = RootWindow;
 			sourceTree = "<group>";
 		};
-		1FB273CD2DDB539D0098D73A /* UrlLoadingWindow */ = {
+		1FB273CD2DDB539D0098D73A /* BrowserViewController */ = {
 			isa = PBXGroup;
 			children = (
-				1FB273CE2DDB54840098D73A /* UrlLoadingWindowController.swift */,
-				1FB273D02DDB55090098D73A /* UrlLoadingViewController.swift */,
+				1FB273CE2DDB54840098D73A /* BrowserWindowController.swift */,
+				1FB273D02DDB55090098D73A /* BrowserViewController.swift */,
 			);
-			path = UrlLoadingWindow;
-			sourceTree = "<group>";
-		};
-		1FB273D32DDB7CC50098D73A /* Delegates */ = {
-			isa = PBXGroup;
-			children = (
-				1FB273D42DDB7CDC0098D73A /* WindowActionDelegate.swift */,
-			);
-			path = Delegates;
+			path = BrowserViewController;
 			sourceTree = "<group>";
 		};
 		5330A85AA96065DC8FB31608 /* Frameworks */ = {
@@ -301,9 +258,6 @@
 			children = (
 				1F4E02D12DDCA30400A76078 /* Combine.framework */,
 				1F4E02CF2DDCA2FE00A76078 /* SwiftUI.framework */,
-				9CC4F91978E142C43FB06402 /* Pods_myBrowser_UIKit.framework */,
-				7F04C54C742BA813A71A3DA7 /* Pods_myBrowser_UIKit_myBrowser_UIKitUITests.framework */,
-				F5731F446876BA83A0CA3E6F /* Pods_myBrowser_UIKitTests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -315,15 +269,16 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 1F63F68D2DD8495700A31BC1 /* Build configuration list for PBXNativeTarget "myBrowser_UIKit" */;
 			buildPhases = (
-				BBF02A453F432B370616634B /* [CP] Check Pods Manifest.lock */,
 				1F63F6612DD8495500A31BC1 /* Sources */,
 				1F63F6622DD8495500A31BC1 /* Frameworks */,
 				1F63F6632DD8495500A31BC1 /* Resources */,
-				1C9F8185EC4ECFCD0A4E85CC /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				1F78BBD52E5A078300CDF50B /* PopupWindowController */,
 			);
 			name = myBrowser_UIKit;
 			productName = myBrowser_UIKit;
@@ -334,7 +289,6 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 1F63F6902DD8495700A31BC1 /* Build configuration list for PBXNativeTarget "myBrowser_UIKitTests" */;
 			buildPhases = (
-				7A37D8CC9EA2F62F6A23F346 /* [CP] Check Pods Manifest.lock */,
 				1F63F6752DD8495700A31BC1 /* Sources */,
 				1F63F6762DD8495700A31BC1 /* Frameworks */,
 				1F63F6772DD8495700A31BC1 /* Resources */,
@@ -353,11 +307,9 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 1F63F6932DD8495700A31BC1 /* Build configuration list for PBXNativeTarget "myBrowser_UIKitUITests" */;
 			buildPhases = (
-				DDD8ABAF02BEE28C735337E3 /* [CP] Check Pods Manifest.lock */,
 				1F63F67F2DD8495700A31BC1 /* Sources */,
 				1F63F6802DD8495700A31BC1 /* Frameworks */,
 				1F63F6812DD8495700A31BC1 /* Resources */,
-				61230823211A078AE2B11596 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -440,136 +392,32 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
-/* Begin PBXShellScriptBuildPhase section */
-		1C9F8185EC4ECFCD0A4E85CC /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-myBrowser_UIKit/Pods-myBrowser_UIKit-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-myBrowser_UIKit/Pods-myBrowser_UIKit-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-myBrowser_UIKit/Pods-myBrowser_UIKit-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		61230823211A078AE2B11596 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-myBrowser_UIKit-myBrowser_UIKitUITests/Pods-myBrowser_UIKit-myBrowser_UIKitUITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-myBrowser_UIKit-myBrowser_UIKitUITests/Pods-myBrowser_UIKit-myBrowser_UIKitUITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-myBrowser_UIKit-myBrowser_UIKitUITests/Pods-myBrowser_UIKit-myBrowser_UIKitUITests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		7A37D8CC9EA2F62F6A23F346 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-myBrowser_UIKitTests-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		BBF02A453F432B370616634B /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-myBrowser_UIKit-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		DDD8ABAF02BEE28C735337E3 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-myBrowser_UIKit-myBrowser_UIKitUITests-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-/* End PBXShellScriptBuildPhase section */
-
 /* Begin PBXSourcesBuildPhase section */
 		1F63F6612DD8495500A31BC1 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1F63F6FD2DDB34B400A31BC1 /* ManageWindowControllerModel.swift in Sources */,
+				1F78BC0F2E5A463600CDF50B /* AppWindowFactory.swift in Sources */,
 				1F63F6F32DDB14E900A31BC1 /* ItemModel.swift in Sources */,
 				1F4E02C62DDCA24C00A76078 /* ContentView.swift in Sources */,
-				1F63F6FF2DDB3ECC00A31BC1 /* BWWindowController.swift in Sources */,
+				1F63F6FF2DDB3ECC00A31BC1 /* RootWindowController.swift in Sources */,
 				1F3B5F0C2DE068DC00094BE1 /* ToDoItem+CoreDataProperties.swift in Sources */,
-				1F63F6FB2DDB323E00A31BC1 /* PreloadWindowController.swift in Sources */,
+				1F63F6FB2DDB323E00A31BC1 /* MainWindowController.swift in Sources */,
 				1F4E02CA2DDCA28000A76078 /* Color+String.swift in Sources */,
 				1F63F6EF2DDB113D00A31BC1 /* PreloadWebsitesController.swift in Sources */,
-				1FB273D12DDB55090098D73A /* UrlLoadingViewController.swift in Sources */,
-				1FB273D52DDB7CDC0098D73A /* WindowActionDelegate.swift in Sources */,
+				1FB273D12DDB55090098D73A /* BrowserViewController.swift in Sources */,
 				1F3B5EF02DDE39AB00094BE1 /* MyViewModel.swift in Sources */,
 				1F3B5EF52DDF45E700094BE1 /* CoreDataManager.swift in Sources */,
 				1F3B5EEC2DDE27AF00094BE1 /* LabelWithSpacer.swift in Sources */,
 				1F63F66E2DD8495500A31BC1 /* myBrowser_UIKit.xcdatamodeld in Sources */,
 				1F4E02C42DDCA1FD00A76078 /* TaskListController.swift in Sources */,
 				1F63F6F72DDB155F00A31BC1 /* PreloadItem.swift in Sources */,
-				1FB273CF2DDB54840098D73A /* UrlLoadingWindowController.swift in Sources */,
+				1FB273CF2DDB54840098D73A /* BrowserWindowController.swift in Sources */,
 				1F63F66B2DD8495500A31BC1 /* ViewController.swift in Sources */,
 				1FB273D72DDC1EA10098D73A /* WindowCreationHandler.swift in Sources */,
+				1F78BC0C2E5A403600CDF50B /* WindowTracker.swift in Sources */,
 				1F4E02CC2DDCA29600A76078 /* Model.swift in Sources */,
 				1F63F6692DD8495500A31BC1 /* AppDelegate.swift in Sources */,
-				1F63F6972DD84E7C00A31BC1 /* WebViewController.swift in Sources */,
 				1F3B5EF72DDF476F00094BE1 /* CoreDataService.swift in Sources */,
 				1F3B5F0D2DE068DC00094BE1 /* ToDoItem+CoreDataClass.swift in Sources */,
 				1F3B5EEE2DDE28AF00094BE1 /* BoxView.swift in Sources */,
@@ -740,7 +588,6 @@
 		};
 		1F63F68E2DD8495700A31BC1 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 8167DBD23C7D6E3FCCEE7784 /* Pods-myBrowser_UIKit.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -769,7 +616,6 @@
 		};
 		1F63F68F2DD8495700A31BC1 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = EB064A91583D34F6C494C151 /* Pods-myBrowser_UIKit.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -798,7 +644,6 @@
 		};
 		1F63F6912DD8495700A31BC1 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = DF82520498EE85AF1B6EE557 /* Pods-myBrowser_UIKitTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -818,7 +663,6 @@
 		};
 		1F63F6922DD8495700A31BC1 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = D51E3D8A09A4EAE177D92ABD /* Pods-myBrowser_UIKitTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -838,7 +682,6 @@
 		};
 		1F63F6942DD8495700A31BC1 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = EA9EF0E67C34A425F2696F52 /* Pods-myBrowser_UIKit-myBrowser_UIKitUITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -856,7 +699,6 @@
 		};
 		1F63F6952DD8495700A31BC1 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 25A308FE6482FFA7B50CCEB4 /* Pods-myBrowser_UIKit-myBrowser_UIKitUITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;

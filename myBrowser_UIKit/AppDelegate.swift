@@ -11,31 +11,19 @@ import Cocoa
 class AppDelegate: NSObject, NSApplicationDelegate {
 
     var window: NSWindow!
-    var windowController: BWWindowControllerProtocol!
-    private let manageWindow = ManageWindowControllerModel()
+    let windowFactory = AppWindowFactory()
     
     fileprivate func loadWindow(
         identifier: String,
-        createWindowController: () -> BWWindowControllerProtocol
+        createWindowController: () -> RootWindowControllerProtocol
     ) {
-        let (isWindowAlreadyPresent, windowWithId) = manageWindow.isWindowAlreadyPresent(identifier)
-        
-        if !isWindowAlreadyPresent {
-            let controller = createWindowController()
-            controller.delegate = self
-            controller.showWindoww(self)
-            manageWindow.add(controller)
-            windowController = controller
-        } else if let windowWithId {
-            windowWithId.showWindoww(self)
-            manageWindow.updateCurrentWindow(windowWithId)
-            windowController.reloadURL()
-        }
+        let controller = createWindowController()
+        controller.showWindoww(self)
     }
     
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         loadWindow(identifier: #function) {
-            return PreloadWindowController(identifier: NSUserInterfaceItemIdentifier(#function).rawValue, title: "Search / Bookmark - 1")
+            return windowFactory.create(windowType: .main)
         }
     }
     
@@ -44,24 +32,12 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         return false
     }
     
-    func openNewWindow(_ sender: NSApplication) {
-        let currentWindowIdentifier = manageWindow.getCurrentWindow()?.identifier
-        let windows = sender.windows.compactMap {
-            $0.windowController as? PreloadWindowController
-        }.first {
-            $0.identifier == currentWindowIdentifier
+    private func openNewWindow(_ sender: NSApplication) {
+        var minimizedWindow = windowFactory.windowTracker.getWindowForDockClick()
+        if minimizedWindow == nil {
+            minimizedWindow = windowFactory.create(windowType: .main)
         }
-        if windows == nil {
-            loadWindow(identifier: #function) {
-                return PreloadWindowController(identifier: NSUserInterfaceItemIdentifier(#function).rawValue, title: "Search / Bookmark - 2")
-            }
-        }
-    }
-    
-    func openUrlLoadingWindow(identifier: String, model: UrlLoadingViewController.Model) {
-        loadWindow(identifier: identifier) {
-            return UrlLoadingWindowController(identifier: NSUserInterfaceItemIdentifier(identifier).rawValue, model: .init(urlToLoad: model.urlToLoad, title: model.title))
-        }
+        minimizedWindow?.showWindoww(minimizedWindow)
     }
 
     func applicationWillTerminate(_ aNotification: Notification) {
@@ -118,16 +94,5 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         }
         // If we got here, it is time to quit.
         return .terminateNow
-    }
-
-}
-
-extension AppDelegate: WindowActionDelegate {
-    func windowWillClose(_ window: BWWindowController) {
-        manageWindow.remove(window)
-    }
-    
-    func windowDidBecomekey(_ window: BWWindowController) {
-        manageWindow.updateCurrentWindow(window)
     }
 }

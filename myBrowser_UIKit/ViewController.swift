@@ -7,11 +7,11 @@
 
 import Cocoa
 import WebKit
-import CoreDataManager
 
 final class ViewController: NSViewController {
     let searchField = NSSearchField()
     let webViewController = PreloadWebsitesController()
+    var browser: RootWindowControllerProtocol?
     
     override func loadView() {
         // Main container view
@@ -66,7 +66,9 @@ final class ViewController: NSViewController {
         if let url = URL(string: finalURLString) {
             print("debug :: Started loading...::\(url)")
             let appDelegate = NSApplication.shared.delegate as? AppDelegate
-            appDelegate?.openUrlLoadingWindow(identifier: url.absoluteString, model: .init(urlToLoad: url.absoluteString, title: "Search Result"))
+            guard let windowFactory = appDelegate?.windowFactory else { return }
+            browser = windowFactory.create(windowType: .browser(url.absoluteString))
+            browser?.showWindoww(self)
         }
     }
     
@@ -78,12 +80,6 @@ final class ViewController: NSViewController {
         didSet {
         // Update the view, if already loaded.
         }
-    }
-}
-
-extension ViewController: WebViewDelegateProtocol {
-    func webView(didFinish navigation: String) {
-        self.searchField.stringValue = navigation
     }
 }
 

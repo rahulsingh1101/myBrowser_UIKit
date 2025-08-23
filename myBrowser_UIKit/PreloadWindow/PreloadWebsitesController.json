@@ -10,9 +10,29 @@
     "url": "https://upskill.tutedude.com/course/lecture-dsawithpython"
   },
   {
+    "title": "System Design",
+    "subtitle": "Tutedude",
+    "url": "https://upskill.tutedude.com/course/lecture-systemdesign"
+  },
+  {
+    "title": "Data Structures & Algorithms",
+    "subtitle": "Tutedude",
+    "url": "https://upskill.tutedude.com/course/lecture-datastructure"
+  },
+  {
+    "title": "Tutedude",
+    "subtitle": "Tutedude home",
+    "url": "https://tutedude.com"
+  },
+  {
     "title": "LeetCode Problem Set",
     "subtitle": "Practice coding problems by difficulty",
     "url": "https://leetcode.com/problemset/"
+  },
+  {
+    "title": "NeetCode DSA Roadmap",
+    "subtitle": "Practice DSA algorithm problems",
+    "url": "https://neetcode.io/roadmap"
   },
   {
     "title": "ChatGPT",
@@ -32,6 +52,11 @@
   {
     "title": "GitHub",
     "subtitle": "Profile link",
-    "url": "https://github.com/rahulsingh1101/rahulsingh1101"
+    "url": "https://github.com/rahulsingh1101"
+  },
+  {
+    "title": "Rahul on LinkedIn",
+    "subtitle": "Your professional profile & activity.",
+    "url": "https://www.linkedin.com/in/rksingh1101/"
   }
 ]
