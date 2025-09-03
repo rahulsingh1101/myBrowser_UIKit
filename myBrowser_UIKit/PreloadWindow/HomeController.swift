@@ -17,7 +17,6 @@ enum JSONLoadingError: Error {
 final class HomeController: NSViewController, NSCollectionViewDataSource, NSCollectionViewDelegate {
     var collectionView: NSCollectionView!
     var taskListController: SwiftUIHostController<TaskListView>!
-    var browser: RootWindowControllerProtocol?
     
     var items: [ItemModel] = []
     
@@ -163,8 +162,8 @@ extension HomeController: OpenUrlProtocol {
             let item = items[index]
             let appDelegate = NSApplication.shared.delegate as? AppDelegate
             guard let windowFactory = appDelegate?.windowFactory else { return }
-            browser = windowFactory.create(windowType: .browser(item.url))
-            browser?.showWindoww(self)
+            let browser = windowFactory.create(windowType: .browser(item.url))
+            browser.showWindoww(self)
         }
     }
 }

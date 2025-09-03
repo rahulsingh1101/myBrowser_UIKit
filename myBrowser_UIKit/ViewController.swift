@@ -11,7 +11,6 @@ import WebKit
 final class ViewController: NSViewController {
     let searchField = NSSearchField()
     let webViewController = HomeController()
-    var browser: RootWindowControllerProtocol?
     
     override func loadView() {
         // Main container view
@@ -67,8 +66,8 @@ final class ViewController: NSViewController {
             print("debug :: Started loading...::\(url)")
             let appDelegate = NSApplication.shared.delegate as? AppDelegate
             guard let windowFactory = appDelegate?.windowFactory else { return }
-            browser = windowFactory.create(windowType: .browser(url.absoluteString))
-            browser?.showWindoww(self)
+            let browser = windowFactory.create(windowType: .browser(url.absoluteString))
+            browser.showWindoww(self)
         }
     }
     
