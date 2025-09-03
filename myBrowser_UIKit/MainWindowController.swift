@@ -8,7 +8,7 @@
 import Cocoa
 
 final class MainWindowController: RootWindowController {
-    init(identifier: String, title: String, windowTracker: WindowTracker) {
+    init(identifier: String, title: String, windowTracker: WindowTrackerProtocol) {
         let viewController = ViewController()
         let window = NSWindow(contentViewController: viewController)
         let visibleFrame = NSScreen.main!.visibleFrame

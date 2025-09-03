@@ -7,7 +7,17 @@
 
 import AppKit
 
-final class WindowTracker {
+protocol WindowTrackerProtocol {
+    func add(window: RootWindowControllerProtocol)
+    func getCreatedWindow(for identifier: String) -> RootWindowControllerProtocol?
+    func didClose(window: RootWindowControllerProtocol)
+    func resetMinimized(window: RootWindowControllerProtocol)
+    func getWindowForDockClick() -> RootWindowControllerProtocol?
+    var minimizedWindow: [RootWindowControllerProtocol] {get set}
+    var currentWindow: RootWindowControllerProtocol? { get set}
+}
+
+final class WindowTracker: WindowTrackerProtocol {
     private var createdWindows = [RootWindowControllerProtocol]()
     var minimizedWindow: [RootWindowControllerProtocol] = []
     var currentWindow: RootWindowControllerProtocol?

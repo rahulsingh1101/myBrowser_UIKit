@@ -10,7 +10,7 @@ import WebKit
 final class PopupWindowController: RootWindowController, WKUIDelegate, WKNavigationDelegate {
     let webView: WKWebView
 
-    init(configuration: WKWebViewConfiguration, windowTracker: WindowTracker) {
+    init(configuration: WKWebViewConfiguration, windowTracker: WindowTrackerProtocol) {
         self.webView = WKWebView(frame: .zero, configuration: configuration)
         let vc = NSViewController()
         vc.view = NSView()

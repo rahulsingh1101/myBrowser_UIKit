@@ -15,7 +15,7 @@ enum WindowType {
 }
 
 final class AppWindowFactory {
-    let windowTracker = WindowTracker()
+    let windowTracker: WindowTrackerProtocol = WindowTracker()
     
     func create(windowType: WindowType) -> RootWindowControllerProtocol {
         if let windowController = checkIfAlreadyPresent(windowType: windowType) {

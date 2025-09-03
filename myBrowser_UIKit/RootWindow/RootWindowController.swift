@@ -15,9 +15,9 @@ protocol RootWindowControllerProtocol: AnyObject {
 
 class RootWindowController: NSWindowController, RootWindowControllerProtocol {
     let identifier: String
-    private let windowTracker: WindowTracker
+    private var windowTracker: WindowTrackerProtocol
     
-    init(window: NSWindow, identifier: String, windowTracker: WindowTracker) {
+    init(window: NSWindow, identifier: String, windowTracker: WindowTrackerProtocol) {
         self.identifier = identifier
         self.windowTracker = windowTracker
         super.init(window: window)

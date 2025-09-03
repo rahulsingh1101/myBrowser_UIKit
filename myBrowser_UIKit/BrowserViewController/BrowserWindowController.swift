@@ -8,7 +8,7 @@
 import Cocoa
 
 final class BrowserWindowController: RootWindowController {
-    init(identifier: String, model: BrowserViewController.Model, windowTracker: WindowTracker) {
+    init(identifier: String, model: BrowserViewController.Model, windowTracker: WindowTrackerProtocol) {
         let viewController = BrowserViewController()
         viewController.preloadClass(data: model)
         let window = NSWindow(contentViewController: viewController)
