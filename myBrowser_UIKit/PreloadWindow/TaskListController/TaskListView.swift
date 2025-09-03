@@ -9,7 +9,7 @@ import SwiftUI
 import SwiftData
 import Cocoa
 
-struct ContentView: View {
+struct TaskListView: View {
     @StateObject private var viewModel: MyViewModel
     
     init() {

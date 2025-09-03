@@ -16,7 +16,7 @@ enum JSONLoadingError: Error {
 
 final class PreloadWebsitesController: NSViewController, NSCollectionViewDataSource, NSCollectionViewDelegate {
     var collectionView: NSCollectionView!
-    var taskListController: TaskListController!
+    var taskListController: SwiftUIHostController<TaskListView>!
     var browser: RootWindowControllerProtocol?
     
     var items: [ItemModel] = []
@@ -43,7 +43,7 @@ final class PreloadWebsitesController: NSViewController, NSCollectionViewDataSou
         
         // 2. View Controller
         let screenWidth = NSScreen.main?.frame.width ?? 800
-        taskListController = TaskListController()
+        taskListController = SwiftUIHostController(rootView: TaskListView())
         taskListController.view.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(taskListController.view)
         

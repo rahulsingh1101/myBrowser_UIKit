@@ -10,8 +10,7 @@
 		1F3B5EEC2DDE27AF00094BE1 /* LabelWithSpacer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F3B5EEB2DDE27AF00094BE1 /* LabelWithSpacer.swift */; };
 		1F3B5EEE2DDE28AF00094BE1 /* BoxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F3B5EED2DDE28AF00094BE1 /* BoxView.swift */; };
 		1F3B5EF02DDE39AB00094BE1 /* MyViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F3B5EEF2DDE39AB00094BE1 /* MyViewModel.swift */; };
-		1F4E02C42DDCA1FD00A76078 /* TaskListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F4E02C32DDCA1FD00A76078 /* TaskListController.swift */; };
-		1F4E02C62DDCA24C00A76078 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F4E02C52DDCA24C00A76078 /* ContentView.swift */; };
+		1F4E02C62DDCA24C00A76078 /* TaskListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F4E02C52DDCA24C00A76078 /* TaskListView.swift */; };
 		1F4E02CA2DDCA28000A76078 /* Color+String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F4E02C92DDCA28000A76078 /* Color+String.swift */; };
 		1F4E02CC2DDCA29600A76078 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F4E02CB2DDCA29600A76078 /* Model.swift */; };
 		1F4E02CE2DDCA2AC00A76078 /* data.json in Resources */ = {isa = PBXBuildFile; fileRef = 1F4E02CD2DDCA2AC00A76078 /* data.json */; };
@@ -30,6 +29,7 @@
 		1F63F6FF2DDB3ECC00A31BC1 /* RootWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F63F6FE2DDB3ECC00A31BC1 /* RootWindowController.swift */; };
 		1F78BC0C2E5A403600CDF50B /* WindowTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F78BC0B2E5A402E00CDF50B /* WindowTracker.swift */; };
 		1F78BC0F2E5A463600CDF50B /* AppWindowFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F78BC0E2E5A463500CDF50B /* AppWindowFactory.swift */; };
+		1F860EC12E68849200A78030 /* SwiftUIHostController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F860EC02E68849000A78030 /* SwiftUIHostController.swift */; };
 		1FB273CF2DDB54840098D73A /* BrowserWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FB273CE2DDB54840098D73A /* BrowserWindowController.swift */; };
 		1FB273D12DDB55090098D73A /* BrowserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FB273D02DDB55090098D73A /* BrowserViewController.swift */; };
 /* End PBXBuildFile section */
@@ -38,8 +38,7 @@
 		1F3B5EEB2DDE27AF00094BE1 /* LabelWithSpacer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelWithSpacer.swift; sourceTree = "<group>"; };
 		1F3B5EED2DDE28AF00094BE1 /* BoxView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoxView.swift; sourceTree = "<group>"; };
 		1F3B5EEF2DDE39AB00094BE1 /* MyViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyViewModel.swift; sourceTree = "<group>"; };
-		1F4E02C32DDCA1FD00A76078 /* TaskListController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskListController.swift; sourceTree = "<group>"; };
-		1F4E02C52DDCA24C00A76078 /* ContentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		1F4E02C52DDCA24C00A76078 /* TaskListView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskListView.swift; sourceTree = "<group>"; };
 		1F4E02C92DDCA28000A76078 /* Color+String.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Color+String.swift"; sourceTree = "<group>"; };
 		1F4E02CB2DDCA29600A76078 /* Model.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		1F4E02CD2DDCA2AC00A76078 /* data.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = data.json; sourceTree = "<group>"; };
@@ -60,6 +59,7 @@
 		1F63F6FE2DDB3ECC00A31BC1 /* RootWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootWindowController.swift; sourceTree = "<group>"; };
 		1F78BC0B2E5A402E00CDF50B /* WindowTracker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WindowTracker.swift; sourceTree = "<group>"; };
 		1F78BC0E2E5A463500CDF50B /* AppWindowFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppWindowFactory.swift; sourceTree = "<group>"; };
+		1F860EC02E68849000A78030 /* SwiftUIHostController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUIHostController.swift; sourceTree = "<group>"; };
 		1FB273CE2DDB54840098D73A /* BrowserWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrowserWindowController.swift; sourceTree = "<group>"; };
 		1FB273D02DDB55090098D73A /* BrowserViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrowserViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -84,8 +84,8 @@
 		1F4E02D32DDCA76D00A76078 /* TaskListController */ = {
 			isa = PBXGroup;
 			children = (
-				1F4E02C32DDCA1FD00A76078 /* TaskListController.swift */,
-				1F4E02C52DDCA24C00A76078 /* ContentView.swift */,
+				1F860EC02E68849000A78030 /* SwiftUIHostController.swift */,
+				1F4E02C52DDCA24C00A76078 /* TaskListView.swift */,
 				1F3B5EEF2DDE39AB00094BE1 /* MyViewModel.swift */,
 				1F3B5EEB2DDE27AF00094BE1 /* LabelWithSpacer.swift */,
 				1F3B5EED2DDE28AF00094BE1 /* BoxView.swift */,
@@ -248,7 +248,7 @@
 			files = (
 				1F78BC0F2E5A463600CDF50B /* AppWindowFactory.swift in Sources */,
 				1F63F6F32DDB14E900A31BC1 /* ItemModel.swift in Sources */,
-				1F4E02C62DDCA24C00A76078 /* ContentView.swift in Sources */,
+				1F4E02C62DDCA24C00A76078 /* TaskListView.swift in Sources */,
 				1F63F6FF2DDB3ECC00A31BC1 /* RootWindowController.swift in Sources */,
 				1F63F6FB2DDB323E00A31BC1 /* MainWindowController.swift in Sources */,
 				1F4E02CA2DDCA28000A76078 /* Color+String.swift in Sources */,
@@ -256,8 +256,8 @@
 				1FB273D12DDB55090098D73A /* BrowserViewController.swift in Sources */,
 				1F3B5EF02DDE39AB00094BE1 /* MyViewModel.swift in Sources */,
 				1F3B5EEC2DDE27AF00094BE1 /* LabelWithSpacer.swift in Sources */,
+				1F860EC12E68849200A78030 /* SwiftUIHostController.swift in Sources */,
 				1F63F66E2DD8495500A31BC1 /* myBrowser_UIKit.xcdatamodeld in Sources */,
-				1F4E02C42DDCA1FD00A76078 /* TaskListController.swift in Sources */,
 				1F63F6F72DDB155F00A31BC1 /* PreloadItem.swift in Sources */,
 				1FB273CF2DDB54840098D73A /* BrowserWindowController.swift in Sources */,
 				1F63F66B2DD8495500A31BC1 /* ViewController.swift in Sources */,
