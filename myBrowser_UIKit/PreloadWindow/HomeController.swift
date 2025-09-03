@@ -1,5 +1,5 @@
 //
-//  PreloadWebsitesController.swift
+//  HomeController.swift
 //  myBrowser_UIKit
 //
 //  Created by Rahul Singh on 19/05/25.
@@ -14,7 +14,7 @@ enum JSONLoadingError: Error {
     case decodingFailed(Error)
 }
 
-final class PreloadWebsitesController: NSViewController, NSCollectionViewDataSource, NSCollectionViewDelegate {
+final class HomeController: NSViewController, NSCollectionViewDataSource, NSCollectionViewDelegate {
     var collectionView: NSCollectionView!
     var taskListController: SwiftUIHostController<TaskListView>!
     var browser: RootWindowControllerProtocol?
@@ -157,7 +157,7 @@ final class PreloadWebsitesController: NSViewController, NSCollectionViewDataSou
     }
 }
 
-extension PreloadWebsitesController: OpenUrlProtocol {
+extension HomeController: OpenUrlProtocol {
     func openAt(_ index: Int?) {
         if let index {
             let item = items[index]

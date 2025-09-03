@@ -10,7 +10,7 @@ import WebKit
 
 final class ViewController: NSViewController {
     let searchField = NSSearchField()
-    let webViewController = PreloadWebsitesController()
+    let webViewController = HomeController()
     var browser: RootWindowControllerProtocol?
     
     override func loadView() {
