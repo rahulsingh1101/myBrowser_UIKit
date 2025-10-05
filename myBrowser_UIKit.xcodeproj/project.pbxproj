@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1F2928F02E92355C002D78F3 /* PreloadWebsitesController copy.json in Resources */ = {isa = PBXBuildFile; fileRef = 1F2928EF2E92355C002D78F3 /* PreloadWebsitesController copy.json */; };
 		1F3B5EEC2DDE27AF00094BE1 /* LabelWithSpacer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F3B5EEB2DDE27AF00094BE1 /* LabelWithSpacer.swift */; };
 		1F3B5EEE2DDE28AF00094BE1 /* BoxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F3B5EED2DDE28AF00094BE1 /* BoxView.swift */; };
 		1F3B5EF02DDE39AB00094BE1 /* MyViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F3B5EEF2DDE39AB00094BE1 /* MyViewModel.swift */; };
@@ -35,6 +36,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1F2928EF2E92355C002D78F3 /* PreloadWebsitesController copy.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "PreloadWebsitesController copy.json"; sourceTree = "<group>"; };
 		1F3B5EEB2DDE27AF00094BE1 /* LabelWithSpacer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelWithSpacer.swift; sourceTree = "<group>"; };
 		1F3B5EED2DDE28AF00094BE1 /* BoxView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoxView.swift; sourceTree = "<group>"; };
 		1F3B5EEF2DDE39AB00094BE1 /* MyViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyViewModel.swift; sourceTree = "<group>"; };
@@ -135,10 +137,11 @@
 			isa = PBXGroup;
 			children = (
 				1F4E02D32DDCA76D00A76078 /* TaskListController */,
+				1F2928EF2E92355C002D78F3 /* PreloadWebsitesController copy.json */,
+				1F63F6F02DDB118700A31BC1 /* PreloadWebsitesController.json */,
 				1F63F6EE2DDB113D00A31BC1 /* HomeController.swift */,
 				1F63F6F42DDB155F00A31BC1 /* PreloadItem.swift */,
 				1F63F6F22DDB14E900A31BC1 /* ItemModel.swift */,
-				1F63F6F02DDB118700A31BC1 /* PreloadWebsitesController.json */,
 			);
 			path = PreloadWindow;
 			sourceTree = "<group>";
@@ -236,6 +239,7 @@
 				1F63F6702DD8495700A31BC1 /* Assets.xcassets in Resources */,
 				1F63F6732DD8495700A31BC1 /* Base in Resources */,
 				1F4E02CE2DDCA2AC00A76078 /* data.json in Resources */,
+				1F2928F02E92355C002D78F3 /* PreloadWebsitesController copy.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -1,0 +1,67 @@
+[
+  {
+    "title": "Kavsoft YouTube Playlists",
+    "subtitle": "SwiftUI tutorials and UI/UX tips",
+    "url": "https://www.youtube.com/@Kavsoft/playlists"
+  },
+  {
+    "title": "TuteDude DSA with Python",
+    "subtitle": "Full course on DSA using Python",
+    "url": "https://upskill.tutedude.com/course/lecture-dsawithpython"
+  },
+  {
+    "title": "System Design",
+    "subtitle": "Tutedude",
+    "url": "https://upskill.tutedude.com/course/lecture-systemdesign"
+  },
+  {
+    "title": "Data Structures & Algorithms",
+    "subtitle": "Tutedude",
+    "url": "https://upskill.tutedude.com/course/lecture-datastructure"
+  },
+  {
+    "title": "MERN",
+    "subtitle": "Tutedude",
+    "url": "https://upskill.tutedude.com/course/lecture-mernstack"
+  },
+  {
+    "title": "Tutedude",
+    "subtitle": "Tutedude home",
+    "url": "https://tutedude.com"
+  },
+  {
+    "title": "LeetCode Problem Set",
+    "subtitle": "Practice coding problems by difficulty",
+    "url": "https://leetcode.com/problemset/"
+  },
+  {
+    "title": "NeetCode DSA Roadmap",
+    "subtitle": "Practice DSA algorithm problems",
+    "url": "https://neetcode.io/roadmap"
+  },
+  {
+    "title": "ChatGPT",
+    "subtitle": "Search Engine",
+    "url": "https://chatgpt.com/"
+  },
+  {
+    "title": "SwiftUI",
+    "subtitle": "WWDC",
+    "url": "https://developer.apple.com/tutorials/swiftui/creating-and-combining-views"
+  },
+  {
+    "title": "Bug List",
+    "subtitle": "Implement bookmark, back and forth buttons for URL",
+    "url": "https://docs.google.com/document/d/1YZX90hFPUMadIUaCj-Pov09wPsYEKVx7PFpvsCps_5k/edit?usp=sharing"
+  },
+  {
+    "title": "GitHub",
+    "subtitle": "Profile link",
+    "url": "https://github.com/rahulsingh1101"
+  },
+  {
+    "title": "Rahul on LinkedIn",
+    "subtitle": "Your professional profile & activity.",
+    "url": "https://www.linkedin.com/in/rksingh1101/"
+  }
+]
