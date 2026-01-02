@@ -34,6 +34,14 @@ final class HomeController: NSViewController, NSCollectionViewDataSource, NSColl
         }
     }
     
+    override func viewDidAppear() {
+        super.viewDidAppear()
+        let indexOfKGS = items.firstIndex { itemmodel in
+            itemmodel.title == "KGS"
+        }
+        openAt(indexOfKGS)
+    }
+    
     private func setupCollectionView() {
         // 1. Create ScrollView
         let scrollView = NSScrollView()
@@ -156,6 +164,7 @@ final class HomeController: NSViewController, NSCollectionViewDataSource, NSColl
     }
 }
 
+// Collection view click delegate
 extension HomeController: OpenUrlProtocol {
     func openAt(_ index: Int?) {
         if let index {
