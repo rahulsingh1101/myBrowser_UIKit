@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0F1CA00360F17D5EA07F0D4D /* HamburgerMenuItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A52445CBD703469359911A /* HamburgerMenuItem.swift */; };
+		10398953D3D240B583C8B762 /* HamburgerMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0E7CCBF10FBFF07359986F3 /* HamburgerMenuView.swift */; };
+		119D5432909C4B9AAEBF4F94 /* AddTaskCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F83C0ED6DADA42178B509C92 /* AddTaskCardView.swift */; };
 		1F2928F02E92355C002D78F3 /* PreloadWebsitesController copy.json in Resources */ = {isa = PBXBuildFile; fileRef = 1F2928EF2E92355C002D78F3 /* PreloadWebsitesController copy.json */; };
 		1F3B5EEC2DDE27AF00094BE1 /* LabelWithSpacer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F3B5EEB2DDE27AF00094BE1 /* LabelWithSpacer.swift */; };
 		1F3B5EEE2DDE28AF00094BE1 /* BoxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F3B5EED2DDE28AF00094BE1 /* BoxView.swift */; };
@@ -33,18 +36,14 @@
 		1FB273CF2DDB54840098D73A /* BrowserWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FB273CE2DDB54840098D73A /* BrowserWindowController.swift */; };
 		1FB273D12DDB55090098D73A /* BrowserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FB273D02DDB55090098D73A /* BrowserViewController.swift */; };
 		41DBF42F42C24120A53ED8FE /* FirebaseCore in Frameworks */ = {isa = PBXBuildFile; productRef = 250A808BA3A84D72B3FB737C /* FirebaseCore */; };
-		9DE4B23FB02442EF8565972C /* TaskGridViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C8BCA25E9B5406A9FA4BE86 /* TaskGridViewModel.swift */; };
 		80DF81B5337549D18D8C0274 /* TaskGridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF5337D233DE4597B1257AE6 /* TaskGridView.swift */; };
-		CD830FAFABCE4F39B1D2891F /* TaskCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC4FB3186CED4C39802B21AA /* TaskCardView.swift */; };
-		119D5432909C4B9AAEBF4F94 /* AddTaskCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F83C0ED6DADA42178B509C92 /* AddTaskCardView.swift */; };
+		9DE4B23FB02442EF8565972C /* TaskGridViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C8BCA25E9B5406A9FA4BE86 /* TaskGridViewModel.swift */; };
 		B1917ADE1E684B8B9741771B /* RealtimeDatabaseStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0417D363C08437AB6D4C589 /* RealtimeDatabaseStore.swift */; };
 		B5E22E6E303EC3E80077B345 /* PopupWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5E22E6D303EC3E80077B345 /* PopupWindowController.swift */; };
 		B5E22E79303EDABC0077B345 /* FirebaseDatabase in Frameworks */ = {isa = PBXBuildFile; productRef = B5E22E78303EDABC0077B345 /* FirebaseDatabase */; };
-		B5E22E7B303EE42B0077B345 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B5E22E7A303EE42B0077B345 /* GoogleService-Info.plist */; };
+		CD830FAFABCE4F39B1D2891F /* TaskCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC4FB3186CED4C39802B21AA /* TaskCardView.swift */; };
 		D11B7FC94F9A4B97AC3FC0AB /* FirebaseJSONRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7D0143F3B544F8C9A5B4EF8 /* FirebaseJSONRepository.swift */; };
 		F33E3F20415E45B99B01A087 /* FirebaseBootstrap.swift in Sources */ = {isa = PBXBuildFile; fileRef = C070C12CD1E1496DA7776D7A /* FirebaseBootstrap.swift */; };
-		0F1CA00360F17D5EA07F0D4D /* HamburgerMenuItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A52445CBD703469359911A /* HamburgerMenuItem.swift */; };
-		10398953D3D240B583C8B762 /* HamburgerMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0E7CCBF10FBFF07359986F3 /* HamburgerMenuView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -75,17 +74,16 @@
 		1F860EC02E68849000A78030 /* SwiftUIHostController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUIHostController.swift; sourceTree = "<group>"; };
 		1FB273CE2DDB54840098D73A /* BrowserWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrowserWindowController.swift; sourceTree = "<group>"; };
 		1FB273D02DDB55090098D73A /* BrowserViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrowserViewController.swift; sourceTree = "<group>"; };
+		4C8BCA25E9B5406A9FA4BE86 /* TaskGridViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskGridViewModel.swift; sourceTree = "<group>"; };
+		82A52445CBD703469359911A /* HamburgerMenuItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HamburgerMenuItem.swift; sourceTree = "<group>"; };
 		A7D0143F3B544F8C9A5B4EF8 /* FirebaseJSONRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseJSONRepository.swift; sourceTree = "<group>"; };
 		B5E22E6D303EC3E80077B345 /* PopupWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopupWindowController.swift; sourceTree = "<group>"; };
-		B5E22E7A303EE42B0077B345 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		C070C12CD1E1496DA7776D7A /* FirebaseBootstrap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseBootstrap.swift; sourceTree = "<group>"; };
-		D0417D363C08437AB6D4C589 /* RealtimeDatabaseStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealtimeDatabaseStore.swift; sourceTree = "<group>"; };
-		4C8BCA25E9B5406A9FA4BE86 /* TaskGridViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskGridViewModel.swift; sourceTree = "<group>"; };
-		DF5337D233DE4597B1257AE6 /* TaskGridView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskGridView.swift; sourceTree = "<group>"; };
 		CC4FB3186CED4C39802B21AA /* TaskCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskCardView.swift; sourceTree = "<group>"; };
-		F83C0ED6DADA42178B509C92 /* AddTaskCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTaskCardView.swift; sourceTree = "<group>"; };
-		82A52445CBD703469359911A /* HamburgerMenuItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HamburgerMenuItem.swift; sourceTree = "<group>"; };
+		D0417D363C08437AB6D4C589 /* RealtimeDatabaseStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealtimeDatabaseStore.swift; sourceTree = "<group>"; };
 		D0E7CCBF10FBFF07359986F3 /* HamburgerMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HamburgerMenuView.swift; sourceTree = "<group>"; };
+		DF5337D233DE4597B1257AE6 /* TaskGridView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskGridView.swift; sourceTree = "<group>"; };
+		F83C0ED6DADA42178B509C92 /* AddTaskCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTaskCardView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,25 +101,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		904C9DCB01CB43C9810585F6 /* TaskGridController */ = {
-			isa = PBXGroup;
-			children = (
-				76B4B02C57824C56AEAE8ED8 /* Views */,
-				4C8BCA25E9B5406A9FA4BE86 /* TaskGridViewModel.swift */,
-			);
-			path = TaskGridController;
-			sourceTree = "<group>";
-		};
-		76B4B02C57824C56AEAE8ED8 /* Views */ = {
-			isa = PBXGroup;
-			children = (
-				DF5337D233DE4597B1257AE6 /* TaskGridView.swift */,
-				CC4FB3186CED4C39802B21AA /* TaskCardView.swift */,
-				F83C0ED6DADA42178B509C92 /* AddTaskCardView.swift */,
-			);
-			path = Views;
-			sourceTree = "<group>";
-		};
 		1F4E02D32DDCA76D00A76078 /* TaskListController */ = {
 			isa = PBXGroup;
 			children = (
@@ -164,7 +143,6 @@
 				1F63F6712DD8495700A31BC1 /* Main.storyboard */,
 				1F63F6742DD8495700A31BC1 /* myBrowser_UIKit.entitlements */,
 				1F63F66C2DD8495500A31BC1 /* myBrowser_UIKit.xcdatamodeld */,
-				B5E22E7A303EE42B0077B345 /* GoogleService-Info.plist */,
 			);
 			path = myBrowser_UIKit;
 			sourceTree = "<group>";
@@ -203,6 +181,25 @@
 				1F4E02CF2DDCA2FE00A76078 /* SwiftUI.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		76B4B02C57824C56AEAE8ED8 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				DF5337D233DE4597B1257AE6 /* TaskGridView.swift */,
+				CC4FB3186CED4C39802B21AA /* TaskCardView.swift */,
+				F83C0ED6DADA42178B509C92 /* AddTaskCardView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		904C9DCB01CB43C9810585F6 /* TaskGridController */ = {
+			isa = PBXGroup;
+			children = (
+				76B4B02C57824C56AEAE8ED8 /* Views */,
+				4C8BCA25E9B5406A9FA4BE86 /* TaskGridViewModel.swift */,
+			);
+			path = TaskGridController;
 			sourceTree = "<group>";
 		};
 		ADB0EB1F7BE9414284EE0E98 /* Firebase */ = {
@@ -332,7 +329,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B5E22E7B303EE42B0077B345 /* GoogleService-Info.plist in Resources */,
 				1F63F6F12DDB118700A31BC1 /* PreloadWebsitesController.json in Resources */,
 				1F63F6702DD8495700A31BC1 /* Assets.xcassets in Resources */,
 				1F63F6732DD8495700A31BC1 /* Base in Resources */,
