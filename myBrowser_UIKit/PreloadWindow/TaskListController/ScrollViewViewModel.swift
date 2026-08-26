@@ -7,31 +7,6 @@
 
 import Foundation
 
-class ScrollViewViewModel: ObservableObject {
+final class ScrollViewViewModel: ObservableObject {
     @Published var data: ListViewModel = ListViewModel.defaultValue
-    
-    private var isLoaded = false
-    
-    func loadDataIfNeeded() {
-//        let userService = CoreDataService<ToDoItem>()
-//        let value = userService.fetch()
-//        value.forEach {
-//            print("debug :: isCompleted ::\($0.isCompleted)")
-//            print("debug :: name ::\($0.name ?? "")")
-//            print("debug :: family ::\($0.family ?? "")")
-//        }
-        
-        guard !isLoaded else {
-            data = ListViewModel.defaultValue
-            return
-        }
-        isLoaded = true
-        guard let url = Bundle.main.url(forResource: "scrollViewData", withExtension: "json"),
-              let data = try? Data(contentsOf: url),
-              let groupBoxes = try? JSONDecoder().decode(ListViewModel.self, from: data) else {
-            data = ListViewModel.defaultValue
-            return
-        }
-        self.data = groupBoxes
-    }
 }

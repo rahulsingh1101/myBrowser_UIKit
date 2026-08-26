@@ -14,8 +14,17 @@ final class HomeController: NSViewController {
     var taskListController: SwiftUIHostController<TaskListView>!
 
     private let taskGridViewModel = TaskGridViewModel()
+    private let focusMusicViewModel = TaskGridViewModel()
+    private let scrollViewViewModel = ScrollViewViewModel()
     private var currentMenuItem: HamburgerMenuItem = .home
     private var hasPerformedInitialOpen = false
+
+    private var activeGridViewModel: TaskGridViewModel {
+        switch currentMenuItem {
+        case .home: return taskGridViewModel
+        case .focusMusic: return focusMusicViewModel
+        }
+    }
 
     var items: [ItemModel] = []
 
@@ -29,17 +38,11 @@ final class HomeController: NSViewController {
     private func setupTaskGrid() {
         let screenWidth = NSScreen.main?.frame.width ?? 800
 
-        taskGridController = SwiftUIHostController(
-            rootView: TaskGridView(
-                viewModel: taskGridViewModel,
-                onOpen: { [weak self] item in self?.open(item) },
-                onAdd: { [weak self] in self?.presentAddItemPrompt() }
-            )
-        )
+        taskGridController = SwiftUIHostController(rootView: makeGridView(viewModel: activeGridViewModel))
         taskGridController.view.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(taskGridController.view)
 
-        taskListController = SwiftUIHostController(rootView: TaskListView())
+        taskListController = SwiftUIHostController(rootView: TaskListView(viewModel: scrollViewViewModel))
         taskListController.view.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(taskListController.view)
 
@@ -59,26 +62,50 @@ final class HomeController: NSViewController {
         ])
     }
 
+    private func makeGridView(viewModel: TaskGridViewModel) -> TaskGridView {
+        TaskGridView(
+            viewModel: viewModel,
+            onOpen: { [weak self] item in self?.open(item) },
+            onAdd: { [weak self] in self?.presentAddItemPrompt() }
+        )
+    }
+
     func select(_ menuItem: HamburgerMenuItem) {
         guard menuItem != currentMenuItem else { return }
         currentMenuItem = menuItem
+        taskGridController.updateRootView(makeGridView(viewModel: activeGridViewModel))
         loadItems(isInitial: false)
     }
 
     private func loadItems(isInitial: Bool) {
+        let gridViewModel = activeGridViewModel
         Task {
             do {
                 let loaded = try await currentMenuItem.repository.load()
                 await MainActor.run {
                     self.items = loaded
-                    self.taskGridViewModel.items = loaded
+                    gridViewModel.items = loaded
                     if isInitial { self.openInitialItemIfNeeded() }
                 }
             } catch {
                 await MainActor.run {
                     self.items = []
-                    self.taskGridViewModel.items = []
+                    gridViewModel.items = []
                 }
+            }
+        }
+        if currentMenuItem == .home {
+            loadListData()
+        }
+    }
+
+    private func loadListData() {
+        Task {
+            do {
+                let loaded = try await FirebaseJSONRepository.scrollViewData().load()
+                await MainActor.run { self.scrollViewViewModel.data = loaded }
+            } catch {
+                await MainActor.run { self.scrollViewViewModel.data = .defaultValue }
             }
         }
     }

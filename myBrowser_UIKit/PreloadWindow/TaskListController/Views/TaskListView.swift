@@ -10,11 +10,7 @@ import SwiftData
 import Cocoa
 
 struct TaskListView: View {
-    @StateObject private var viewModel: ScrollViewViewModel
-    
-    init() {
-        _viewModel = StateObject(wrappedValue: ScrollViewViewModel())
-    }
+    @ObservedObject var viewModel: ScrollViewViewModel
 
     var body: some View {
         ScrollView {
@@ -61,8 +57,5 @@ struct TaskListView: View {
         }
         .background(Color(nsColor: .controlBackgroundColor))
         .edgesIgnoringSafeArea(.all)
-        .onAppear {
-            viewModel.loadDataIfNeeded()
-        }
     }
 }
