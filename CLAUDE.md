@@ -11,7 +11,7 @@ A macOS desktop web browser app. Despite the project name (`myBrowser_UIKit`), t
 - Single target: `myBrowser_UIKit`, deployment target macOS 14.4 (`SDKROOT = macosx`).
 - No test target exists in the project.
 - Persistence: Firebase Realtime Database (via Swift Package Manager), with local bundled JSON as an offline/first-run fallback. A Core Data model (`myBrowser_UIKit.xcdatamodeld`) exists but is currently unused (referenced only in a commented-out block in `ScrollViewViewModel.swift`).
-- `GoogleService-Info.plist` is checked into the repo — treat it as environment config, not a secret to regenerate casually.
+- `GoogleService-Info.plist` is **not** checked into the repo (gitignored). Fetch it per-machine with `./scripts/fetch-firebase-config.sh` (requires Firebase CLI + Firebase project access — see script comments). This file was previously committed and leaked via GitHub secret scanning; history has been purged and the key rotated.
 
 ## Build & run
 

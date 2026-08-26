@@ -6,6 +6,9 @@ myBrowser_UIKit.xcworkspace/xcuserdata/rahulsingh.xcuserdatad/UserInterfaceState
 # Cocoapods
 Pods/
 
+# Firebase config — fetched per-developer via scripts/fetch-firebase-config.sh
+myBrowser_UIKit/GoogleService-Info.plist
+
 *xcworkspace/xcuserdata/*
 */xcuserdata/*
 myBrowser_UIKit.xcodeproj/xcuserdata/rahulsingh.xcuserdatad/xcdebugger/Breakpoints_v2.xcbkptlist
