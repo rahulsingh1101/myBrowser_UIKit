@@ -11,7 +11,7 @@ protocol OpenUrlProtocol: AnyObject {
     func openAt(_ index: Int?)
 }
 
-class PreloadItem: NSCollectionViewItem {
+class TaskCell: NSCollectionViewItem {
     weak var delegate: OpenUrlProtocol?
     private let titleLabel = NSTextField(labelWithString: "")
     private let subtitleLabel = NSTextField(labelWithString: "")

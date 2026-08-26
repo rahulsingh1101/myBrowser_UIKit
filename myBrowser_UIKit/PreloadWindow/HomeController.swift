@@ -15,6 +15,7 @@ enum JSONLoadingError: Error {
 }
 
 final class HomeController: NSViewController, NSCollectionViewDataSource, NSCollectionViewDelegate {
+    private let taskItemIdentifier = NSUserInterfaceItemIdentifier("PreloadItem")
     var collectionView: NSCollectionView!
     var taskListController: SwiftUIHostController<TaskListView>!
     
@@ -81,7 +82,7 @@ final class HomeController: NSViewController, NSCollectionViewDataSource, NSColl
         collectionView.dataSource = self
         collectionView.delegate = self
         collectionView.isSelectable = true
-        collectionView.register(PreloadItem.self, forItemWithIdentifier: NSUserInterfaceItemIdentifier("PreloadItem"))
+        collectionView.register(TaskCell.self, forItemWithIdentifier: taskItemIdentifier)
         
         // 3. Embed in ScrollView
         scrollView.documentView = collectionView
@@ -98,9 +99,8 @@ final class HomeController: NSViewController, NSCollectionViewDataSource, NSColl
     
     func collectionView(_ collectionView: NSCollectionView,
                         itemForRepresentedObjectAt indexPath: IndexPath) -> NSCollectionViewItem {
-        let identifier = NSUserInterfaceItemIdentifier("PreloadItem")
-        let item = collectionView.makeItem(withIdentifier: identifier, for: indexPath)
-        guard let collectionViewItem = item as? PreloadItem else { return item }
+        let item = collectionView.makeItem(withIdentifier: taskItemIdentifier, for: indexPath)
+        guard let collectionViewItem = item as? TaskCell else { return item }
         collectionViewItem.configure(with: items[indexPath.item], indexPath: indexPath.item)
         collectionViewItem.delegate = self
         return collectionViewItem
