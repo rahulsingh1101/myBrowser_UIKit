@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  MainContainerController.swift
 //  myBrowser_UIKit
 //
 //  Created by Rahul Singh on 17/05/25.
@@ -8,7 +8,7 @@
 import Cocoa
 import WebKit
 
-final class ViewController: NSViewController {
+final class MainContainerController: NSViewController {
     let searchField = NSSearchField()
     let webViewController = HomeController()
     

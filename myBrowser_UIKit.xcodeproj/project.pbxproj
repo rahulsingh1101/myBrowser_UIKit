@@ -18,7 +18,7 @@
 		1F4E02D02DDCA2FE00A76078 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F4E02CF2DDCA2FE00A76078 /* SwiftUI.framework */; };
 		1F4E02D22DDCA30400A76078 /* Combine.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F4E02D12DDCA30400A76078 /* Combine.framework */; };
 		1F63F6692DD8495500A31BC1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F63F6682DD8495500A31BC1 /* AppDelegate.swift */; };
-		1F63F66B2DD8495500A31BC1 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F63F66A2DD8495500A31BC1 /* ViewController.swift */; };
+		1F63F66B2DD8495500A31BC1 /* MainContainerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F63F66A2DD8495500A31BC1 /* MainContainerController.swift */; };
 		1F63F66E2DD8495500A31BC1 /* myBrowser_UIKit.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 1F63F66C2DD8495500A31BC1 /* myBrowser_UIKit.xcdatamodeld */; };
 		1F63F6702DD8495700A31BC1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1F63F66F2DD8495700A31BC1 /* Assets.xcassets */; };
 		1F63F6732DD8495700A31BC1 /* Base in Resources */ = {isa = PBXBuildFile; fileRef = 1F63F6722DD8495700A31BC1 /* Base */; };
@@ -48,7 +48,7 @@
 		1F4E02D12DDCA30400A76078 /* Combine.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Combine.framework; path = System/Library/Frameworks/Combine.framework; sourceTree = SDKROOT; };
 		1F63F6652DD8495500A31BC1 /* myBrowser_UIKit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = myBrowser_UIKit.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1F63F6682DD8495500A31BC1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		1F63F66A2DD8495500A31BC1 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		1F63F66A2DD8495500A31BC1 /* MainContainerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainContainerController.swift; sourceTree = "<group>"; };
 		1F63F66D2DD8495500A31BC1 /* myBrowser_UIKit.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = myBrowser_UIKit.xcdatamodel; sourceTree = "<group>"; };
 		1F63F66F2DD8495700A31BC1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1F63F6722DD8495700A31BC1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -124,7 +124,7 @@
 				1F63F6ED2DDB10F700A31BC1 /* PreloadWindow */,
 				1F63F6682DD8495500A31BC1 /* AppDelegate.swift */,
 				1F63F6FA2DDB323E00A31BC1 /* MainWindowController.swift */,
-				1F63F66A2DD8495500A31BC1 /* ViewController.swift */,
+				1F63F66A2DD8495500A31BC1 /* MainContainerController.swift */,
 				1F63F66F2DD8495700A31BC1 /* Assets.xcassets */,
 				1F63F6712DD8495700A31BC1 /* Main.storyboard */,
 				1F63F6742DD8495700A31BC1 /* myBrowser_UIKit.entitlements */,
@@ -264,7 +264,7 @@
 				1F63F66E2DD8495500A31BC1 /* myBrowser_UIKit.xcdatamodeld in Sources */,
 				1F63F6F72DDB155F00A31BC1 /* PreloadItem.swift in Sources */,
 				1FB273CF2DDB54840098D73A /* BrowserWindowController.swift in Sources */,
-				1F63F66B2DD8495500A31BC1 /* ViewController.swift in Sources */,
+				1F63F66B2DD8495500A31BC1 /* MainContainerController.swift in Sources */,
 				1F78BC0C2E5A403600CDF50B /* WindowTracker.swift in Sources */,
 				1F4E02CC2DDCA29600A76078 /* Model.swift in Sources */,
 				1F63F6692DD8495500A31BC1 /* AppDelegate.swift in Sources */,
