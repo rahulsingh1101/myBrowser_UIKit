@@ -17,12 +17,14 @@ final class MainContainerController: NSViewController {
     private lazy var menuPopover: NSPopover = {
         let popover = NSPopover()
         popover.behavior = .transient
-        popover.contentViewController = NSHostingController(
+        let hostingController = NSHostingController(
             rootView: HamburgerMenuView(onSelect: { [weak self] item in
                 self?.webViewController.select(item)
                 self?.menuPopover.performClose(nil)
             })
         )
+        hostingController.sizingOptions = [.preferredContentSize]
+        popover.contentViewController = hostingController
         return popover
     }()
 
