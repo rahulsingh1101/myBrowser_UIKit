@@ -22,6 +22,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
     
     func applicationDidFinishLaunching(_ aNotification: Notification) {
+        FirebaseBootstrap.configure()
         loadWindow(identifier: #function) {
             return windowFactory.create(windowType: .main)
         }

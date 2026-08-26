@@ -8,59 +8,42 @@
 import AppKit
 import Cocoa
 
-enum JSONLoadingError: Error {
-    case fileNotFound
-    case dataLoadingFailed
-    case decodingFailed(Error)
-}
-
 final class HomeController: NSViewController, NSCollectionViewDataSource, NSCollectionViewDelegate {
     private let taskItemIdentifier = NSUserInterfaceItemIdentifier("PreloadItem")
+    private let addItemIdentifier = NSUserInterfaceItemIdentifier("AddItem")
     var collectionView: NSCollectionView!
     var taskListController: SwiftUIHostController<TaskListView>!
-    
+
+    private let repository = FirebaseJSONRepository<[ItemModel]>.preloadWebsites()
+    private var hasPerformedInitialOpen = false
+
     var items: [ItemModel] = []
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         setupCollectionView()
-        switch loadItemsFromJSON() {
-            
-        case .success(let itemss):
-            items = itemss
-            collectionView.reloadData()
-        case .failure(let failures):
-            showAlert(for: failures)
-        }
+        loadItems(isInitial: false)
     }
-    
-    override func viewDidAppear() {
-        super.viewDidAppear()
-        let indexOfKGS = items.firstIndex { itemmodel in
-            itemmodel.title == "KGS"
-        }
-        openAt(indexOfKGS)
-    }
-    
+
     private func setupCollectionView() {
         // 1. Create ScrollView
         let scrollView = NSScrollView()
         scrollView.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(scrollView)
-        
+
         // 2. View Controller
         let screenWidth = NSScreen.main?.frame.width ?? 800
         taskListController = SwiftUIHostController(rootView: TaskListView())
         taskListController.view.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(taskListController.view)
-        
+
         NSLayoutConstraint.activate([
             scrollView.topAnchor.constraint(equalTo: view.topAnchor, constant: 0),
             scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 0),
             scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0)
         ])
-        
+
         NSLayoutConstraint.activate([
             taskListController.view.topAnchor.constraint(equalTo: view.topAnchor, constant: 0),
             taskListController.view.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0),
@@ -68,14 +51,14 @@ final class HomeController: NSViewController, NSCollectionViewDataSource, NSColl
             taskListController.view.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 0),
             taskListController.view.widthAnchor.constraint(equalToConstant: screenWidth/3)
         ])
-        
+
         // 2. Create CollectionView
         let layout = NSCollectionViewFlowLayout()
         layout.itemSize = NSSize(width: 300, height: 100)
         layout.sectionInset = NSEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
         layout.minimumInteritemSpacing = 0
         layout.minimumLineSpacing = 10
-        
+
         collectionView = NSCollectionView(frame: .zero)
         collectionView.collectionViewLayout = layout
         collectionView.translatesAutoresizingMaskIntoConstraints = false
@@ -83,7 +66,8 @@ final class HomeController: NSViewController, NSCollectionViewDataSource, NSColl
         collectionView.delegate = self
         collectionView.isSelectable = true
         collectionView.register(TaskCell.self, forItemWithIdentifier: taskItemIdentifier)
-        
+        collectionView.register(AddItemCell.self, forItemWithIdentifier: addItemIdentifier)
+
         // 3. Embed in ScrollView
         scrollView.documentView = collectionView
         collectionView.leadingAnchor.constraint(equalTo: scrollView.contentView.leadingAnchor).isActive = true
@@ -92,60 +76,104 @@ final class HomeController: NSViewController, NSCollectionViewDataSource, NSColl
         collectionView.bottomAnchor.constraint(equalTo: scrollView.contentView.bottomAnchor).isActive = true
         collectionView.widthAnchor.constraint(equalTo: scrollView.widthAnchor).isActive = true
     }
-    
+
     func collectionView(_ collectionView: NSCollectionView, numberOfItemsInSection section: Int) -> Int {
-        return items.count
+        return items.count + 1
     }
-    
+
     func collectionView(_ collectionView: NSCollectionView,
                         itemForRepresentedObjectAt indexPath: IndexPath) -> NSCollectionViewItem {
+        guard indexPath.item < items.count else {
+            let item = collectionView.makeItem(withIdentifier: addItemIdentifier, for: indexPath)
+            guard let addItemCell = item as? AddItemCell else { return item }
+            addItemCell.delegate = self
+            return addItemCell
+        }
+
         let item = collectionView.makeItem(withIdentifier: taskItemIdentifier, for: indexPath)
         guard let collectionViewItem = item as? TaskCell else { return item }
         collectionViewItem.configure(with: items[indexPath.item].toTaskModel(), index: indexPath.item)
         collectionViewItem.delegate = self
         return collectionViewItem
     }
-    
-    func loadItemsFromJSON() -> Result<[ItemModel], JSONLoadingError> {
-        guard let url = Bundle.main.url(forResource: "PreloadWebsitesController", withExtension: "json") else {
-            print("❌ Error: Could not find data.json in the bundle.")
-            return .failure(JSONLoadingError.fileNotFound)
-        }
-        
-        do {
-            let data = try Data(contentsOf: url)
-            let items = try JSONDecoder().decode([ItemModel].self, from: data)
-            return .success(items)
-        } catch let error as DecodingError {
-            print("❌ JSON Decoding Error: \(error.localizedDescription)")
-            var message = "❌ JSON Decoding Error: \(error.localizedDescription)"
-            
-            switch error {
-            case .typeMismatch(let type, let context):
-                print("  ➤ Type '\(type)' mismatch:", context.debugDescription)
-                message = "  ➤ Type '\(type)' mismatch:: context::\(context.debugDescription)"
-            case .valueNotFound(let type, let context):
-                print("  ➤ Value '\(type)' not found:", context.debugDescription)
-                message = "  ➤ Value '\(type)' not found:: context::\(context.debugDescription)"
-            case .keyNotFound(let key, let context):
-                print("  ➤ Key '\(key)' not found:", context.debugDescription)
-                message = "  ➤ Key '\(key)' not found:: context::\(context.debugDescription)"
-            case .dataCorrupted(let context):
-                print("  ➤ Data corrupted:", context.debugDescription)
-                message = "  ➤ Data corrupted:: context::\(context.debugDescription)"
-            default:
-                print("  ➤ Unknown decoding error")
-                message = "  ➤ Unknown decoding error"
+
+    private func loadItems(isInitial: Bool) {
+        Task {
+            do {
+                let loaded = try await repository.load()
+                await MainActor.run {
+                    self.items = loaded
+                    self.collectionView.reloadData()
+                    if isInitial { self.openInitialItemIfNeeded() }
+                }
+            } catch {
+                await MainActor.run { self.showAlert(for: error) }
             }
-            print("❌ JSON Decoding Error: \(error.localizedDescription)")
-            let errorr = NSError(domain: "com.myapp.data", code: 404, userInfo: [NSLocalizedDescriptionKey: message])
-            return .failure(JSONLoadingError.decodingFailed(errorr))
-        } catch {
-            print("❌ Other Error: \(error.localizedDescription)")
-            return .failure(JSONLoadingError.decodingFailed(error))
         }
     }
-    
+
+    private func openInitialItemIfNeeded() {
+        guard !hasPerformedInitialOpen else { return }
+        hasPerformedInitialOpen = true
+        let indexOfKGS = items.firstIndex { $0.title == "KGS" }
+        openAt(indexOfKGS)
+    }
+
+    private func presentAddItemPrompt() {
+        let alert = NSAlert()
+        alert.messageText = "Add Website"
+        alert.addButton(withTitle: "Add")
+        alert.addButton(withTitle: "Cancel")
+
+        let titleField = NSTextField(string: "")
+        titleField.placeholderString = "Title"
+        let subtitleField = NSTextField(string: "")
+        subtitleField.placeholderString = "Subtitle"
+        let urlField = NSTextField(string: "")
+        urlField.placeholderString = "URL"
+
+        let stack = NSStackView(views: [titleField, subtitleField, urlField])
+        stack.orientation = .vertical
+        stack.spacing = 8
+        stack.translatesAutoresizingMaskIntoConstraints = false
+
+        let container = NSView(frame: NSRect(x: 0, y: 0, width: 260, height: 90))
+        container.addSubview(stack)
+        NSLayoutConstraint.activate([
+            stack.leadingAnchor.constraint(equalTo: container.leadingAnchor),
+            stack.trailingAnchor.constraint(equalTo: container.trailingAnchor),
+            stack.topAnchor.constraint(equalTo: container.topAnchor),
+            stack.bottomAnchor.constraint(equalTo: container.bottomAnchor)
+        ])
+        [titleField, subtitleField, urlField].forEach {
+            $0.widthAnchor.constraint(equalToConstant: 260).isActive = true
+        }
+
+        alert.accessoryView = container
+
+        guard let window = view.window else { return }
+        alert.beginSheetModal(for: window) { [weak self] response in
+            guard response == .alertFirstButtonReturn else { return }
+            let newItem = ItemModel(
+                title: titleField.stringValue,
+                subtitle: subtitleField.stringValue,
+                url: urlField.stringValue
+            )
+            self?.addItem(newItem)
+        }
+    }
+
+    private func addItem(_ item: ItemModel) {
+        Task {
+            do {
+                try await repository.save(items + [item])
+                loadItems(isInitial: false)
+            } catch {
+                await MainActor.run { self.showAlert(for: error) }
+            }
+        }
+    }
+
     private func showAlert(for error: Error, in window: NSWindow? = nil) {
         DispatchQueue.main.async {
             let alert = NSAlert()
@@ -174,5 +202,11 @@ extension HomeController: OpenUrlProtocol {
             let browser = windowFactory.create(windowType: .browser(item.url))
             browser.showWindoww(self)
         }
+    }
+}
+
+extension HomeController: AddItemProtocol {
+    func didTapAddItem() {
+        presentAddItemPrompt()
     }
 }
