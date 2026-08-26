@@ -8,6 +8,7 @@ import SwiftUI
 struct TaskCardView: View {
     let item: ItemModel
     let onOpen: () -> Void
+    var onDelete: (() -> Void)? = nil
 
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
@@ -24,5 +25,15 @@ struct TaskCardView: View {
         .frame(width: 300, height: 100, alignment: .topLeading)
         .background(Color(nsColor: .lightGray).opacity(0.2))
         .cornerRadius(8)
+        .overlay(alignment: .topTrailing) {
+            if let onDelete {
+                Button(action: onDelete) {
+                    Image(systemName: "xmark.circle.fill")
+                        .foregroundStyle(.secondary)
+                }
+                .buttonStyle(.plain)
+                .padding(6)
+            }
+        }
     }
 }

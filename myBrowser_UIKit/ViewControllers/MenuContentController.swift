@@ -66,7 +66,8 @@ final class MenuContentController: NSViewController {
         TaskGridView(
             viewModel: viewModel,
             onOpen: { [weak self] item in self?.open(item) },
-            onAdd: { [weak self] in self?.presentAddItemPrompt() }
+            onAdd: { [weak self] in self?.presentAddItemPrompt() },
+            onDelete: currentMenuItem == .home ? { [weak self] item in self?.confirmDelete(item) } : nil
         )
     }
 
@@ -173,6 +174,31 @@ final class MenuContentController: NSViewController {
         Task {
             do {
                 try await currentMenuItem.repository.save(items + [item])
+                loadItems(isInitial: false)
+            } catch {
+                await MainActor.run { self.showAlert(for: error) }
+            }
+        }
+    }
+
+    private func confirmDelete(_ item: ItemModel) {
+        guard let window = view.window else { return }
+        let alert = NSAlert()
+        alert.messageText = "Delete \"\(item.title)\"?"
+        alert.alertStyle = .warning
+        alert.addButton(withTitle: "Delete")
+        alert.addButton(withTitle: "Cancel")
+
+        alert.beginSheetModal(for: window) { [weak self] response in
+            guard response == .alertFirstButtonReturn else { return }
+            self?.deleteItem(item)
+        }
+    }
+
+    private func deleteItem(_ item: ItemModel) {
+        Task {
+            do {
+                try await currentMenuItem.repository.save(items.filter { $0.id != item.id })
                 loadItems(isInitial: false)
             } catch {
                 await MainActor.run { self.showAlert(for: error) }
