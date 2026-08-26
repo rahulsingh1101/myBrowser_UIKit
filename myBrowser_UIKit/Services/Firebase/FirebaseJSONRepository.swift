@@ -53,3 +53,9 @@ extension FirebaseJSONRepository where Model == ListViewModel {
         FirebaseJSONRepository(path: "scrollViewData", bundleFallbackResource: "scrollViewData")
     }
 }
+
+extension FirebaseJSONRepository where Model == [PDFLibraryItem] {
+    static func pdfLibrary() -> FirebaseJSONRepository<[PDFLibraryItem]> {
+        FirebaseJSONRepository(path: "pdfLibrary")
+    }
+}

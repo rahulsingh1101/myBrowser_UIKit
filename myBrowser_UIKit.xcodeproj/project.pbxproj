@@ -45,6 +45,14 @@
 		CD830FAFABCE4F39B1D2891F /* TaskCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC4FB3186CED4C39802B21AA /* TaskCardView.swift */; };
 		D11B7FC94F9A4B97AC3FC0AB /* FirebaseJSONRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7D0143F3B544F8C9A5B4EF8 /* FirebaseJSONRepository.swift */; };
 		F33E3F20415E45B99B01A087 /* FirebaseBootstrap.swift in Sources */ = {isa = PBXBuildFile; fileRef = C070C12CD1E1496DA7776D7A /* FirebaseBootstrap.swift */; };
+		423352E7023739BDD8A8D275 /* PDFLibraryItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23488A4A1A5D32567544A8F9 /* PDFLibraryItem.swift */; };
+		513AD7D4A8F39C3CE792B3D6 /* ReaderWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 541603EAC93E46846448F93D /* ReaderWindowController.swift */; };
+		C6AEFC617943ABB2799128EE /* PDFReaderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D260434E61D84561C4D376E9 /* PDFReaderViewController.swift */; };
+		950830C3D89F840DC6193DCC /* PDFBookmark.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBF03C150E3D0D8247A1CA23 /* PDFBookmark.swift */; };
+		DF6415D28566CECC8440DC1B /* PDFLibraryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 162D3F5EC8CAF2F680AB08B8 /* PDFLibraryViewModel.swift */; };
+		43F24B4CEA62296609BACF76 /* PDFLibraryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28AD4F5C1869CE3A6720D744 /* PDFLibraryView.swift */; };
+		87C1E8A636051AC7967C77C3 /* PDFCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6365298A4738E7D936C8AFA7 /* PDFCardView.swift */; };
+		669C02521932738580A6DC77 /* PDFKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B7D2E6A5362E75542CFD40F /* PDFKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -86,6 +94,14 @@
 		D0E7CCBF10FBFF07359986F3 /* HamburgerMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HamburgerMenuView.swift; sourceTree = "<group>"; };
 		DF5337D233DE4597B1257AE6 /* TaskGridView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskGridView.swift; sourceTree = "<group>"; };
 		F83C0ED6DADA42178B509C92 /* AddTaskCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTaskCardView.swift; sourceTree = "<group>"; };
+		23488A4A1A5D32567544A8F9 /* PDFLibraryItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFLibraryItem.swift; sourceTree = "<group>"; };
+		541603EAC93E46846448F93D /* ReaderWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReaderWindowController.swift; sourceTree = "<group>"; };
+		D260434E61D84561C4D376E9 /* PDFReaderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFReaderViewController.swift; sourceTree = "<group>"; };
+		DBF03C150E3D0D8247A1CA23 /* PDFBookmark.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFBookmark.swift; sourceTree = "<group>"; };
+		162D3F5EC8CAF2F680AB08B8 /* PDFLibraryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFLibraryViewModel.swift; sourceTree = "<group>"; };
+		28AD4F5C1869CE3A6720D744 /* PDFLibraryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFLibraryView.swift; sourceTree = "<group>"; };
+		6365298A4738E7D936C8AFA7 /* PDFCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFCardView.swift; sourceTree = "<group>"; };
+		3B7D2E6A5362E75542CFD40F /* PDFKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PDFKit.framework; path = System/Library/Frameworks/PDFKit.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,6 +113,7 @@
 				41DBF42F42C24120A53ED8FE /* FirebaseCore in Frameworks */,
 				1F4E02D22DDCA30400A76078 /* Combine.framework in Frameworks */,
 				1F4E02D02DDCA2FE00A76078 /* SwiftUI.framework in Frameworks */,
+				669C02521932738580A6DC77 /* PDFKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -155,6 +172,7 @@
 			children = (
 				1F4E02D32DDCA76D00A76078 /* TaskListController */,
 				904C9DCB01CB43C9810585F6 /* TaskGridController */,
+				D2C5E1701ADBFBBB4DB7AF65 /* PDFLibraryController */,
 			);
 			path = PreloadWindow;
 			sourceTree = "<group>";
@@ -173,6 +191,7 @@
 			isa = PBXGroup;
 			children = (
 				ADB0EB1F7BE9414284EE0E98 /* Firebase */,
+				DBF03C150E3D0D8247A1CA23 /* PDFBookmark.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -182,6 +201,7 @@
 			children = (
 				1F4E02D12DDCA30400A76078 /* Combine.framework */,
 				1F4E02CF2DDCA2FE00A76078 /* SwiftUI.framework */,
+				3B7D2E6A5362E75542CFD40F /* PDFKit.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -221,6 +241,7 @@
 				1F63F6FA2DDB323E00A31BC1 /* MainContainerWindowController.swift */,
 				B5E22E6D303EC3E80077B345 /* PopupWindowController.swift */,
 				1FB273CE2DDB54840098D73A /* BrowserWindowController.swift */,
+				541603EAC93E46846448F93D /* ReaderWindowController.swift */,
 			);
 			path = WindowControllers;
 			sourceTree = "<group>";
@@ -232,6 +253,7 @@
 				1F63F66A2DD8495500A31BC1 /* MainContainerController.swift */,
 				1F63F6EE2DDB113D00A31BC1 /* MenuContentController.swift */,
 				D0E7CCBF10FBFF07359986F3 /* HamburgerMenuView.swift */,
+				D260434E61D84561C4D376E9 /* PDFReaderViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -240,6 +262,7 @@
 			isa = PBXGroup;
 			children = (
 				1F63F6F22DDB14E900A31BC1 /* ItemModel.swift */,
+				23488A4A1A5D32567544A8F9 /* PDFLibraryItem.swift */,
 				82A52445CBD703469359911A /* HamburgerMenuItem.swift */,
 				1F4E02CB2DDCA29600A76078 /* StaticScrollableListModel.swift */,
 				1F2928EF2E92355C002D78F3 /* PreloadWebsitesController copy.json */,
@@ -263,6 +286,24 @@
 				1F4E02C52DDCA24C00A76078 /* TaskListView.swift */,
 				1F3B5EEB2DDE27AF00094BE1 /* LabelWithSpacer.swift */,
 				1F3B5EED2DDE28AF00094BE1 /* BoxView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		D2C5E1701ADBFBBB4DB7AF65 /* PDFLibraryController */ = {
+			isa = PBXGroup;
+			children = (
+				773A57A113D0E7A1A242A86E /* Views */,
+				162D3F5EC8CAF2F680AB08B8 /* PDFLibraryViewModel.swift */,
+			);
+			path = PDFLibraryController;
+			sourceTree = "<group>";
+		};
+		773A57A113D0E7A1A242A86E /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				28AD4F5C1869CE3A6720D744 /* PDFLibraryView.swift */,
+				6365298A4738E7D936C8AFA7 /* PDFCardView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -376,6 +417,13 @@
 				119D5432909C4B9AAEBF4F94 /* AddTaskCardView.swift in Sources */,
 				0F1CA00360F17D5EA07F0D4D /* HamburgerMenuItem.swift in Sources */,
 				10398953D3D240B583C8B762 /* HamburgerMenuView.swift in Sources */,
+				423352E7023739BDD8A8D275 /* PDFLibraryItem.swift in Sources */,
+				513AD7D4A8F39C3CE792B3D6 /* ReaderWindowController.swift in Sources */,
+				C6AEFC617943ABB2799128EE /* PDFReaderViewController.swift in Sources */,
+				950830C3D89F840DC6193DCC /* PDFBookmark.swift in Sources */,
+				DF6415D28566CECC8440DC1B /* PDFLibraryViewModel.swift in Sources */,
+				43F24B4CEA62296609BACF76 /* PDFLibraryView.swift in Sources */,
+				87C1E8A636051AC7967C77C3 /* PDFCardView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

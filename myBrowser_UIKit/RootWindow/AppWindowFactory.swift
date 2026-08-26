@@ -12,6 +12,7 @@ enum WindowType {
     case main
     case browser(String)
     case popup(WKWebViewConfiguration)
+    case reader(PDFLibraryItem)
 }
 
 final class AppWindowFactory {
@@ -33,9 +34,13 @@ final class AppWindowFactory {
         case .popup(let configuration):
             let windowController = PopupWindowController(configuration: configuration, windowTracker: windowTracker)
             return windowController
+        case .reader(let item):
+            let windowController = ReaderWindowController(identifier: item.id, item: item, windowTracker: windowTracker)
+            windowTracker.add(window: windowController)
+            return windowController
         }
     }
-    
+
     private func checkIfAlreadyPresent(windowType: WindowType) -> RootWindowControllerProtocol? {
         switch windowType {
         case .main:
@@ -44,6 +49,8 @@ final class AppWindowFactory {
             return windowTracker.getCreatedWindow(for: string)
         case .popup:
             break
+        case .reader(let item):
+            return windowTracker.getCreatedWindow(for: item.id)
         }
         return nil
     }
