@@ -10,10 +10,10 @@ import SwiftData
 import Cocoa
 
 struct TaskListView: View {
-    @StateObject private var viewModel: MyViewModel
+    @StateObject private var viewModel: ScrollViewViewModel
     
     init() {
-        _viewModel = StateObject(wrappedValue: MyViewModel())
+        _viewModel = StateObject(wrappedValue: ScrollViewViewModel())
     }
 
     var body: some View {

@@ -10,10 +10,10 @@
 		1F2928F02E92355C002D78F3 /* PreloadWebsitesController copy.json in Resources */ = {isa = PBXBuildFile; fileRef = 1F2928EF2E92355C002D78F3 /* PreloadWebsitesController copy.json */; };
 		1F3B5EEC2DDE27AF00094BE1 /* LabelWithSpacer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F3B5EEB2DDE27AF00094BE1 /* LabelWithSpacer.swift */; };
 		1F3B5EEE2DDE28AF00094BE1 /* BoxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F3B5EED2DDE28AF00094BE1 /* BoxView.swift */; };
-		1F3B5EF02DDE39AB00094BE1 /* MyViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F3B5EEF2DDE39AB00094BE1 /* MyViewModel.swift */; };
+		1F3B5EF02DDE39AB00094BE1 /* ScrollViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F3B5EEF2DDE39AB00094BE1 /* ScrollViewViewModel.swift */; };
 		1F4E02C62DDCA24C00A76078 /* TaskListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F4E02C52DDCA24C00A76078 /* TaskListView.swift */; };
 		1F4E02CA2DDCA28000A76078 /* Color+String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F4E02C92DDCA28000A76078 /* Color+String.swift */; };
-		1F4E02CC2DDCA29600A76078 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F4E02CB2DDCA29600A76078 /* Model.swift */; };
+		1F4E02CC2DDCA29600A76078 /* StaticScrollableListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F4E02CB2DDCA29600A76078 /* StaticScrollableListModel.swift */; };
 		1F4E02CE2DDCA2AC00A76078 /* scrollViewData.json in Resources */ = {isa = PBXBuildFile; fileRef = 1F4E02CD2DDCA2AC00A76078 /* scrollViewData.json */; };
 		1F4E02D02DDCA2FE00A76078 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F4E02CF2DDCA2FE00A76078 /* SwiftUI.framework */; };
 		1F4E02D22DDCA30400A76078 /* Combine.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F4E02D12DDCA30400A76078 /* Combine.framework */; };
@@ -40,10 +40,10 @@
 		1F2928EF2E92355C002D78F3 /* PreloadWebsitesController copy.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "PreloadWebsitesController copy.json"; sourceTree = "<group>"; };
 		1F3B5EEB2DDE27AF00094BE1 /* LabelWithSpacer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelWithSpacer.swift; sourceTree = "<group>"; };
 		1F3B5EED2DDE28AF00094BE1 /* BoxView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoxView.swift; sourceTree = "<group>"; };
-		1F3B5EEF2DDE39AB00094BE1 /* MyViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyViewModel.swift; sourceTree = "<group>"; };
+		1F3B5EEF2DDE39AB00094BE1 /* ScrollViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollViewViewModel.swift; sourceTree = "<group>"; };
 		1F4E02C52DDCA24C00A76078 /* TaskListView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskListView.swift; sourceTree = "<group>"; };
 		1F4E02C92DDCA28000A76078 /* Color+String.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Color+String.swift"; sourceTree = "<group>"; };
-		1F4E02CB2DDCA29600A76078 /* Model.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
+		1F4E02CB2DDCA29600A76078 /* StaticScrollableListModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StaticScrollableListModel.swift; sourceTree = "<group>"; };
 		1F4E02CD2DDCA2AC00A76078 /* scrollViewData.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = scrollViewData.json; sourceTree = "<group>"; };
 		1F4E02CF2DDCA2FE00A76078 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
 		1F4E02D12DDCA30400A76078 /* Combine.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Combine.framework; path = System/Library/Frameworks/Combine.framework; sourceTree = SDKROOT; };
@@ -84,13 +84,9 @@
 		1F4E02D32DDCA76D00A76078 /* TaskListController */ = {
 			isa = PBXGroup;
 			children = (
+				B5E22E74303ECDFF0077B345 /* Views */,
 				1F860EC02E68849000A78030 /* SwiftUIHostController.swift */,
-				1F4E02C52DDCA24C00A76078 /* TaskListView.swift */,
-				1F3B5EEF2DDE39AB00094BE1 /* MyViewModel.swift */,
-				1F3B5EEB2DDE27AF00094BE1 /* LabelWithSpacer.swift */,
-				1F3B5EED2DDE28AF00094BE1 /* BoxView.swift */,
-				1F4E02C92DDCA28000A76078 /* Color+String.swift */,
-				1F4E02CB2DDCA29600A76078 /* Model.swift */,
+				1F3B5EEF2DDE39AB00094BE1 /* ScrollViewViewModel.swift */,
 			);
 			path = TaskListController;
 			sourceTree = "<group>";
@@ -115,6 +111,7 @@
 		1F63F6672DD8495500A31BC1 /* myBrowser_UIKit */ = {
 			isa = PBXGroup;
 			children = (
+				B5E22E73303ECDD70077B345 /* Extensions */,
 				B5E22E72303ECC6A0077B345 /* Models */,
 				B5E22E71303ECBF40077B345 /* ViewControllers */,
 				B5E22E70303ECBA70077B345 /* WindowControllers */,
@@ -181,11 +178,30 @@
 			isa = PBXGroup;
 			children = (
 				1F63F6F22DDB14E900A31BC1 /* ItemModel.swift */,
+				1F4E02CB2DDCA29600A76078 /* StaticScrollableListModel.swift */,
 				1F2928EF2E92355C002D78F3 /* PreloadWebsitesController copy.json */,
 				1F4E02CD2DDCA2AC00A76078 /* scrollViewData.json */,
 				1F63F6F02DDB118700A31BC1 /* PreloadWebsitesController.json */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		B5E22E73303ECDD70077B345 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				1F4E02C92DDCA28000A76078 /* Color+String.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		B5E22E74303ECDFF0077B345 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				1F4E02C52DDCA24C00A76078 /* TaskListView.swift */,
+				1F3B5EEB2DDE27AF00094BE1 /* LabelWithSpacer.swift */,
+				1F3B5EED2DDE28AF00094BE1 /* BoxView.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -269,7 +285,7 @@
 				1F4E02CA2DDCA28000A76078 /* Color+String.swift in Sources */,
 				1F63F6EF2DDB113D00A31BC1 /* HomeController.swift in Sources */,
 				1FB273D12DDB55090098D73A /* BrowserViewController.swift in Sources */,
-				1F3B5EF02DDE39AB00094BE1 /* MyViewModel.swift in Sources */,
+				1F3B5EF02DDE39AB00094BE1 /* ScrollViewViewModel.swift in Sources */,
 				1F3B5EEC2DDE27AF00094BE1 /* LabelWithSpacer.swift in Sources */,
 				B5E22E6E303EC3E80077B345 /* PopupWindowController.swift in Sources */,
 				1F860EC12E68849200A78030 /* SwiftUIHostController.swift in Sources */,
@@ -278,7 +294,7 @@
 				1FB273CF2DDB54840098D73A /* BrowserWindowController.swift in Sources */,
 				1F63F66B2DD8495500A31BC1 /* MainContainerController.swift in Sources */,
 				1F78BC0C2E5A403600CDF50B /* WindowTracker.swift in Sources */,
-				1F4E02CC2DDCA29600A76078 /* Model.swift in Sources */,
+				1F4E02CC2DDCA29600A76078 /* StaticScrollableListModel.swift in Sources */,
 				1F63F6692DD8495500A31BC1 /* AppDelegate.swift in Sources */,
 				1F3B5EEE2DDE28AF00094BE1 /* BoxView.swift in Sources */,
 			);

@@ -7,7 +7,7 @@
 
 import Foundation
 
-class MyViewModel: ObservableObject {
+class ScrollViewViewModel: ObservableObject {
     @Published var data: ListViewModel = ListViewModel.defaultValue
     
     private var isLoaded = false
