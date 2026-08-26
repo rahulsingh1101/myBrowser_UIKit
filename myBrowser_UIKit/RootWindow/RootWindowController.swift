@@ -10,7 +10,6 @@ import Cocoa
 protocol RootWindowControllerProtocol: AnyObject {
     var identifier: String { get }
     func showWindoww(_ sender: Any?)
-    func reloadURL()
 }
 
 class RootWindowController: NSWindowController, RootWindowControllerProtocol {
@@ -30,10 +29,6 @@ class RootWindowController: NSWindowController, RootWindowControllerProtocol {
     
     func showWindoww(_ sender: Any?) {
         showWindow(sender)
-    }
-    
-    func reloadURL() {
-        fatalError("Subclasses must override \(#function)")
     }
 }
 
