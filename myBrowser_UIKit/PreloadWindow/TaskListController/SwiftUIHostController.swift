@@ -19,6 +19,7 @@ final class SwiftUIHostController<Content: View>: NSViewController {
     init(rootView: Content) {
         self.swiftUIView = rootView
         self.hostingController = NSHostingController(rootView: rootView)
+        self.hostingController.sizingOptions = []
         super.init(nibName: nil, bundle: nil)
     }
     

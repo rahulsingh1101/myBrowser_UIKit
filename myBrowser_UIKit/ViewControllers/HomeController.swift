@@ -7,13 +7,13 @@
 
 import AppKit
 import Cocoa
+import SwiftUI
 
-final class HomeController: NSViewController, NSCollectionViewDataSource, NSCollectionViewDelegate {
-    private let taskItemIdentifier = NSUserInterfaceItemIdentifier("PreloadItem")
-    private let addItemIdentifier = NSUserInterfaceItemIdentifier("AddItem")
-    var collectionView: NSCollectionView!
+final class HomeController: NSViewController {
+    var taskGridController: SwiftUIHostController<TaskGridView>!
     var taskListController: SwiftUIHostController<TaskListView>!
 
+    private let taskGridViewModel = TaskGridViewModel()
     private let repository = FirebaseJSONRepository<[ItemModel]>.preloadWebsites()
     private var hasPerformedInitialOpen = false
 
@@ -22,79 +22,41 @@ final class HomeController: NSViewController, NSCollectionViewDataSource, NSColl
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        setupCollectionView()
+        setupTaskGrid()
         loadItems(isInitial: false)
     }
 
-    private func setupCollectionView() {
-        // 1. Create ScrollView
-        let scrollView = NSScrollView()
-        scrollView.translatesAutoresizingMaskIntoConstraints = false
-        view.addSubview(scrollView)
-
-        // 2. View Controller
+    private func setupTaskGrid() {
         let screenWidth = NSScreen.main?.frame.width ?? 800
+
+        taskGridController = SwiftUIHostController(
+            rootView: TaskGridView(
+                viewModel: taskGridViewModel,
+                onOpen: { [weak self] item in self?.open(item) },
+                onAdd: { [weak self] in self?.presentAddItemPrompt() }
+            )
+        )
+        taskGridController.view.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(taskGridController.view)
+
         taskListController = SwiftUIHostController(rootView: TaskListView())
         taskListController.view.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(taskListController.view)
 
         NSLayoutConstraint.activate([
-            scrollView.topAnchor.constraint(equalTo: view.topAnchor, constant: 0),
-            scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 0),
-            scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0)
+            taskGridController.view.topAnchor.constraint(equalTo: view.topAnchor, constant: 0),
+            taskGridController.view.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 0),
+            taskGridController.view.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0),
+            taskGridController.view.widthAnchor.constraint(equalTo: view.widthAnchor, constant: -(screenWidth/3))
         ])
 
         NSLayoutConstraint.activate([
             taskListController.view.topAnchor.constraint(equalTo: view.topAnchor, constant: 0),
             taskListController.view.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0),
-            taskListController.view.leadingAnchor.constraint(equalTo: scrollView.trailingAnchor, constant: 0),
+            taskListController.view.leadingAnchor.constraint(equalTo: taskGridController.view.trailingAnchor, constant: 0),
             taskListController.view.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 0),
             taskListController.view.widthAnchor.constraint(equalToConstant: screenWidth/3)
         ])
-
-        // 2. Create CollectionView
-        let layout = NSCollectionViewFlowLayout()
-        layout.itemSize = NSSize(width: 300, height: 100)
-        layout.sectionInset = NSEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
-        layout.minimumInteritemSpacing = 0
-        layout.minimumLineSpacing = 10
-
-        collectionView = NSCollectionView(frame: .zero)
-        collectionView.collectionViewLayout = layout
-        collectionView.translatesAutoresizingMaskIntoConstraints = false
-        collectionView.dataSource = self
-        collectionView.delegate = self
-        collectionView.isSelectable = true
-        collectionView.register(TaskCell.self, forItemWithIdentifier: taskItemIdentifier)
-        collectionView.register(AddItemCell.self, forItemWithIdentifier: addItemIdentifier)
-
-        // 3. Embed in ScrollView
-        scrollView.documentView = collectionView
-        collectionView.leadingAnchor.constraint(equalTo: scrollView.contentView.leadingAnchor).isActive = true
-        collectionView.trailingAnchor.constraint(equalTo: scrollView.contentView.trailingAnchor).isActive = true
-        collectionView.topAnchor.constraint(equalTo: scrollView.contentView.topAnchor).isActive = true
-        collectionView.bottomAnchor.constraint(equalTo: scrollView.contentView.bottomAnchor).isActive = true
-        collectionView.widthAnchor.constraint(equalTo: scrollView.widthAnchor).isActive = true
-    }
-
-    func collectionView(_ collectionView: NSCollectionView, numberOfItemsInSection section: Int) -> Int {
-        return items.count + 1
-    }
-
-    func collectionView(_ collectionView: NSCollectionView,
-                        itemForRepresentedObjectAt indexPath: IndexPath) -> NSCollectionViewItem {
-        guard indexPath.item < items.count else {
-            let item = collectionView.makeItem(withIdentifier: addItemIdentifier, for: indexPath)
-            guard let addItemCell = item as? AddItemCell else { return item }
-            addItemCell.delegate = self
-            return addItemCell
-        }
-
-        let item = collectionView.makeItem(withIdentifier: taskItemIdentifier, for: indexPath)
-        guard let collectionViewItem = item as? TaskCell else { return item }
-        collectionViewItem.configure(with: items[indexPath.item].toTaskModel(), index: indexPath.item)
-        collectionViewItem.delegate = self
-        return collectionViewItem
     }
 
     private func loadItems(isInitial: Bool) {
@@ -103,7 +65,7 @@ final class HomeController: NSViewController, NSCollectionViewDataSource, NSColl
                 let loaded = try await repository.load()
                 await MainActor.run {
                     self.items = loaded
-                    self.collectionView.reloadData()
+                    self.taskGridViewModel.items = loaded
                     if isInitial { self.openInitialItemIfNeeded() }
                 }
             } catch {
@@ -115,8 +77,16 @@ final class HomeController: NSViewController, NSCollectionViewDataSource, NSColl
     private func openInitialItemIfNeeded() {
         guard !hasPerformedInitialOpen else { return }
         hasPerformedInitialOpen = true
-        let indexOfKGS = items.firstIndex { $0.title == "KGS" }
-        openAt(indexOfKGS)
+        if let kgsItem = items.first(where: { $0.title == "KGS" }) {
+            open(kgsItem)
+        }
+    }
+
+    private func open(_ item: ItemModel) {
+        let appDelegate = NSApplication.shared.delegate as? AppDelegate
+        guard let windowFactory = appDelegate?.windowFactory else { return }
+        let browser = windowFactory.create(windowType: .browser(item.url))
+        browser.showWindoww(self)
     }
 
     private func presentAddItemPrompt() {
@@ -189,24 +159,5 @@ final class HomeController: NSViewController, NSCollectionViewDataSource, NSColl
                 alert.runModal()
             }
         }
-    }
-}
-
-// Collection view click delegate
-extension HomeController: OpenUrlProtocol {
-    func openAt(_ index: Int?) {
-        if let index {
-            let item = items[index]
-            let appDelegate = NSApplication.shared.delegate as? AppDelegate
-            guard let windowFactory = appDelegate?.windowFactory else { return }
-            let browser = windowFactory.create(windowType: .browser(item.url))
-            browser.showWindoww(self)
-        }
-    }
-}
-
-extension HomeController: AddItemProtocol {
-    func didTapAddItem() {
-        presentAddItemPrompt()
     }
 }

@@ -45,8 +45,10 @@ final class MainContainerController: NSViewController {
             stackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10),
             stackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10),
             stackView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -10),
-            
-            searchField.heightAnchor.constraint(equalToConstant: 30)
+
+            searchField.heightAnchor.constraint(equalToConstant: 30),
+            searchField.widthAnchor.constraint(equalTo: stackView.widthAnchor),
+            webViewController.view.widthAnchor.constraint(equalTo: stackView.widthAnchor)
         ])
     }
     
