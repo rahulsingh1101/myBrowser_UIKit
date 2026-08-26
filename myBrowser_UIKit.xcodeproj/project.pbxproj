@@ -43,6 +43,8 @@
 		B5E22E7B303EE42B0077B345 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B5E22E7A303EE42B0077B345 /* GoogleService-Info.plist */; };
 		D11B7FC94F9A4B97AC3FC0AB /* FirebaseJSONRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7D0143F3B544F8C9A5B4EF8 /* FirebaseJSONRepository.swift */; };
 		F33E3F20415E45B99B01A087 /* FirebaseBootstrap.swift in Sources */ = {isa = PBXBuildFile; fileRef = C070C12CD1E1496DA7776D7A /* FirebaseBootstrap.swift */; };
+		0F1CA00360F17D5EA07F0D4D /* HamburgerMenuItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A52445CBD703469359911A /* HamburgerMenuItem.swift */; };
+		10398953D3D240B583C8B762 /* HamburgerMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0E7CCBF10FBFF07359986F3 /* HamburgerMenuView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -82,6 +84,8 @@
 		DF5337D233DE4597B1257AE6 /* TaskGridView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskGridView.swift; sourceTree = "<group>"; };
 		CC4FB3186CED4C39802B21AA /* TaskCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskCardView.swift; sourceTree = "<group>"; };
 		F83C0ED6DADA42178B509C92 /* AddTaskCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTaskCardView.swift; sourceTree = "<group>"; };
+		82A52445CBD703469359911A /* HamburgerMenuItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HamburgerMenuItem.swift; sourceTree = "<group>"; };
+		D0E7CCBF10FBFF07359986F3 /* HamburgerMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HamburgerMenuView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -227,6 +231,7 @@
 				1FB273D02DDB55090098D73A /* BrowserViewController.swift */,
 				1F63F66A2DD8495500A31BC1 /* MainContainerController.swift */,
 				1F63F6EE2DDB113D00A31BC1 /* HomeController.swift */,
+				D0E7CCBF10FBFF07359986F3 /* HamburgerMenuView.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -235,6 +240,7 @@
 			isa = PBXGroup;
 			children = (
 				1F63F6F22DDB14E900A31BC1 /* ItemModel.swift */,
+				82A52445CBD703469359911A /* HamburgerMenuItem.swift */,
 				1F4E02CB2DDCA29600A76078 /* StaticScrollableListModel.swift */,
 				1F2928EF2E92355C002D78F3 /* PreloadWebsitesController copy.json */,
 				1F4E02CD2DDCA2AC00A76078 /* scrollViewData.json */,
@@ -368,6 +374,8 @@
 				80DF81B5337549D18D8C0274 /* TaskGridView.swift in Sources */,
 				CD830FAFABCE4F39B1D2891F /* TaskCardView.swift in Sources */,
 				119D5432909C4B9AAEBF4F94 /* AddTaskCardView.swift in Sources */,
+				0F1CA00360F17D5EA07F0D4D /* HamburgerMenuItem.swift in Sources */,
+				10398953D3D240B583C8B762 /* HamburgerMenuView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

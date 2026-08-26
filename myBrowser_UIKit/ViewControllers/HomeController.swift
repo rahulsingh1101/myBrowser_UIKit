@@ -14,7 +14,7 @@ final class HomeController: NSViewController {
     var taskListController: SwiftUIHostController<TaskListView>!
 
     private let taskGridViewModel = TaskGridViewModel()
-    private let repository = FirebaseJSONRepository<[ItemModel]>.preloadWebsites()
+    private var currentMenuItem: HamburgerMenuItem = .home
     private var hasPerformedInitialOpen = false
 
     var items: [ItemModel] = []
@@ -59,17 +59,26 @@ final class HomeController: NSViewController {
         ])
     }
 
+    func select(_ menuItem: HamburgerMenuItem) {
+        guard menuItem != currentMenuItem else { return }
+        currentMenuItem = menuItem
+        loadItems(isInitial: false)
+    }
+
     private func loadItems(isInitial: Bool) {
         Task {
             do {
-                let loaded = try await repository.load()
+                let loaded = try await currentMenuItem.repository.load()
                 await MainActor.run {
                     self.items = loaded
                     self.taskGridViewModel.items = loaded
                     if isInitial { self.openInitialItemIfNeeded() }
                 }
             } catch {
-                await MainActor.run { self.showAlert(for: error) }
+                await MainActor.run {
+                    self.items = []
+                    self.taskGridViewModel.items = []
+                }
             }
         }
     }
@@ -136,7 +145,7 @@ final class HomeController: NSViewController {
     private func addItem(_ item: ItemModel) {
         Task {
             do {
-                try await repository.save(items + [item])
+                try await currentMenuItem.repository.save(items + [item])
                 loadItems(isInitial: false)
             } catch {
                 await MainActor.run { self.showAlert(for: error) }

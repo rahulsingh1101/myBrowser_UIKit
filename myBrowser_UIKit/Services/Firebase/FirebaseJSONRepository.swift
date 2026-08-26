@@ -7,10 +7,10 @@ import Foundation
 
 final class FirebaseJSONRepository<Model: Codable> {
     private let path: String
-    private let bundleFallbackResource: String
+    private let bundleFallbackResource: String?
     private let store: RealtimeDatabaseStore
 
-    init(path: String, bundleFallbackResource: String, store: RealtimeDatabaseStore = .shared) {
+    init(path: String, bundleFallbackResource: String? = nil, store: RealtimeDatabaseStore = .shared) {
         self.path = path
         self.bundleFallbackResource = bundleFallbackResource
         self.store = store
@@ -20,7 +20,8 @@ final class FirebaseJSONRepository<Model: Codable> {
         do {
             return try await store.read(at: path, as: Model.self)
         } catch {
-            return try loadBundleFallback()
+            guard let bundleFallbackResource else { throw error }
+            return try loadBundleFallback(bundleFallbackResource)
         }
     }
 
@@ -28,8 +29,8 @@ final class FirebaseJSONRepository<Model: Codable> {
         try await store.write(model, at: path)
     }
 
-    private func loadBundleFallback() throws -> Model {
-        guard let url = Bundle.main.url(forResource: bundleFallbackResource, withExtension: "json") else {
+    private func loadBundleFallback(_ resource: String) throws -> Model {
+        guard let url = Bundle.main.url(forResource: resource, withExtension: "json") else {
             throw RealtimeDatabaseError.noData
         }
         let data = try Data(contentsOf: url)
@@ -40,6 +41,10 @@ final class FirebaseJSONRepository<Model: Codable> {
 extension FirebaseJSONRepository where Model == [ItemModel] {
     static func preloadWebsites() -> FirebaseJSONRepository<[ItemModel]> {
         FirebaseJSONRepository(path: "preloadWebsites", bundleFallbackResource: "PreloadWebsitesController")
+    }
+
+    static func focusMusic() -> FirebaseJSONRepository<[ItemModel]> {
+        FirebaseJSONRepository(path: "focusMusic")
     }
 }
 
