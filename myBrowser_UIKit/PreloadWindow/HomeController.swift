@@ -101,7 +101,7 @@ final class HomeController: NSViewController, NSCollectionViewDataSource, NSColl
                         itemForRepresentedObjectAt indexPath: IndexPath) -> NSCollectionViewItem {
         let item = collectionView.makeItem(withIdentifier: taskItemIdentifier, for: indexPath)
         guard let collectionViewItem = item as? TaskCell else { return item }
-        collectionViewItem.configure(with: items[indexPath.item], indexPath: indexPath.item)
+        collectionViewItem.configure(with: items[indexPath.item].toTaskModel(), index: indexPath.item)
         collectionViewItem.delegate = self
         return collectionViewItem
     }

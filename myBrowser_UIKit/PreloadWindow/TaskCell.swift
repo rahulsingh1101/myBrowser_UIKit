@@ -66,9 +66,9 @@ class TaskCell: NSCollectionViewItem {
         ])
     }
     
-    func configure(with item: ItemModel, indexPath: Int) {
+    func configure(with item: TaskCellModel, index: Int) {
         titleLabel.stringValue = item.title
         subtitleLabel.stringValue = item.subtitle
-        self.tag = indexPath
+        self.tag = index
     }
 }

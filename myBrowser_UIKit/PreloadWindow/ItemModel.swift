@@ -13,3 +13,13 @@ struct ItemModel: Codable {
     let url: String
 }
 
+struct TaskCellModel {
+    let title: String
+    let subtitle: String
+}
+
+extension ItemModel {
+    func toTaskModel() -> TaskCellModel {
+        TaskCellModel(title: self.title, subtitle: self.subtitle)
+    }
+}
