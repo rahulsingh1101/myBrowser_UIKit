@@ -7,7 +7,7 @@
 
 import Cocoa
 
-final class MainWindowController: RootWindowController {
+final class MainContainerWindowController: RootWindowController {
     init(identifier: String, title: String, windowTracker: WindowTrackerProtocol) {
         let viewController = MainContainerController()
         let window = NSWindow(contentViewController: viewController)
@@ -27,6 +27,6 @@ final class MainWindowController: RootWindowController {
     }
     
     override func reloadURL() {
-        print("reloadURL called :: \(MainWindowController.className())")
+        print("reloadURL called :: \(MainContainerWindowController.className())")
     }
 }

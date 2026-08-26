@@ -26,7 +26,7 @@ class MyViewModel: ObservableObject {
             return
         }
         isLoaded = true
-        guard let url = Bundle.main.url(forResource: "data", withExtension: "json"),
+        guard let url = Bundle.main.url(forResource: "scrollViewData", withExtension: "json"),
               let data = try? Data(contentsOf: url),
               let groupBoxes = try? JSONDecoder().decode(ListViewModel.self, from: data) else {
             data = ListViewModel.defaultValue

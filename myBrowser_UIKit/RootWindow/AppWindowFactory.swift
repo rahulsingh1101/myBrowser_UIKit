@@ -23,7 +23,7 @@ final class AppWindowFactory {
         }
         switch windowType {
         case .main:
-            let windowController = MainWindowController(identifier: NSUserInterfaceItemIdentifier("main").rawValue, title: "Search / Bookmark - 1", windowTracker: windowTracker)
+            let windowController = MainContainerWindowController(identifier: NSUserInterfaceItemIdentifier("main").rawValue, title: "Search / Bookmark - 1", windowTracker: windowTracker)
             windowTracker.add(window: windowController)
             return windowController
         case .browser(let urlString):
