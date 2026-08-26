@@ -27,6 +27,6 @@ final class MainContainerWindowController: RootWindowController {
     }
     
     override func reloadURL() {
-        print("reloadURL called :: \(MainContainerWindowController.className())")
+        print("Main container reloadURL called :: \(MainContainerWindowController.className())")
     }
 }

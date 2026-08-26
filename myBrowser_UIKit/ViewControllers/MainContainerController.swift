@@ -50,7 +50,7 @@ final class MainContainerController: NSViewController {
         ])
     }
     
-    @objc func loadURL() {
+    @objc private func loadURL() {
         print(">>>>>>>>>>>>>>>>  loadURL called :: >>>>>>>>>>>>>>>>>>>>>>>>>")
         let urlString = searchField.stringValue.trimmingCharacters(in: .whitespacesAndNewlines)
         guard !urlString.isEmpty else {

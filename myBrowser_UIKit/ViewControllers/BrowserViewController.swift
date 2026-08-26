@@ -67,11 +67,16 @@ final class BrowserViewController: NSViewController {
         ])
     }
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        loadURL()
+    }
+    
     func preloadClass(data: Model) {
         searchField.stringValue = data.urlToLoad
     }
     
-    @objc func loadURL() {
+    @objc private func loadURL() {
         print(">>>>>>>>>>>>>>>>  loadURL called :: >>>>>>>>>>>>>>>>>>>>>>>>>")
         let urlString = searchField.stringValue.trimmingCharacters(in: .whitespacesAndNewlines)
         guard !urlString.isEmpty else {
@@ -87,10 +92,6 @@ final class BrowserViewController: NSViewController {
             print("Started loading...::\(url)")
             webView.load(URLRequest(url: url))
         }
-    }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
     }
 
     override var representedObject: Any? {

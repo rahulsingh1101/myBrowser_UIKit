@@ -18,7 +18,6 @@ final class BrowserWindowController: RootWindowController {
         window.title = model.title
         super.init(window: window, identifier: identifier, windowTracker: windowTracker)
         self.window?.delegate = self
-        viewController.loadURL()
     }
     
     required init?(coder: NSCoder) {
@@ -27,10 +26,5 @@ final class BrowserWindowController: RootWindowController {
     
     override func windowDidLoad() {
         super.windowDidLoad()
-    }
-    
-    override func reloadURL() {
-        let viewController = self.window?.contentViewController as? BrowserViewController
-        viewController?.loadURL()
     }
 }
