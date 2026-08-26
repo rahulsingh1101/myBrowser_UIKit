@@ -13,32 +13,22 @@ final class MenuContentController: NSViewController {
     var taskGridController: SwiftUIHostController<TaskGridView>!
     var taskListController: SwiftUIHostController<TaskListView>!
 
-    private let taskGridViewModel = TaskGridViewModel()
-    private let focusMusicViewModel = TaskGridViewModel()
+    private let menuContentViewModel = MenuContentViewModel()
     private let scrollViewViewModel = ScrollViewViewModel()
     private var currentMenuItem: HamburgerMenuItem = .home
     private var hasPerformedInitialOpen = false
-
-    private var activeGridViewModel: TaskGridViewModel {
-        switch currentMenuItem {
-        case .home: return taskGridViewModel
-        case .focusMusic: return focusMusicViewModel
-        }
-    }
-
-    var items: [ItemModel] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         setupTaskGrid()
-        loadItems(isInitial: false)
+        loadContent(isInitial: false)
     }
 
     private func setupTaskGrid() {
         let screenWidth = NSScreen.main?.frame.width ?? 800
 
-        taskGridController = SwiftUIHostController(rootView: makeGridView(viewModel: activeGridViewModel))
+        taskGridController = SwiftUIHostController(rootView: makeGridView())
         taskGridController.view.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(taskGridController.view)
 
@@ -62,9 +52,9 @@ final class MenuContentController: NSViewController {
         ])
     }
 
-    private func makeGridView(viewModel: TaskGridViewModel) -> TaskGridView {
+    private func makeGridView() -> TaskGridView {
         TaskGridView(
-            viewModel: viewModel,
+            viewModel: menuContentViewModel,
             onOpen: { [weak self] item in self?.open(item) },
             onAdd: { [weak self] in self?.presentAddItemPrompt() },
             onDelete: currentMenuItem == .home ? { [weak self] item in self?.confirmDelete(item) } : nil
@@ -74,47 +64,25 @@ final class MenuContentController: NSViewController {
     func select(_ menuItem: HamburgerMenuItem) {
         guard menuItem != currentMenuItem else { return }
         currentMenuItem = menuItem
-        taskGridController.updateRootView(makeGridView(viewModel: activeGridViewModel))
-        loadItems(isInitial: false)
+        taskGridController.updateRootView(makeGridView())
+        loadContent(isInitial: false)
     }
 
-    private func loadItems(isInitial: Bool) {
-        let gridViewModel = activeGridViewModel
+    private func loadContent(isInitial: Bool) {
+        let menuItem = currentMenuItem
         Task {
-            do {
-                let loaded = try await currentMenuItem.repository.load()
-                await MainActor.run {
-                    self.items = loaded
-                    gridViewModel.items = loaded
-                    if isInitial { self.openInitialItemIfNeeded() }
-                }
-            } catch {
-                await MainActor.run {
-                    self.items = []
-                    gridViewModel.items = []
-                }
-            }
+            await menuContentViewModel.load(menuItem: menuItem)
+            if isInitial { openInitialItemIfNeeded() }
         }
         if currentMenuItem == .home {
-            loadListData()
-        }
-    }
-
-    private func loadListData() {
-        Task {
-            do {
-                let loaded = try await FirebaseJSONRepository.scrollViewData().load()
-                await MainActor.run { self.scrollViewViewModel.data = loaded }
-            } catch {
-                await MainActor.run { self.scrollViewViewModel.data = .defaultValue }
-            }
+            Task { await scrollViewViewModel.load() }
         }
     }
 
     private func openInitialItemIfNeeded() {
         guard !hasPerformedInitialOpen else { return }
         hasPerformedInitialOpen = true
-        if let kgsItem = items.first(where: { $0.title == "KGS" }) {
+        if let kgsItem = menuContentViewModel.items.first(where: { $0.title == "KGS" }) {
             open(kgsItem)
         }
     }
@@ -171,12 +139,12 @@ final class MenuContentController: NSViewController {
     }
 
     private func addItem(_ item: ItemModel) {
+        let menuItem = currentMenuItem
         Task {
             do {
-                try await currentMenuItem.repository.save(items + [item])
-                loadItems(isInitial: false)
+                try await menuContentViewModel.add(item, menuItem: menuItem)
             } catch {
-                await MainActor.run { self.showAlert(for: error) }
+                showAlert(for: error)
             }
         }
     }
@@ -196,12 +164,12 @@ final class MenuContentController: NSViewController {
     }
 
     private func deleteItem(_ item: ItemModel) {
+        let menuItem = currentMenuItem
         Task {
             do {
-                try await currentMenuItem.repository.save(items.filter { $0.id != item.id })
-                loadItems(isInitial: false)
+                try await menuContentViewModel.delete(item, menuItem: menuItem)
             } catch {
-                await MainActor.run { self.showAlert(for: error) }
+                showAlert(for: error)
             }
         }
     }

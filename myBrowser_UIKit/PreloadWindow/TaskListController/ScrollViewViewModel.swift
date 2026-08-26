@@ -7,6 +7,15 @@
 
 import Foundation
 
+@MainActor
 final class ScrollViewViewModel: ObservableObject {
-    @Published var data: ListViewModel = ListViewModel.defaultValue
+    @Published var data: ListViewModel = .defaultValue
+
+    func load() async {
+        do {
+            data = try await FirebaseJSONRepository.scrollViewData().load()
+        } catch {
+            data = .defaultValue
+        }
+    }
 }

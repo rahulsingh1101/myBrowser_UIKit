@@ -37,7 +37,7 @@
 		1FB273D12DDB55090098D73A /* BrowserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FB273D02DDB55090098D73A /* BrowserViewController.swift */; };
 		41DBF42F42C24120A53ED8FE /* FirebaseCore in Frameworks */ = {isa = PBXBuildFile; productRef = 250A808BA3A84D72B3FB737C /* FirebaseCore */; };
 		80DF81B5337549D18D8C0274 /* TaskGridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF5337D233DE4597B1257AE6 /* TaskGridView.swift */; };
-		9DE4B23FB02442EF8565972C /* TaskGridViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C8BCA25E9B5406A9FA4BE86 /* TaskGridViewModel.swift */; };
+		9DE4B23FB02442EF8565972C /* MenuContentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C8BCA25E9B5406A9FA4BE86 /* MenuContentViewModel.swift */; };
 		B1917ADE1E684B8B9741771B /* RealtimeDatabaseStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0417D363C08437AB6D4C589 /* RealtimeDatabaseStore.swift */; };
 		B5E22E6E303EC3E80077B345 /* PopupWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5E22E6D303EC3E80077B345 /* PopupWindowController.swift */; };
 		B5E22E79303EDABC0077B345 /* FirebaseDatabase in Frameworks */ = {isa = PBXBuildFile; productRef = B5E22E78303EDABC0077B345 /* FirebaseDatabase */; };
@@ -75,7 +75,7 @@
 		1F860EC02E68849000A78030 /* SwiftUIHostController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUIHostController.swift; sourceTree = "<group>"; };
 		1FB273CE2DDB54840098D73A /* BrowserWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrowserWindowController.swift; sourceTree = "<group>"; };
 		1FB273D02DDB55090098D73A /* BrowserViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrowserViewController.swift; sourceTree = "<group>"; };
-		4C8BCA25E9B5406A9FA4BE86 /* TaskGridViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskGridViewModel.swift; sourceTree = "<group>"; };
+		4C8BCA25E9B5406A9FA4BE86 /* MenuContentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuContentViewModel.swift; sourceTree = "<group>"; };
 		82A52445CBD703469359911A /* HamburgerMenuItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HamburgerMenuItem.swift; sourceTree = "<group>"; };
 		A7D0143F3B544F8C9A5B4EF8 /* FirebaseJSONRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseJSONRepository.swift; sourceTree = "<group>"; };
 		B5E22E6D303EC3E80077B345 /* PopupWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopupWindowController.swift; sourceTree = "<group>"; };
@@ -200,7 +200,7 @@
 			isa = PBXGroup;
 			children = (
 				76B4B02C57824C56AEAE8ED8 /* Views */,
-				4C8BCA25E9B5406A9FA4BE86 /* TaskGridViewModel.swift */,
+				4C8BCA25E9B5406A9FA4BE86 /* MenuContentViewModel.swift */,
 			);
 			path = TaskGridController;
 			sourceTree = "<group>";
@@ -370,7 +370,7 @@
 				1F4E02CC2DDCA29600A76078 /* StaticScrollableListModel.swift in Sources */,
 				1F63F6692DD8495500A31BC1 /* AppDelegate.swift in Sources */,
 				1F3B5EEE2DDE28AF00094BE1 /* BoxView.swift in Sources */,
-				9DE4B23FB02442EF8565972C /* TaskGridViewModel.swift in Sources */,
+				9DE4B23FB02442EF8565972C /* MenuContentViewModel.swift in Sources */,
 				80DF81B5337549D18D8C0274 /* TaskGridView.swift in Sources */,
 				CD830FAFABCE4F39B1D2891F /* TaskCardView.swift in Sources */,
 				119D5432909C4B9AAEBF4F94 /* AddTaskCardView.swift in Sources */,
