@@ -1,5 +1,5 @@
 //
-//  HomeController.swift
+//  MenuContentController.swift
 //  myBrowser_UIKit
 //
 //  Created by Rahul Singh on 19/05/25.
@@ -9,7 +9,7 @@ import AppKit
 import Cocoa
 import SwiftUI
 
-final class HomeController: NSViewController {
+final class MenuContentController: NSViewController {
     var taskGridController: SwiftUIHostController<TaskGridView>!
     var taskListController: SwiftUIHostController<TaskListView>!
 

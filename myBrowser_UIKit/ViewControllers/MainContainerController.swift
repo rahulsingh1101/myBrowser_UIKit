@@ -11,7 +11,7 @@ import WebKit
 
 final class MainContainerController: NSViewController {
     let searchField = NSSearchField()
-    let webViewController = HomeController()
+    let webViewController = MenuContentController()
     let hamburgerButton = NSButton()
 
     private lazy var menuPopover: NSPopover = {
