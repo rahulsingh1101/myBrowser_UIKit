@@ -16,18 +16,34 @@ final class BrowserViewController: NSViewController {
 
     let searchField = NSSearchField()
     private var popups: Set<RootWindowController> = []
+    private var urlObservation: NSKeyValueObservation?
     private lazy var webView: WKWebView = {
         let config = WKWebViewConfiguration()
         config.preferences.javaScriptEnabled = true
         config.preferences.javaScriptCanOpenWindowsAutomatically = true // needed for window.open
         config.defaultWebpagePreferences.allowsContentJavaScript = true
-        
+
         let wv = WKWebView(frame: .zero, configuration: config)
         wv.uiDelegate = self
         wv.navigationDelegate = self
         wv.allowsBackForwardNavigationGestures = true
+
+        // WKNavigationDelegate callbacks don't fire for same-document navigations
+        // (SPA pushState/replaceState, e.g. Coursera's module switcher), so the
+        // search field must be kept in sync via KVO on `url` instead.
+        urlObservation = wv.observe(\.url, options: [.new]) { [weak self] webView, _ in
+            guard let self, let url = webView.url else { return }
+            DispatchQueue.main.async {
+                self.searchField.stringValue = url.absoluteString
+            }
+        }
+
         return wv
     }()
+
+    deinit {
+        urlObservation?.invalidate()
+    }
     
     override func loadView() {
         // Main container view
@@ -110,7 +126,6 @@ extension BrowserViewController: WKNavigationDelegate {
     // Called when loading finishes successfully
     func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
         print("Finished loading. ::\(webView.url)")
-        self.searchField.stringValue = webView.url?.absoluteString ?? ""
         self.view.window?.title = webView.title ?? (webView.url?.host ?? "Browser")
     }
 
