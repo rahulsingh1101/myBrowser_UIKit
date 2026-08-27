@@ -81,14 +81,8 @@ final class PDFReaderViewController: NSViewController {
         guard let item else { return }
         let pageIndex = currentPageIndex
         Task {
-            do {
-                let repository = FirebaseJSONRepository<[PDFLibraryItem]>.pdfLibrary()
-                var items = try await repository.load()
-                if let index = items.firstIndex(where: { $0.id == item.id }) {
-                    items[index].lastReadPage = pageIndex
-                    try await repository.save(items)
-                }
-            } catch {}
+            try? await FirebaseJSONRepository<[PDFLibraryItem]>.pdfLibrary()
+                .updateElement(id: item.id) { $0.lastReadPage = pageIndex }
         }
     }
 

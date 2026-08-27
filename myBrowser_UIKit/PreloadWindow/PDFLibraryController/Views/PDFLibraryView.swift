@@ -6,7 +6,7 @@
 import SwiftUI
 
 struct PDFLibraryView: View {
-    @ObservedObject var viewModel: PDFLibraryViewModel
+    @ObservedObject var viewModel: GenericLibraryViewModel<PDFLibraryItem>
     let onOpen: (PDFLibraryItem) -> Void
     let onAdd: () -> Void
     let onDelete: (PDFLibraryItem) -> Void

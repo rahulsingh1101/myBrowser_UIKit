@@ -1,5 +1,5 @@
 //
-//  ItemModelSection.swift
+//  RepositoryBackedItemModel.swift
 //  myBrowser_UIKit
 //
 

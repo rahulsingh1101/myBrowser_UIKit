@@ -14,8 +14,8 @@ final class MenuContentController: NSViewController {
     var pdfLibraryController: SwiftUIHostController<PDFLibraryView>!
     var taskListController: SwiftUIHostController<TaskListView>!
 
-    private let menuContentViewModel = MenuContentViewModel()
-    private let pdfLibraryViewModel = PDFLibraryViewModel()
+    private let menuContentViewModel = GenericLibraryViewModel<ItemModel>()
+    private let pdfLibraryViewModel = GenericLibraryViewModel<PDFLibraryItem>()
     private let scrollViewViewModel = ScrollViewViewModel()
     private var currentMenuItem: HamburgerMenuItem = .home
     private var hasPerformedInitialOpen = false
@@ -106,12 +106,12 @@ final class MenuContentController: NSViewController {
     private func loadContent(isInitial: Bool) {
         let menuItem = currentMenuItem
         if menuItem == .pdfLibrary {
-            Task { await pdfLibraryViewModel.load() }
+            Task { await pdfLibraryViewModel.load(from: .pdfLibrary()) }
             return
         }
         guard let section = menuItem.itemModelSection else { return }
         Task {
-            await menuContentViewModel.load(section: section)
+            await menuContentViewModel.load(from: section.repository)
             if isInitial { openInitialItemIfNeeded() }
         }
         if currentMenuItem == .home {
@@ -139,7 +139,8 @@ final class MenuContentController: NSViewController {
     }
 
     /// Must be called synchronously from the callback that granted access to `url` (an NSOpenPanel
-    /// completion handler or a drag-and-drop callback) — see the note on `PDFLibraryViewModel.importItem`.
+    /// completion handler or a drag-and-drop callback) — deferring bookmark creation past an actor
+    /// hop can outlive the sandbox's access grant for that URL and fail with "Operation not permitted".
     private func importPDF(at url: URL) {
         let title = url.deletingPathExtension().lastPathComponent
         let bookmarkData: Data
@@ -149,9 +150,16 @@ final class MenuContentController: NSViewController {
             showAlert(for: error)
             return
         }
+        let newItem = PDFLibraryItem(
+            id: UUID().uuidString,
+            title: title,
+            bookmarkData: bookmarkData,
+            lastReadPage: 0,
+            dateAdded: Date().timeIntervalSince1970
+        )
         Task {
             do {
-                try await pdfLibraryViewModel.importItem(title: title, bookmarkData: bookmarkData)
+                try await pdfLibraryViewModel.add(newItem, to: .pdfLibrary())
             } catch {
                 showAlert(for: error)
             }
@@ -175,7 +183,7 @@ final class MenuContentController: NSViewController {
     private func deletePDF(_ item: PDFLibraryItem) {
         Task {
             do {
-                try await pdfLibraryViewModel.delete(item)
+                try await pdfLibraryViewModel.delete(item, from: .pdfLibrary())
             } catch {
                 showAlert(for: error)
             }
@@ -245,7 +253,7 @@ final class MenuContentController: NSViewController {
         guard let section = currentMenuItem.itemModelSection else { return }
         Task {
             do {
-                try await menuContentViewModel.add(item, section: section)
+                try await menuContentViewModel.add(item, to: section.repository)
             } catch {
                 showAlert(for: error)
             }
@@ -270,7 +278,7 @@ final class MenuContentController: NSViewController {
         guard let section = currentMenuItem.itemModelSection else { return }
         Task {
             do {
-                try await menuContentViewModel.delete(item, section: section)
+                try await menuContentViewModel.delete(item, from: section.repository)
             } catch {
                 showAlert(for: error)
             }

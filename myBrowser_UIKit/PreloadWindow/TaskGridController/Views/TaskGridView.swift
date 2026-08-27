@@ -6,7 +6,7 @@
 import SwiftUI
 
 struct TaskGridView: View {
-    @ObservedObject var viewModel: MenuContentViewModel
+    @ObservedObject var viewModel: GenericLibraryViewModel<ItemModel>
     let onOpen: (ItemModel) -> Void
     let onAdd: () -> Void
     var onDelete: ((ItemModel) -> Void)? = nil

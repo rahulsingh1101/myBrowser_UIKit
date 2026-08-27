@@ -59,3 +59,37 @@ extension FirebaseJSONRepository where Model == [PDFLibraryItem] {
         FirebaseJSONRepository(path: "pdfLibrary")
     }
 }
+
+// MARK: - Array element operations
+//
+// All Firebase-touching operations on an array-shaped `Model` — load/save whole-array via the
+// members above, plus add/delete/update a single element — live in this one file, so
+// `GenericLibraryViewModel` never needs to know how a mutation is persisted, only that it is.
+extension FirebaseJSONRepository {
+    /// Loads the current array, appends `item`, saves, and returns the saved array.
+    @discardableResult
+    func addElement<Item: Identifiable>(_ item: Item) async throws -> [Item] where Model == [Item] {
+        let updated = try await load() + [item]
+        try await save(updated)
+        return updated
+    }
+
+    /// Loads the current array, removes the element matching `id`, saves, and returns the saved array.
+    @discardableResult
+    func deleteElement<Item: Identifiable>(id: Item.ID) async throws -> [Item] where Model == [Item] {
+        let updated = try await load().filter { $0.id != id }
+        try await save(updated)
+        return updated
+    }
+
+    /// Loads the current array, mutates the element matching `id` in place, saves, and returns the
+    /// saved array. A no-op (returns the array unmodified) if no element matches `id`.
+    @discardableResult
+    func updateElement<Item: Identifiable>(id: Item.ID, mutate: (inout Item) -> Void) async throws -> [Item] where Model == [Item] {
+        var items = try await load()
+        guard let index = items.firstIndex(where: { $0.id == id }) else { return items }
+        mutate(&items[index])
+        try await save(items)
+        return items
+    }
+}
