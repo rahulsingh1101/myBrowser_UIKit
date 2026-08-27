@@ -15,8 +15,12 @@ final class BrowserViewController: NSViewController {
     }
 
     let searchField = NSSearchField()
+    private let backButton = NSButton()
+    private let forwardButton = NSButton()
     private var popups: Set<RootWindowController> = []
     private var urlObservation: NSKeyValueObservation?
+    private var canGoBackObservation: NSKeyValueObservation?
+    private var canGoForwardObservation: NSKeyValueObservation?
     private lazy var webView: WKWebView = {
         let config = WKWebViewConfiguration()
         config.preferences.javaScriptEnabled = true
@@ -38,13 +42,27 @@ final class BrowserViewController: NSViewController {
             }
         }
 
+        canGoBackObservation = wv.observe(\.canGoBack, options: [.initial, .new]) { [weak self] webView, _ in
+            DispatchQueue.main.async {
+                self?.backButton.isEnabled = webView.canGoBack
+            }
+        }
+
+        canGoForwardObservation = wv.observe(\.canGoForward, options: [.initial, .new]) { [weak self] webView, _ in
+            DispatchQueue.main.async {
+                self?.forwardButton.isEnabled = webView.canGoForward
+            }
+        }
+
         return wv
     }()
 
     deinit {
         urlObservation?.invalidate()
+        canGoBackObservation?.invalidate()
+        canGoForwardObservation?.invalidate()
     }
-    
+
     override func loadView() {
         // Main container view
         self.view = NSView()
@@ -57,29 +75,59 @@ final class BrowserViewController: NSViewController {
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.spacing = 10
         
-        // 1. Configure Search Field
+        // 1. Configure back/forward buttons
+        backButton.translatesAutoresizingMaskIntoConstraints = false
+        backButton.bezelStyle = .texturedRounded
+        backButton.image = NSImage(systemSymbolName: "chevron.left", accessibilityDescription: "Back")
+        backButton.target = self
+        backButton.action = #selector(goBack)
+        backButton.keyEquivalent = "["
+        backButton.keyEquivalentModifierMask = .command
+        backButton.isEnabled = false
+
+        forwardButton.translatesAutoresizingMaskIntoConstraints = false
+        forwardButton.bezelStyle = .texturedRounded
+        forwardButton.image = NSImage(systemSymbolName: "chevron.right", accessibilityDescription: "Forward")
+        forwardButton.target = self
+        forwardButton.action = #selector(goForward)
+        forwardButton.keyEquivalent = "]"
+        forwardButton.keyEquivalentModifierMask = .command
+        forwardButton.isEnabled = false
+
+        // 2. Configure Search Field
         searchField.translatesAutoresizingMaskIntoConstraints = false
         searchField.placeholderString = "Enter URL"
         searchField.target = self
         searchField.action = #selector(loadURL)
         searchField.sendsSearchStringImmediately = false
         searchField.sendsWholeSearchString = true
-        
-        // 2. Add subviews to stack view
-        stackView.addArrangedSubview(searchField)
+
+        // 3. Navigation bar: back/forward + search field, inline
+        let navBar = NSStackView(views: [backButton, forwardButton, searchField])
+        navBar.orientation = .horizontal
+        navBar.distribution = .fill
+        navBar.alignment = .centerY
+        navBar.spacing = 6
+        navBar.translatesAutoresizingMaskIntoConstraints = false
+
+        // 4. Add subviews to stack view
+        stackView.addArrangedSubview(navBar)
         stackView.addArrangedSubview(webView)
-        
+
         // Add stack view to main view
         self.view.addSubview(stackView)
-        
+
         // Layout Constraints
         NSLayoutConstraint.activate([
             stackView.topAnchor.constraint(equalTo: view.topAnchor, constant: 10),
             stackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10),
             stackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10),
             stackView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -10),
-            
-            searchField.heightAnchor.constraint(equalToConstant: 30)
+
+            navBar.widthAnchor.constraint(equalTo: stackView.widthAnchor),
+            searchField.heightAnchor.constraint(equalToConstant: 30),
+            backButton.widthAnchor.constraint(equalToConstant: 32),
+            forwardButton.widthAnchor.constraint(equalToConstant: 32)
         ])
     }
     
@@ -92,6 +140,14 @@ final class BrowserViewController: NSViewController {
         searchField.stringValue = data.urlToLoad
     }
     
+    @objc private func goBack() {
+        webView.goBack()
+    }
+
+    @objc private func goForward() {
+        webView.goForward()
+    }
+
     @objc private func loadURL() {
         print(">>>>>>>>>>>>>>>>  loadURL called :: >>>>>>>>>>>>>>>>>>>>>>>>>")
         let urlString = searchField.stringValue.trimmingCharacters(in: .whitespacesAndNewlines)
