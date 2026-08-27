@@ -16,3 +16,5 @@ struct ItemModel: Codable {
 extension ItemModel: Identifiable {
     var id: String { url }
 }
+
+extension ItemModel: LibraryDisplayable {}

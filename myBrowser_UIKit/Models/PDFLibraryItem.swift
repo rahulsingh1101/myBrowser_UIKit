@@ -12,3 +12,5 @@ struct PDFLibraryItem: Codable, Identifiable {
     var lastReadPage: Int
     var dateAdded: TimeInterval
 }
+
+extension PDFLibraryItem: LibraryDisplayable {}

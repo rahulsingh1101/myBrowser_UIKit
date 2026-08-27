@@ -5,10 +5,7 @@
 
 import Foundation
 
-/// The `HamburgerMenuItem` cases that are backed by a `FirebaseJSONRepository<[ItemModel]>`.
-/// `.pdfLibrary` has no corresponding case — see `HamburgerMenuItem.itemModelSection`, which maps
-/// a menu item to its section (or `nil`) and is the only place that needs updating when a new
-/// `HamburgerMenuItem` case is added.
+/// The `HamburgerMenuItem` cases backed by a `FirebaseJSONRepository<[ItemModel]>` — see `HamburgerMenuItem.itemModelSection`.
 enum RepositoryBackedItemModel: CaseIterable {
     case home
     case focusMusic

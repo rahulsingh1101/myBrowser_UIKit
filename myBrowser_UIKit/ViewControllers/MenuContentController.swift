@@ -10,8 +10,8 @@ import Cocoa
 import SwiftUI
 
 final class MenuContentController: NSViewController {
-    var taskGridController: SwiftUIHostController<TaskGridView>!
-    var pdfLibraryController: SwiftUIHostController<PDFLibraryView>!
+    var taskGridController: SwiftUIHostController<LibraryGridView<ItemModel>>!
+    var pdfLibraryController: SwiftUIHostController<LibraryGridView<PDFLibraryItem>>!
     var taskListController: SwiftUIHostController<TaskListView>!
 
     private let menuContentViewModel = GenericLibraryViewModel<ItemModel>()
@@ -74,18 +74,20 @@ final class MenuContentController: NSViewController {
         ])
     }
 
-    private func makeGridView() -> TaskGridView {
-        TaskGridView(
+    private func makeGridView() -> LibraryGridView<ItemModel> {
+        LibraryGridView(
             viewModel: menuContentViewModel,
+            subtitle: { $0.subtitle },
             onOpen: { [weak self] item in self?.open(item) },
             onAdd: { [weak self] in self?.presentAddItemPrompt() },
             onDelete: currentMenuItem == .home ? { [weak self] item in self?.confirmDelete(item) } : nil
         )
     }
 
-    private func makePDFLibraryView() -> PDFLibraryView {
-        PDFLibraryView(
+    private func makePDFLibraryView() -> LibraryGridView<PDFLibraryItem> {
+        LibraryGridView(
             viewModel: pdfLibraryViewModel,
+            subtitle: { $0.lastReadPage > 0 ? "Last read: page \($0.lastReadPage + 1)" : "Not started" },
             onOpen: { [weak self] item in self?.openPDF(item) },
             onAdd: { [weak self] in self?.presentImportPDFPanel() },
             onDelete: { [weak self] item in self?.confirmDeletePDF(item) }
@@ -124,6 +126,17 @@ final class MenuContentController: NSViewController {
         guard let windowFactory = appDelegate?.windowFactory else { return }
         let reader = windowFactory.create(windowType: .reader(item))
         reader.showWindoww(self)
+
+        guard let windowController = reader as? NSWindowController,
+              let window = windowController.window,
+              let readerVC = windowController.contentViewController as? PDFReaderViewController else { return }
+
+        NotificationCenter.default.addObserver(forName: NSWindow.willCloseNotification, object: window, queue: .main) { [weak self] _ in
+            Task {
+                await readerVC.persistCurrentPage()
+                await self?.pdfLibraryViewModel.load(from: .pdfLibrary())
+            }
+        }
     }
 
     private func presentImportPDFPanel() {
@@ -138,9 +151,7 @@ final class MenuContentController: NSViewController {
         }
     }
 
-    /// Must be called synchronously from the callback that granted access to `url` (an NSOpenPanel
-    /// completion handler or a drag-and-drop callback) — deferring bookmark creation past an actor
-    /// hop can outlive the sandbox's access grant for that URL and fail with "Operation not permitted".
+    /// Must run synchronously in the callback that granted access to `url` — deferring past an actor hop can lose the sandbox grant.
     private func importPDF(at url: URL) {
         let title = url.deletingPathExtension().lastPathComponent
         let bookmarkData: Data

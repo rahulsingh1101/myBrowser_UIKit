@@ -5,10 +5,7 @@
 
 import Foundation
 
-/// Backs any grid pane whose items are a `Codable & Identifiable` array persisted as a whole via
-/// `FirebaseJSONRepository`. The repository is passed per-call rather than held, since callers such
-/// as `MenuContentController` may need to load/save against a different repository per section
-/// (e.g. Home vs. Focus Music) using the same `Item` type.
+/// The repository is passed per-call rather than held, since one instance may back multiple repositories (e.g. Home vs. Focus Music).
 @MainActor
 final class GenericLibraryViewModel<Item: Codable & Identifiable>: ObservableObject {
     @Published var items: [Item] = []

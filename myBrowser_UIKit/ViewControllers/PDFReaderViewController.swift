@@ -74,16 +74,14 @@ final class PDFReaderViewController: NSViewController {
         currentPageIndex = document.index(for: page)
     }
 
-    func persistCurrentPage() {
+    func persistCurrentPage() async {
         if didStartAccessingSecurityScope {
             resolvedURL?.stopAccessingSecurityScopedResource()
         }
         guard let item else { return }
         let pageIndex = currentPageIndex
-        Task {
-            try? await FirebaseJSONRepository<[PDFLibraryItem]>.pdfLibrary()
-                .updateElement(id: item.id) { $0.lastReadPage = pageIndex }
-        }
+        try? await FirebaseJSONRepository<[PDFLibraryItem]>.pdfLibrary()
+            .updateElement(id: item.id) { $0.lastReadPage = pageIndex }
     }
 
     deinit {

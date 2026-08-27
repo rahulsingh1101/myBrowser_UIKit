@@ -1,18 +1,15 @@
 //
-//  PDFCardView.swift
+//  LibraryCardView.swift
 //  myBrowser_UIKit
 //
 
 import SwiftUI
 
-struct PDFCardView: View {
-    let item: PDFLibraryItem
+struct LibraryCardView<Item: Identifiable & LibraryDisplayable>: View {
+    let item: Item
+    let subtitle: String
     let onOpen: () -> Void
-    let onDelete: () -> Void
-
-    private var subtitle: String {
-        item.lastReadPage > 0 ? "Last read: page \(item.lastReadPage + 1)" : "Not started"
-    }
+    var onDelete: (() -> Void)? = nil
 
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
@@ -31,12 +28,14 @@ struct PDFCardView: View {
         .background(Color(nsColor: .lightGray).opacity(0.2))
         .cornerRadius(8)
         .overlay(alignment: .topTrailing) {
-            Button(action: onDelete) {
-                Image(systemName: "xmark.circle.fill")
-                    .foregroundStyle(.secondary)
+            if let onDelete {
+                Button(action: onDelete) {
+                    Image(systemName: "xmark.circle.fill")
+                        .foregroundStyle(.secondary)
+                }
+                .buttonStyle(.plain)
+                .padding(6)
             }
-            .buttonStyle(.plain)
-            .padding(6)
         }
     }
 }

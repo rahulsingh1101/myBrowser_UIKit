@@ -16,10 +16,6 @@ final class ReaderWindowController: RootWindowController {
         window.title = item.title
         super.init(window: window, identifier: identifier, windowTracker: windowTracker)
         self.window?.delegate = self
-
-        NotificationCenter.default.addObserver(forName: NSWindow.willCloseNotification, object: window, queue: .main) { [weak viewController] _ in
-            viewController?.persistCurrentPage()
-        }
     }
 
     required init?(coder: NSCoder) {
