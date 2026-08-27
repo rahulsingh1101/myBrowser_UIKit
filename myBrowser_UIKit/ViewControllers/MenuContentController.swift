@@ -109,7 +109,7 @@ final class MenuContentController: NSViewController {
             Task { await pdfLibraryViewModel.load() }
             return
         }
-        guard let section = ItemModelSection(menuItem: menuItem) else { return }
+        guard let section = menuItem.itemModelSection else { return }
         Task {
             await menuContentViewModel.load(section: section)
             if isInitial { openInitialItemIfNeeded() }
@@ -242,7 +242,7 @@ final class MenuContentController: NSViewController {
     }
 
     private func addItem(_ item: ItemModel) {
-        guard let section = ItemModelSection(menuItem: currentMenuItem) else { return }
+        guard let section = currentMenuItem.itemModelSection else { return }
         Task {
             do {
                 try await menuContentViewModel.add(item, section: section)
@@ -267,7 +267,7 @@ final class MenuContentController: NSViewController {
     }
 
     private func deleteItem(_ item: ItemModel) {
-        guard let section = ItemModelSection(menuItem: currentMenuItem) else { return }
+        guard let section = currentMenuItem.itemModelSection else { return }
         Task {
             do {
                 try await menuContentViewModel.delete(item, section: section)

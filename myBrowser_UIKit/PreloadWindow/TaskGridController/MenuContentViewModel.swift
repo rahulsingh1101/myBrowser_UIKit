@@ -9,7 +9,7 @@ import Foundation
 final class MenuContentViewModel: ObservableObject {
     @Published var items: [ItemModel] = []
 
-    func load(section: ItemModelSection) async {
+    func load(section: RepositoryBackedItemModel) async {
         do {
             items = try await section.repository.load()
         } catch {
@@ -17,12 +17,12 @@ final class MenuContentViewModel: ObservableObject {
         }
     }
 
-    func add(_ item: ItemModel, section: ItemModelSection) async throws {
+    func add(_ item: ItemModel, section: RepositoryBackedItemModel) async throws {
         try await section.repository.save(items + [item])
         await load(section: section)
     }
 
-    func delete(_ item: ItemModel, section: ItemModelSection) async throws {
+    func delete(_ item: ItemModel, section: RepositoryBackedItemModel) async throws {
         try await section.repository.save(items.filter { $0.id != item.id })
         await load(section: section)
     }

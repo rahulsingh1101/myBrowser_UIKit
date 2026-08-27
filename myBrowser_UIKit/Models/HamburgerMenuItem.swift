@@ -19,4 +19,13 @@ enum HamburgerMenuItem: String, CaseIterable, Identifiable, Equatable {
         case .pdfLibrary: return "My PDFs"
         }
     }
+
+    /// `nil` for sections not backed by a `FirebaseJSONRepository<[ItemModel]>` (currently `.pdfLibrary`).
+    var itemModelSection: RepositoryBackedItemModel? {
+        switch self {
+        case .home: return .home
+        case .focusMusic: return .focusMusic
+        case .pdfLibrary: return nil
+        }
+    }
 }
