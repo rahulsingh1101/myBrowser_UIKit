@@ -284,9 +284,7 @@ final class MenuContentController: NSViewController {
             alert.alertStyle = .warning
             alert.addButton(withTitle: "OK")
             if let window {
-                alert.beginSheetModal(for: window) { response in
-                    print("debug :: response:: \(response)")
-                }
+                alert.beginSheetModal(for: window)
             } else {
                 alert.runModal()
             }

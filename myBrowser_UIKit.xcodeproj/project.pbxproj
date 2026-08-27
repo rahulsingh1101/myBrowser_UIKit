@@ -16,6 +16,7 @@
 		1F3B5EF02DDE39AB00094BE1 /* ScrollViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F3B5EEF2DDE39AB00094BE1 /* ScrollViewViewModel.swift */; };
 		1F4E02C62DDCA24C00A76078 /* TaskListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F4E02C52DDCA24C00A76078 /* TaskListView.swift */; };
 		1F4E02CA2DDCA28000A76078 /* Color+String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F4E02C92DDCA28000A76078 /* Color+String.swift */; };
+		2A92BEEFC909D377AFAF0207 /* String+URLNormalization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FA173AEA07D69A34383F3A5 /* String+URLNormalization.swift */; };
 		1F4E02CC2DDCA29600A76078 /* StaticScrollableListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F4E02CB2DDCA29600A76078 /* StaticScrollableListModel.swift */; };
 		1F4E02CE2DDCA2AC00A76078 /* scrollViewData.json in Resources */ = {isa = PBXBuildFile; fileRef = 1F4E02CD2DDCA2AC00A76078 /* scrollViewData.json */; };
 		1F4E02D02DDCA2FE00A76078 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F4E02CF2DDCA2FE00A76078 /* SwiftUI.framework */; };
@@ -62,6 +63,7 @@
 		1F3B5EEF2DDE39AB00094BE1 /* ScrollViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollViewViewModel.swift; sourceTree = "<group>"; };
 		1F4E02C52DDCA24C00A76078 /* TaskListView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskListView.swift; sourceTree = "<group>"; };
 		1F4E02C92DDCA28000A76078 /* Color+String.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Color+String.swift"; sourceTree = "<group>"; };
+		4FA173AEA07D69A34383F3A5 /* String+URLNormalization.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+URLNormalization.swift"; sourceTree = "<group>"; };
 		1F4E02CB2DDCA29600A76078 /* StaticScrollableListModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StaticScrollableListModel.swift; sourceTree = "<group>"; };
 		1F4E02CD2DDCA2AC00A76078 /* scrollViewData.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = scrollViewData.json; sourceTree = "<group>"; };
 		1F4E02CF2DDCA2FE00A76078 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
@@ -276,6 +278,7 @@
 			isa = PBXGroup;
 			children = (
 				1F4E02C92DDCA28000A76078 /* Color+String.swift */,
+				4FA173AEA07D69A34383F3A5 /* String+URLNormalization.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -398,6 +401,7 @@
 				1F63F6FF2DDB3ECC00A31BC1 /* RootWindowController.swift in Sources */,
 				1F63F6FB2DDB323E00A31BC1 /* MainContainerWindowController.swift in Sources */,
 				1F4E02CA2DDCA28000A76078 /* Color+String.swift in Sources */,
+				2A92BEEFC909D377AFAF0207 /* String+URLNormalization.swift in Sources */,
 				1F63F6EF2DDB113D00A31BC1 /* MenuContentController.swift in Sources */,
 				1FB273D12DDB55090098D73A /* BrowserViewController.swift in Sources */,
 				1F3B5EF02DDE39AB00094BE1 /* ScrollViewViewModel.swift in Sources */,

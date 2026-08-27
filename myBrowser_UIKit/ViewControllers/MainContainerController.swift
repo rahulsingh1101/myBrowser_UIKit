@@ -98,24 +98,11 @@ final class MainContainerController: NSViewController {
     }
 
     @objc private func loadURL() {
-        print(">>>>>>>>>>>>>>>>  loadURL called :: >>>>>>>>>>>>>>>>>>>>>>>>>")
-        let urlString = searchField.stringValue.trimmingCharacters(in: .whitespacesAndNewlines)
-        guard !urlString.isEmpty else {
-            return
-        }
-        
-        var finalURLString = urlString
-        if !urlString.starts(with: "http://") && !urlString.starts(with: "https://") {
-            finalURLString = "https://\(urlString)"
-        }
-        
-        if let url = URL(string: finalURLString) {
-            print("debug :: Started loading...::\(url)")
-            let appDelegate = NSApplication.shared.delegate as? AppDelegate
-            guard let windowFactory = appDelegate?.windowFactory else { return }
-            let browser = windowFactory.create(windowType: .browser(url.absoluteString))
-            browser.showWindoww(self)
-        }
+        guard let url = searchField.stringValue.normalizedURL() else { return }
+        let appDelegate = NSApplication.shared.delegate as? AppDelegate
+        guard let windowFactory = appDelegate?.windowFactory else { return }
+        let browser = windowFactory.create(windowType: .browser(url.absoluteString))
+        browser.showWindoww(self)
     }
     
     override func viewDidLoad() {

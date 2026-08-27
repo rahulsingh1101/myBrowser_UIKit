@@ -149,21 +149,8 @@ final class BrowserViewController: NSViewController {
     }
 
     @objc private func loadURL() {
-        print(">>>>>>>>>>>>>>>>  loadURL called :: >>>>>>>>>>>>>>>>>>>>>>>>>")
-        let urlString = searchField.stringValue.trimmingCharacters(in: .whitespacesAndNewlines)
-        guard !urlString.isEmpty else {
-            return
-        }
-        
-        var finalURLString = urlString
-        if !urlString.starts(with: "http://") && !urlString.starts(with: "https://") {
-            finalURLString = "https://\(urlString)"
-        }
-        
-        if let url = URL(string: finalURLString) {
-            print("Started loading...::\(url)")
-            webView.load(URLRequest(url: url))
-        }
+        guard let url = searchField.stringValue.normalizedURL() else { return }
+        webView.load(URLRequest(url: url))
     }
 
     override var representedObject: Any? {
@@ -174,25 +161,8 @@ final class BrowserViewController: NSViewController {
 }
 
 extension BrowserViewController: WKNavigationDelegate {
-    // Called when loading starts
-    func webView(_ webView: WKWebView, didStartProvisionalNavigation navigation: WKNavigation!) {
-        print("Started loading...")
-    }
-
-    // Called when loading finishes successfully
     func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
-        print("Finished loading. ::\(webView.url)")
         self.view.window?.title = webView.title ?? (webView.url?.host ?? "Browser")
-    }
-
-    // Called when loading fails
-    func webView(_ webView: WKWebView, didFail navigation: WKNavigation!, withError error: Error) {
-        print("Failed to load: \(error.localizedDescription)")
-    }
-
-    // Called when initial load fails (before any content is shown)
-    func webView(_ webView: WKWebView, didFailProvisionalNavigation navigation: WKNavigation!, withError error: Error) {
-        print("Failed to start loading: \(error.localizedDescription)")
     }
 }
 
