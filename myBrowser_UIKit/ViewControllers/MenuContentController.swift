@@ -168,36 +168,20 @@ final class MenuContentController: NSViewController {
             lastReadPage: 0,
             dateAdded: Date().timeIntervalSince1970
         )
-        Task {
-            do {
-                try await pdfLibraryViewModel.add(newItem, to: .pdfLibrary())
-            } catch {
-                showAlert(for: error)
-            }
+        runCatchingErrors { [weak self] in
+            try await self?.pdfLibraryViewModel.add(newItem, to: .pdfLibrary())
         }
     }
 
     private func confirmDeletePDF(_ item: PDFLibraryItem) {
-        guard let window = view.window else { return }
-        let alert = NSAlert()
-        alert.messageText = "Delete \"\(item.title)\"?"
-        alert.alertStyle = .warning
-        alert.addButton(withTitle: "Delete")
-        alert.addButton(withTitle: "Cancel")
-
-        alert.beginSheetModal(for: window) { [weak self] response in
-            guard response == .alertFirstButtonReturn else { return }
+        confirm(title: "Delete \"\(item.title)\"?") { [weak self] in
             self?.deletePDF(item)
         }
     }
 
     private func deletePDF(_ item: PDFLibraryItem) {
-        Task {
-            do {
-                try await pdfLibraryViewModel.delete(item, from: .pdfLibrary())
-            } catch {
-                showAlert(for: error)
-            }
+        runCatchingErrors { [weak self] in
+            try await self?.pdfLibraryViewModel.delete(item, from: .pdfLibrary())
         }
     }
 
@@ -262,34 +246,41 @@ final class MenuContentController: NSViewController {
 
     private func addItem(_ item: ItemModel) {
         guard let section = currentMenuItem.itemModelSection else { return }
-        Task {
-            do {
-                try await menuContentViewModel.add(item, to: section.repository)
-            } catch {
-                showAlert(for: error)
-            }
+        runCatchingErrors { [weak self] in
+            try await self?.menuContentViewModel.add(item, to: section.repository)
         }
     }
 
     private func confirmDelete(_ item: ItemModel) {
-        guard let window = view.window else { return }
-        let alert = NSAlert()
-        alert.messageText = "Delete \"\(item.title)\"?"
-        alert.alertStyle = .warning
-        alert.addButton(withTitle: "Delete")
-        alert.addButton(withTitle: "Cancel")
-
-        alert.beginSheetModal(for: window) { [weak self] response in
-            guard response == .alertFirstButtonReturn else { return }
+        confirm(title: "Delete \"\(item.title)\"?") { [weak self] in
             self?.deleteItem(item)
         }
     }
 
     private func deleteItem(_ item: ItemModel) {
         guard let section = currentMenuItem.itemModelSection else { return }
+        runCatchingErrors { [weak self] in
+            try await self?.menuContentViewModel.delete(item, from: section.repository)
+        }
+    }
+
+    private func confirm(title: String, action: @escaping () -> Void) {
+        guard let window = view.window else { return }
+        let alert = NSAlert()
+        alert.messageText = title
+        alert.alertStyle = .warning
+        alert.addButton(withTitle: "Delete")
+        alert.addButton(withTitle: "Cancel")
+        alert.beginSheetModal(for: window) { response in
+            guard response == .alertFirstButtonReturn else { return }
+            action()
+        }
+    }
+
+    private func runCatchingErrors(_ operation: @escaping () async throws -> Void) {
         Task {
             do {
-                try await menuContentViewModel.delete(item, from: section.repository)
+                try await operation()
             } catch {
                 showAlert(for: error)
             }
