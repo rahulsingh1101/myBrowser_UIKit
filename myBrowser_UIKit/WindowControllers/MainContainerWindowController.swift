@@ -8,13 +8,13 @@
 import Cocoa
 
 final class MainContainerWindowController: RootWindowController {
-    init(identifier: String, title: String, windowTracker: WindowTrackerProtocol) {
+    init(identifier: String, windowTracker: WindowTrackerProtocol) {
         let viewController = MainContainerController()
         let window = NSWindow(contentViewController: viewController)
-        let visibleFrame = NSScreen.main!.visibleFrame
+        let visibleFrame = NSScreen.mainVisibleFrameOrDefault
         window.setContentSize(visibleFrame.size)
         window.styleMask = [.titled, .closable, .resizable, .miniaturizable]
-        window.title = title
+        window.title = "Search / Bookmark - 1"
         super.init(window: window, identifier: identifier, windowTracker: windowTracker)
     }
     

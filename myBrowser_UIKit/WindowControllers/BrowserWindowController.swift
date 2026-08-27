@@ -12,7 +12,7 @@ final class BrowserWindowController: RootWindowController {
         let viewController = BrowserViewController()
         viewController.preloadClass(data: model)
         let window = NSWindow(contentViewController: viewController)
-        let visibleFrame = NSScreen.main!.visibleFrame
+        let visibleFrame = NSScreen.mainVisibleFrameOrDefault
         window.setContentSize(visibleFrame.size)
         window.styleMask = [.titled, .closable, .resizable, .miniaturizable]
         window.title = model.title

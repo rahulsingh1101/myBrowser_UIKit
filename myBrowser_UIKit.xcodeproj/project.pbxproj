@@ -39,6 +39,7 @@
 		1FB273CF2DDB54840098D73A /* BrowserWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FB273CE2DDB54840098D73A /* BrowserWindowController.swift */; };
 		1FB273D12DDB55090098D73A /* BrowserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FB273D02DDB55090098D73A /* BrowserViewController.swift */; };
 		2A92BEEFC909D377AFAF0207 /* String+URLNormalization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FA173AEA07D69A34383F3A5 /* String+URLNormalization.swift */; };
+		A87E7641A1EA6C600CF6430A /* NSScreen+VisibleFrame.swift in Sources */ = {isa = PBXBuildFile; fileRef = E943F199525E6C8B78A52920 /* NSScreen+VisibleFrame.swift */; };
 		41DBF42F42C24120A53ED8FE /* FirebaseCore in Frameworks */ = {isa = PBXBuildFile; productRef = 250A808BA3A84D72B3FB737C /* FirebaseCore */; };
 		423352E7023739BDD8A8D275 /* PDFLibraryItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23488A4A1A5D32567544A8F9 /* PDFLibraryItem.swift */; };
 		513AD7D4A8F39C3CE792B3D6 /* ReaderWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 541603EAC93E46846448F93D /* ReaderWindowController.swift */; };
@@ -90,6 +91,7 @@
 		3B7D2E6A5362E75542CFD40F /* PDFKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PDFKit.framework; path = System/Library/Frameworks/PDFKit.framework; sourceTree = SDKROOT; };
 		C335F9858AE1085B3E63390E /* GenericLibraryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenericLibraryViewModel.swift; sourceTree = "<group>"; };
 		4FA173AEA07D69A34383F3A5 /* String+URLNormalization.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+URLNormalization.swift"; sourceTree = "<group>"; };
+		E943F199525E6C8B78A52920 /* NSScreen+VisibleFrame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSScreen+VisibleFrame.swift"; sourceTree = "<group>"; };
 		541603EAC93E46846448F93D /* ReaderWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReaderWindowController.swift; sourceTree = "<group>"; };
 		82A52445CBD703469359911A /* HamburgerMenuItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HamburgerMenuItem.swift; sourceTree = "<group>"; };
 		A7D0143F3B544F8C9A5B4EF8 /* FirebaseJSONRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseJSONRepository.swift; sourceTree = "<group>"; };
@@ -278,6 +280,7 @@
 			children = (
 				1F4E02C92DDCA28000A76078 /* Color+String.swift */,
 				4FA173AEA07D69A34383F3A5 /* String+URLNormalization.swift */,
+				E943F199525E6C8B78A52920 /* NSScreen+VisibleFrame.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -387,6 +390,7 @@
 				34A2E77823325249415DD70A /* LibraryCardView.swift in Sources */,
 				43F528C69EF7F200CE4995FE /* LibraryGridView.swift in Sources */,
 				2A92BEEFC909D377AFAF0207 /* String+URLNormalization.swift in Sources */,
+				A87E7641A1EA6C600CF6430A /* NSScreen+VisibleFrame.swift in Sources */,
 				1F63F6EF2DDB113D00A31BC1 /* MenuContentController.swift in Sources */,
 				1FB273D12DDB55090098D73A /* BrowserViewController.swift in Sources */,
 				1F3B5EF02DDE39AB00094BE1 /* ScrollViewViewModel.swift in Sources */,

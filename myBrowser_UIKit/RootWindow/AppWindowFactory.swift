@@ -15,16 +15,28 @@ enum WindowType {
     case reader(PDFLibraryItem)
 }
 
+extension WindowType {
+    /// `nil` means never de-duped (currently only `.popup`).
+    var dedupeIdentifier: String? {
+        switch self {
+        case .main: return "main"
+        case .browser(let urlString): return urlString
+        case .popup: return nil
+        case .reader(let item): return item.id
+        }
+    }
+}
+
 final class AppWindowFactory {
     let windowTracker: WindowTrackerProtocol = WindowTracker()
-    
+
     func create(windowType: WindowType) -> RootWindowControllerProtocol {
         if let windowController = checkIfAlreadyPresent(windowType: windowType) {
             return windowController
         }
         switch windowType {
         case .main:
-            let windowController = MainContainerWindowController(identifier: NSUserInterfaceItemIdentifier("main").rawValue, title: "Search / Bookmark - 1", windowTracker: windowTracker)
+            let windowController = MainContainerWindowController(identifier: NSUserInterfaceItemIdentifier("main").rawValue, windowTracker: windowTracker)
             windowTracker.add(window: windowController)
             return windowController
         case .browser(let urlString):
@@ -32,7 +44,7 @@ final class AppWindowFactory {
             windowTracker.add(window: windowController)
             return windowController
         case .popup(let configuration):
-            let windowController = PopupWindowController(configuration: configuration, windowTracker: windowTracker)
+            let windowController = PopupWindowController(identifier: UUID().uuidString, configuration: configuration, windowTracker: windowTracker)
             return windowController
         case .reader(let item):
             let windowController = ReaderWindowController(identifier: item.id, item: item, windowTracker: windowTracker)
@@ -42,16 +54,7 @@ final class AppWindowFactory {
     }
 
     private func checkIfAlreadyPresent(windowType: WindowType) -> RootWindowControllerProtocol? {
-        switch windowType {
-        case .main:
-            return windowTracker.getCreatedWindow(for: "main")
-        case .browser(let string):
-            return windowTracker.getCreatedWindow(for: string)
-        case .popup:
-            break
-        case .reader(let item):
-            return windowTracker.getCreatedWindow(for: item.id)
-        }
-        return nil
+        guard let id = windowType.dedupeIdentifier else { return nil }
+        return windowTracker.getCreatedWindow(for: id)
     }
 }

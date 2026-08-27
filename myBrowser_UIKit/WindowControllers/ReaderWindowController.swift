@@ -10,7 +10,7 @@ final class ReaderWindowController: RootWindowController {
         let viewController = PDFReaderViewController()
         viewController.load(item: item)
         let window = NSWindow(contentViewController: viewController)
-        let visibleFrame = NSScreen.main!.visibleFrame
+        let visibleFrame = NSScreen.mainVisibleFrameOrDefault
         window.setContentSize(visibleFrame.size)
         window.styleMask = [.titled, .closable, .resizable, .miniaturizable]
         window.title = item.title
