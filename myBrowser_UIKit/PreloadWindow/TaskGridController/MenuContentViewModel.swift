@@ -9,21 +9,21 @@ import Foundation
 final class MenuContentViewModel: ObservableObject {
     @Published var items: [ItemModel] = []
 
-    func load(menuItem: HamburgerMenuItem) async {
+    func load(section: ItemModelSection) async {
         do {
-            items = try await menuItem.repository.load()
+            items = try await section.repository.load()
         } catch {
             items = []
         }
     }
 
-    func add(_ item: ItemModel, menuItem: HamburgerMenuItem) async throws {
-        try await menuItem.repository.save(items + [item])
-        await load(menuItem: menuItem)
+    func add(_ item: ItemModel, section: ItemModelSection) async throws {
+        try await section.repository.save(items + [item])
+        await load(section: section)
     }
 
-    func delete(_ item: ItemModel, menuItem: HamburgerMenuItem) async throws {
-        try await menuItem.repository.save(items.filter { $0.id != item.id })
-        await load(menuItem: menuItem)
+    func delete(_ item: ItemModel, section: ItemModelSection) async throws {
+        try await section.repository.save(items.filter { $0.id != item.id })
+        await load(section: section)
     }
 }

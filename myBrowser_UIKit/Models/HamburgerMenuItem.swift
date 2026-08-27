@@ -19,13 +19,4 @@ enum HamburgerMenuItem: String, CaseIterable, Identifiable, Equatable {
         case .pdfLibrary: return "My PDFs"
         }
     }
-
-    /// Only valid for cases backed by `ItemModel`; `.pdfLibrary` uses its own `PDFLibraryItem` repository instead.
-    var repository: FirebaseJSONRepository<[ItemModel]> {
-        switch self {
-        case .home: return .preloadWebsites()
-        case .focusMusic: return .focusMusic()
-        case .pdfLibrary: fatalError("pdfLibrary does not use an ItemModel repository")
-        }
-    }
 }
