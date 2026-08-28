@@ -5,7 +5,7 @@
 
 import Foundation
 
-enum HamburgerMenuItem: String, CaseIterable, Identifiable, Equatable {
+enum HamburgerMenuItem: String, CaseIterable, Identifiable, Hashable {
     case home
     case focusMusic
     case pdfLibrary
@@ -20,12 +20,13 @@ enum HamburgerMenuItem: String, CaseIterable, Identifiable, Equatable {
         }
     }
 
-    /// `nil` for sections not backed by a `FirebaseJSONRepository<[ItemModel]>` (currently `.pdfLibrary`).
-    var itemModelSection: RepositoryBackedItemModel? {
-        switch self {
-        case .home: return .home
-        case .focusMusic: return .focusMusic
-        case .pdfLibrary: return nil
-        }
+    private static let itemModelRepositories: [HamburgerMenuItem: FirebaseJSONRepository<[ItemModel]>] = [
+        .home: .preloadWebsites(),
+        .focusMusic: .focusMusic()
+    ]
+
+    /// `nil` for sections not backed by a `FirebaseJSONRepository<[ItemModel]>` (currently `.pdfLibrary`, which uses its own `GenericLibraryViewModel<PDFLibraryItem>` pipeline instead — see `MenuContentController`).
+    var itemModelRepository: FirebaseJSONRepository<[ItemModel]>? {
+        Self.itemModelRepositories[self]
     }
 }

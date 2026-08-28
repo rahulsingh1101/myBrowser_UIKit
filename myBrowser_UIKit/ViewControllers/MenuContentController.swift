@@ -125,9 +125,9 @@ final class MenuContentController: NSViewController {
             Task { await pdfLibraryViewModel.load(from: .pdfLibrary()) }
             return
         }
-        guard let section = menuItem.itemModelSection else { return }
+        guard let repository = menuItem.itemModelRepository else { return }
         Task {
-            await menuContentViewModel.load(from: section.repository)
+            await menuContentViewModel.load(from: repository)
             if isInitial { coordinator.openInitialItemIfNeeded() }
         }
         if currentMenuItem == .home {
@@ -153,13 +153,13 @@ final class MenuContentController: NSViewController {
     }
 
     private func presentAddItemPrompt() {
-        guard let window = view.window, let section = currentMenuItem.itemModelSection else { return }
-        coordinator.presentAddItemPrompt(in: window, to: section.repository)
+        guard let window = view.window, let repository = currentMenuItem.itemModelRepository else { return }
+        coordinator.presentAddItemPrompt(in: window, to: repository)
     }
 
     private func confirmDeleteItem(_ item: ItemModel) {
-        guard let window = view.window, let section = currentMenuItem.itemModelSection else { return }
-        coordinator.confirmDelete(item, in: window, from: section.repository)
+        guard let window = view.window, let repository = currentMenuItem.itemModelRepository else { return }
+        coordinator.confirmDelete(item, in: window, from: repository)
     }
 }
 
