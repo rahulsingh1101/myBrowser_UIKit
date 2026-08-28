@@ -24,9 +24,9 @@ final class MenuContentController: NSViewController {
         super.init(nibName: nil, bundle: nil)
         coordinator = LibraryCoordinator(
             windowCreating: windowCreating,
+            alertPresenting: AlertPresenter(),
             menuContentViewModel: menuContentViewModel,
-            pdfLibraryViewModel: pdfLibraryViewModel,
-            presentError: { [weak self] error in self?.showAlert(for: error) }
+            pdfLibraryViewModel: pdfLibraryViewModel
         )
     }
 
@@ -94,7 +94,7 @@ final class MenuContentController: NSViewController {
             subtitle: { $0.subtitle },
             onOpen: { [weak self] item in self?.coordinator.open(item) },
             onAdd: { [weak self] in self?.presentAddItemPrompt() },
-            onDelete: currentMenuItem == .home ? { [weak self] item in self?.confirmDelete(item) } : nil
+            onDelete: currentMenuItem == .home ? { [weak self] item in self?.confirmDeleteItem(item) } : nil
         )
     }
 
@@ -148,97 +148,18 @@ final class MenuContentController: NSViewController {
     }
 
     private func confirmDeletePDF(_ item: PDFLibraryItem) {
-        confirm(title: "Delete \"\(item.title)\"?") { [weak self] in
-            self?.coordinator.deletePDF(item)
-        }
+        guard let window = view.window else { return }
+        coordinator.confirmDeletePDF(item, in: window)
     }
 
     private func presentAddItemPrompt() {
-        let alert = NSAlert()
-        alert.messageText = "Add Website"
-        alert.addButton(withTitle: "Add")
-        alert.addButton(withTitle: "Cancel")
-
-        let titleField = NSTextField(string: "")
-        titleField.placeholderString = "Title"
-        let subtitleField = NSTextField(string: "")
-        subtitleField.placeholderString = "Subtitle"
-        let urlField = NSTextField(string: "")
-        urlField.placeholderString = "URL"
-
-        let stack = NSStackView(views: [titleField, subtitleField, urlField])
-        stack.orientation = .vertical
-        stack.spacing = 8
-        stack.translatesAutoresizingMaskIntoConstraints = false
-
-        let container = NSView(frame: NSRect(x: 0, y: 0, width: 260, height: 90))
-        container.addSubview(stack)
-        NSLayoutConstraint.activate([
-            stack.leadingAnchor.constraint(equalTo: container.leadingAnchor),
-            stack.trailingAnchor.constraint(equalTo: container.trailingAnchor),
-            stack.topAnchor.constraint(equalTo: container.topAnchor),
-            stack.bottomAnchor.constraint(equalTo: container.bottomAnchor)
-        ])
-        [titleField, subtitleField, urlField].forEach {
-            $0.widthAnchor.constraint(equalToConstant: 260).isActive = true
-        }
-
-        alert.accessoryView = container
-
-        guard let window = view.window else { return }
-        alert.beginSheetModal(for: window) { [weak self] response in
-            guard response == .alertFirstButtonReturn else { return }
-            let newItem = ItemModel(
-                title: titleField.stringValue,
-                subtitle: subtitleField.stringValue,
-                url: urlField.stringValue
-            )
-            self?.addItem(newItem)
-        }
+        guard let window = view.window, let section = currentMenuItem.itemModelSection else { return }
+        coordinator.presentAddItemPrompt(in: window, to: section.repository)
     }
 
-    private func addItem(_ item: ItemModel) {
-        guard let section = currentMenuItem.itemModelSection else { return }
-        coordinator.addItem(item, to: section.repository)
-    }
-
-    private func confirmDelete(_ item: ItemModel) {
-        confirm(title: "Delete \"\(item.title)\"?") { [weak self] in
-            self?.deleteItem(item)
-        }
-    }
-
-    private func deleteItem(_ item: ItemModel) {
-        guard let section = currentMenuItem.itemModelSection else { return }
-        coordinator.deleteItem(item, from: section.repository)
-    }
-
-    private func confirm(title: String, action: @escaping () -> Void) {
-        guard let window = view.window else { return }
-        let alert = NSAlert()
-        alert.messageText = title
-        alert.alertStyle = .warning
-        alert.addButton(withTitle: "Delete")
-        alert.addButton(withTitle: "Cancel")
-        alert.beginSheetModal(for: window) { response in
-            guard response == .alertFirstButtonReturn else { return }
-            action()
-        }
-    }
-
-    private func showAlert(for error: Error, in window: NSWindow? = nil) {
-        DispatchQueue.main.async {
-            let alert = NSAlert()
-            alert.messageText = "An Error Occurred"
-            alert.informativeText = error.localizedDescription
-            alert.alertStyle = .warning
-            alert.addButton(withTitle: "OK")
-            if let window {
-                alert.beginSheetModal(for: window)
-            } else {
-                alert.runModal()
-            }
-        }
+    private func confirmDeleteItem(_ item: ItemModel) {
+        guard let window = view.window, let section = currentMenuItem.itemModelSection else { return }
+        coordinator.confirmDelete(item, in: window, from: section.repository)
     }
 }
 

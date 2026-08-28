@@ -46,6 +46,7 @@
 		513AD7D4A8F39C3CE792B3D6 /* ReaderWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 541603EAC93E46846448F93D /* ReaderWindowController.swift */; };
 		669C02521932738580A6DC77 /* PDFKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B7D2E6A5362E75542CFD40F /* PDFKit.framework */; };
 		950830C3D89F840DC6193DCC /* PDFBookmark.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBF03C150E3D0D8247A1CA23 /* PDFBookmark.swift */; };
+		402FDE295F83476893A3C542 /* AlertPresenting.swift in Sources */ = {isa = PBXBuildFile; fileRef = C06F5B5EF3CD4A368B518727 /* AlertPresenting.swift */; };
 		EB30FD512178FB81B4879039 /* GenericLibraryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C335F9858AE1085B3E63390E /* GenericLibraryViewModel.swift */; };
 		B1917ADE1E684B8B9741771B /* RealtimeDatabaseStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0417D363C08437AB6D4C589 /* RealtimeDatabaseStore.swift */; };
 		B5E22E6E303EC3E80077B345 /* PopupWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5E22E6D303EC3E80077B345 /* PopupWindowController.swift */; };
@@ -105,6 +106,7 @@
 		D0E7CCBF10FBFF07359986F3 /* HamburgerMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HamburgerMenuView.swift; sourceTree = "<group>"; };
 		D260434E61D84561C4D376E9 /* PDFReaderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFReaderViewController.swift; sourceTree = "<group>"; };
 		DBF03C150E3D0D8247A1CA23 /* PDFBookmark.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFBookmark.swift; sourceTree = "<group>"; };
+		C06F5B5EF3CD4A368B518727 /* AlertPresenting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertPresenting.swift; sourceTree = "<group>"; };
 		F83C0ED6DADA42178B509C92 /* AddTaskCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTaskCardView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -205,6 +207,7 @@
 			children = (
 				ADB0EB1F7BE9414284EE0E98 /* Firebase */,
 				DBF03C150E3D0D8247A1CA23 /* PDFBookmark.swift */,
+				C06F5B5EF3CD4A368B518727 /* AlertPresenting.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -416,6 +419,7 @@
 				513AD7D4A8F39C3CE792B3D6 /* ReaderWindowController.swift in Sources */,
 				C6AEFC617943ABB2799128EE /* PDFReaderViewController.swift in Sources */,
 				950830C3D89F840DC6193DCC /* PDFBookmark.swift in Sources */,
+				402FDE295F83476893A3C542 /* AlertPresenting.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -8,21 +8,21 @@ import AppKit
 @MainActor
 final class LibraryCoordinator {
     private let windowCreating: WindowCreating
+    private let alertPresenting: AlertPresenting
     private let menuContentViewModel: GenericLibraryViewModel<ItemModel>
     private let pdfLibraryViewModel: GenericLibraryViewModel<PDFLibraryItem>
-    private let presentError: (Error) -> Void
     private var hasPerformedInitialOpen = false
 
     init(
         windowCreating: WindowCreating,
+        alertPresenting: AlertPresenting,
         menuContentViewModel: GenericLibraryViewModel<ItemModel>,
-        pdfLibraryViewModel: GenericLibraryViewModel<PDFLibraryItem>,
-        presentError: @escaping (Error) -> Void
+        pdfLibraryViewModel: GenericLibraryViewModel<PDFLibraryItem>
     ) {
         self.windowCreating = windowCreating
+        self.alertPresenting = alertPresenting
         self.menuContentViewModel = menuContentViewModel
         self.pdfLibraryViewModel = pdfLibraryViewModel
-        self.presentError = presentError
     }
 
     func open(_ item: ItemModel) {
@@ -61,7 +61,7 @@ final class LibraryCoordinator {
         do {
             bookmarkData = try PDFBookmark.makeData(for: url)
         } catch {
-            presentError(error)
+            alertPresenting.presentError(error, in: nil)
             return
         }
         let newItem = PDFLibraryItem(
@@ -76,30 +76,48 @@ final class LibraryCoordinator {
         }
     }
 
-    func deletePDF(_ item: PDFLibraryItem) {
+    func presentAddItemPrompt(in window: NSWindow, to repository: FirebaseJSONRepository<[ItemModel]>) {
+        alertPresenting.presentAddWebsitePrompt(in: window) { [weak self] newItem in
+            self?.addItem(newItem, to: repository)
+        }
+    }
+
+    func confirmDelete(_ item: ItemModel, in window: NSWindow, from repository: FirebaseJSONRepository<[ItemModel]>) {
+        alertPresenting.presentDeleteConfirmation(title: "Delete \"\(item.title)\"?", in: window) { [weak self] in
+            self?.deleteItem(item, from: repository)
+        }
+    }
+
+    func confirmDeletePDF(_ item: PDFLibraryItem, in window: NSWindow) {
+        alertPresenting.presentDeleteConfirmation(title: "Delete \"\(item.title)\"?", in: window) { [weak self] in
+            self?.deletePDF(item)
+        }
+    }
+
+    private func deletePDF(_ item: PDFLibraryItem) {
         runCatchingErrors { [weak self] in
             try await self?.pdfLibraryViewModel.delete(item, from: .pdfLibrary())
         }
     }
 
-    func addItem(_ item: ItemModel, to repository: FirebaseJSONRepository<[ItemModel]>) {
+    private func addItem(_ item: ItemModel, to repository: FirebaseJSONRepository<[ItemModel]>) {
         runCatchingErrors { [weak self] in
             try await self?.menuContentViewModel.add(item, to: repository)
         }
     }
 
-    func deleteItem(_ item: ItemModel, from repository: FirebaseJSONRepository<[ItemModel]>) {
+    private func deleteItem(_ item: ItemModel, from repository: FirebaseJSONRepository<[ItemModel]>) {
         runCatchingErrors { [weak self] in
             try await self?.menuContentViewModel.delete(item, from: repository)
         }
     }
 
     private func runCatchingErrors(_ operation: @escaping () async throws -> Void) {
-        Task {
+        Task { [weak self] in
             do {
                 try await operation()
             } catch {
-                presentError(error)
+                self?.alertPresenting.presentError(error, in: nil)
             }
         }
     }
