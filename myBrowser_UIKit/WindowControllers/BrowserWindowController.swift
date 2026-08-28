@@ -6,6 +6,7 @@
 //
 
 import Cocoa
+import WebKit
 
 final class BrowserWindowController: RootWindowController {
     init(identifier: String, model: BrowserViewController.Model, windowTracker: WindowTrackerProtocol) {
@@ -19,11 +20,33 @@ final class BrowserWindowController: RootWindowController {
         super.init(window: window, identifier: identifier, windowTracker: windowTracker)
         self.window?.delegate = self
     }
-    
+
+    /// For JS-opened popups (`window.open()`): reuses the full browser chrome (search field,
+    /// back/forward), sized to 3/4 of the screen and centered, rather than the fixed compact
+    /// size a bare popup window would use.
+    init(identifier: String, configuration: WKWebViewConfiguration, windowTracker: WindowTrackerProtocol) {
+        let viewController = BrowserViewController(configuration: configuration)
+        let window = NSWindow(contentViewController: viewController)
+        let visibleFrame = NSScreen.mainVisibleFrameOrDefault
+        let size = NSSize(width: visibleFrame.width * 0.75, height: visibleFrame.height * 0.75)
+        let origin = NSPoint(
+            x: visibleFrame.minX + (visibleFrame.width - size.width) / 2,
+            y: visibleFrame.minY + (visibleFrame.height - size.height) / 2
+        )
+        window.setFrame(NSRect(origin: origin, size: size), display: false)
+        window.styleMask = [.titled, .closable, .resizable, .miniaturizable]
+        super.init(window: window, identifier: identifier, windowTracker: windowTracker)
+        self.window?.delegate = self
+    }
+
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+
+    var webView: WKWebView? {
+        (contentViewController as? BrowserViewController)?.webView
+    }
+
     override func windowDidLoad() {
         super.windowDidLoad()
     }

@@ -21,11 +21,28 @@ final class BrowserViewController: NSViewController {
     private var urlObservation: NSKeyValueObservation?
     private var canGoBackObservation: NSKeyValueObservation?
     private var canGoForwardObservation: NSKeyValueObservation?
-    private lazy var webView: WKWebView = {
-        let config = WKWebViewConfiguration()
-        config.preferences.javaScriptEnabled = true
-        config.preferences.javaScriptCanOpenWindowsAutomatically = true // needed for window.open
-        config.defaultWebpagePreferences.allowsContentJavaScript = true
+
+    /// Set only when this controller is standing in for a JS-opened popup (`WKUIDelegate.createWebView`),
+    /// where WebKit requires the returned webview to be built from the exact configuration it hands us.
+    private let externalConfiguration: WKWebViewConfiguration?
+
+    init(configuration: WKWebViewConfiguration? = nil) {
+        self.externalConfiguration = configuration
+        super.init(nibName: nil, bundle: nil)
+    }
+
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
+    lazy var webView: WKWebView = {
+        let config = externalConfiguration ?? {
+            let config = WKWebViewConfiguration()
+            config.preferences.javaScriptEnabled = true
+            config.preferences.javaScriptCanOpenWindowsAutomatically = true // needed for window.open
+            config.defaultWebpagePreferences.allowsContentJavaScript = true
+            return config
+        }()
 
         let wv = WKWebView(frame: .zero, configuration: config)
         wv.uiDelegate = self
@@ -170,20 +187,14 @@ extension BrowserViewController: WKUIDelegate {
     func webView(_ webView: WKWebView, createWebViewWith configuration: WKWebViewConfiguration, for navigationAction: WKNavigationAction, windowFeatures: WKWindowFeatures) -> WKWebView? {
         let appDelegate = NSApplication.shared.delegate as? AppDelegate
         guard let windowFactory = appDelegate?.windowFactory else { return nil }
-        guard let popup = windowFactory.create(windowType: .popup(configuration)) as? PopupWindowController else { return nil }
-        // Optional: apply requested size/position from windowFeatures
-        if let w = windowFeatures.width?.doubleValue, let h = windowFeatures.height?.doubleValue {
-            popup.window?.setContentSize(NSSize(width: w, height: h))
-        }
-        if let x = windowFeatures.x?.doubleValue, let y = windowFeatures.y?.doubleValue {
-            popup.window?.setFrameOrigin(NSPoint(x: x, y: y))
-        }
-        
+        guard let popup = windowFactory.create(windowType: .browserPopup(configuration)) as? BrowserWindowController,
+              let popupWebView = popup.webView else { return nil }
+
         popups.insert(popup) // retain
         popup.showWindow(self)
         NSApp.activate(ignoringOtherApps: true)
-        
+
         // Return the actual WKWebView that’s embedded in the new window
-        return popup.webView
+        return popupWebView
     }
 }
