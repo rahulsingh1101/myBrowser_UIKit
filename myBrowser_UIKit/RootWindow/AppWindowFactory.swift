@@ -12,20 +12,18 @@ enum WindowType {
     case main
     case browser(String)
     case popup(WKWebViewConfiguration)
-    /// A JS-opened popup (`window.open()`) presented as a full `BrowserViewController` window
-    /// (search field, back/forward) instead of the bare-webview `.popup` window.
-    case browserPopup(WKWebViewConfiguration)
+    case browserPopup(configuration: WKWebViewConfiguration, urlString: String)
     case reader(PDFLibraryItem)
 }
 
 extension WindowType {
-    /// `nil` means never de-duped (currently `.popup` and `.browserPopup`).
+    /// `nil` means never de-duped (currently only `.popup`).
     var dedupeIdentifier: String? {
         switch self {
         case .main: return "main"
         case .browser(let urlString): return urlString
         case .popup: return nil
-        case .browserPopup: return nil
+        case .browserPopup(_, let urlString): return urlString
         case .reader(let item): return item.id
         }
     }
@@ -50,8 +48,9 @@ final class AppWindowFactory {
         case .popup(let configuration):
             let windowController = PopupWindowController(identifier: UUID().uuidString, configuration: configuration, windowTracker: windowTracker)
             return windowController
-        case .browserPopup(let configuration):
-            let windowController = BrowserWindowController(identifier: UUID().uuidString, configuration: configuration, windowTracker: windowTracker)
+        case .browserPopup(let configuration, let urlString):
+            let windowController = BrowserWindowController(identifier: NSUserInterfaceItemIdentifier(urlString).rawValue, configuration: configuration, windowTracker: windowTracker)
+            windowTracker.add(window: windowController)
             return windowController
         case .reader(let item):
             let windowController = ReaderWindowController(identifier: item.id, item: item, windowTracker: windowTracker)

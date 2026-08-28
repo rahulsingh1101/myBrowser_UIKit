@@ -21,9 +21,6 @@ final class BrowserWindowController: RootWindowController {
         self.window?.delegate = self
     }
 
-    /// For JS-opened popups (`window.open()`): reuses the full browser chrome (search field,
-    /// back/forward), sized to 3/4 of the screen and centered, rather than the fixed compact
-    /// size a bare popup window would use.
     init(identifier: String, configuration: WKWebViewConfiguration, windowTracker: WindowTrackerProtocol) {
         let viewController = BrowserViewController(configuration: configuration)
         let window = NSWindow(contentViewController: viewController)

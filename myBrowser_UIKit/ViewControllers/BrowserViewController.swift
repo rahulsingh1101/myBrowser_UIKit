@@ -22,8 +22,6 @@ final class BrowserViewController: NSViewController {
     private var canGoBackObservation: NSKeyValueObservation?
     private var canGoForwardObservation: NSKeyValueObservation?
 
-    /// Set only when this controller is standing in for a JS-opened popup (`WKUIDelegate.createWebView`),
-    /// where WebKit requires the returned webview to be built from the exact configuration it hands us.
     private let externalConfiguration: WKWebViewConfiguration?
 
     init(configuration: WKWebViewConfiguration? = nil) {
@@ -187,7 +185,8 @@ extension BrowserViewController: WKUIDelegate {
     func webView(_ webView: WKWebView, createWebViewWith configuration: WKWebViewConfiguration, for navigationAction: WKNavigationAction, windowFeatures: WKWindowFeatures) -> WKWebView? {
         let appDelegate = NSApplication.shared.delegate as? AppDelegate
         guard let windowFactory = appDelegate?.windowFactory else { return nil }
-        guard let popup = windowFactory.create(windowType: .browserPopup(configuration)) as? BrowserWindowController,
+        let urlString = navigationAction.request.url?.absoluteString ?? UUID().uuidString
+        guard let popup = windowFactory.create(windowType: .browserPopup(configuration: configuration, urlString: urlString)) as? BrowserWindowController,
               let popupWebView = popup.webView else { return nil }
 
         popups.insert(popup) // retain
