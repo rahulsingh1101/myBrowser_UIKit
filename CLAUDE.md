@@ -9,13 +9,12 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 A macOS desktop web browser app. Despite the project name (`myBrowser_UIKit`), the UI framework is **AppKit/Cocoa** (`NSWindow`, `NSViewController`, `NSWindowController`), not UIKit — there is no iOS target. SwiftUI views are hosted inside AppKit view controllers for the home screen.
 
 - Single target: `myBrowser_UIKit`, deployment target macOS 14.4 (`SDKROOT = macosx`).
-- No test target exists in the project.
 - Persistence: Firebase Realtime Database (via Swift Package Manager), with local bundled JSON as an offline/first-run fallback; PDF library items additionally store a security-scoped bookmark (`Data`) rather than a raw file path, so file access survives relaunch under App Sandbox — see PDF library below. A Core Data model (`myBrowser_UIKit.xcdatamodeld`) exists but is currently unused.
 - `GoogleService-Info.plist` is **not** checked into the repo (gitignored). Fetch it per-machine with `./scripts/fetch-firebase-config.sh` (requires Firebase CLI + Firebase project access — see script comments). This file was previously committed and leaked via GitHub secret scanning; history has been purged and the key rotated.
 
 ## Build & run
 
-No CLI test command exists — verification is manual, by building and running in Xcode or via `xcodebuild`.
+Verification is manual: build and run in Xcode, or via `xcodebuild`.
 
 ```bash
 xcodebuild -project myBrowser_UIKit.xcodeproj -scheme myBrowser_UIKit -configuration Debug build

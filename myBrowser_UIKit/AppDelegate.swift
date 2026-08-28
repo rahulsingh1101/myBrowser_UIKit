@@ -18,7 +18,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         createWindowController: () -> RootWindowControllerProtocol
     ) {
         let controller = createWindowController()
-        controller.showWindoww(self)
+        controller.presentWindow(self)
     }
     
     func applicationDidFinishLaunching(_ aNotification: Notification) {
@@ -38,7 +38,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         if minimizedWindow == nil {
             minimizedWindow = windowFactory.create(windowType: .main)
         }
-        minimizedWindow?.showWindoww(minimizedWindow)
+        minimizedWindow?.presentWindow(minimizedWindow)
     }
 
     func applicationWillTerminate(_ aNotification: Notification) {

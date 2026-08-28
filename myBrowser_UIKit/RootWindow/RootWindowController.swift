@@ -9,14 +9,14 @@ import Cocoa
 
 protocol RootWindowControllerProtocol: AnyObject {
     var identifier: String { get }
-    func showWindoww(_ sender: Any?)
+    func presentWindow(_ sender: Any?)
 }
 
 class RootWindowController: NSWindowController, RootWindowControllerProtocol {
     let identifier: String
-    private var windowTracker: WindowTrackerProtocol
-    
-    init(window: NSWindow, identifier: String, windowTracker: WindowTrackerProtocol) {
+    private var windowTracker: WindowLifecycleRecording
+
+    init(window: NSWindow, identifier: String, windowTracker: WindowLifecycleRecording) {
         self.identifier = identifier
         self.windowTracker = windowTracker
         super.init(window: window)
@@ -27,7 +27,7 @@ class RootWindowController: NSWindowController, RootWindowControllerProtocol {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func showWindoww(_ sender: Any?) {
+    func presentWindow(_ sender: Any?) {
         showWindow(sender)
     }
 }
@@ -42,19 +42,13 @@ extension RootWindowController: NSWindowDelegate {
     func windowDidBecomeKey(_ notification: Notification) {
         guard let w = notification.object as? NSWindow else { return }
         guard let wd = w.windowController as? RootWindowController else { return }
-        windowTracker.currentWindow = wd
-    }
-
-    func windowWillMiniaturize(_ notification: Notification) {
-        guard let w = notification.object as? NSWindow else { return }
-        guard let wd = w.windowController as? RootWindowController else { return }
-        windowTracker.minimizedWindow.append(wd)
+        windowTracker.setCurrent(window: wd)
     }
 
     func windowDidMiniaturize(_ notification: Notification) {
         guard let w = notification.object as? NSWindow else { return }
         guard let wd = w.windowController as? RootWindowController else { return }
-        windowTracker.minimizedWindow.append(wd)
+        windowTracker.markMinimized(window: wd)
     }
 
     func windowDidDeminiaturize(_ notification: Notification) {

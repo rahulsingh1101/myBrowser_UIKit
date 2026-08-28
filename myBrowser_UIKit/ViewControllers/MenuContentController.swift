@@ -125,7 +125,7 @@ final class MenuContentController: NSViewController {
         let appDelegate = NSApplication.shared.delegate as? AppDelegate
         guard let windowFactory = appDelegate?.windowFactory else { return }
         let reader = windowFactory.create(windowType: .reader(item))
-        reader.showWindoww(self)
+        reader.presentWindow(self)
 
         guard let windowController = reader as? NSWindowController,
               let window = windowController.window,
@@ -197,7 +197,7 @@ final class MenuContentController: NSViewController {
         let appDelegate = NSApplication.shared.delegate as? AppDelegate
         guard let windowFactory = appDelegate?.windowFactory else { return }
         let browser = windowFactory.create(windowType: .browser(item.url))
-        browser.showWindoww(self)
+        browser.presentWindow(self)
     }
 
     private func presentAddItemPrompt() {

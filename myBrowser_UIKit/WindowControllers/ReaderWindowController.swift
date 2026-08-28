@@ -6,7 +6,7 @@
 import Cocoa
 
 final class ReaderWindowController: RootWindowController {
-    init(identifier: String, item: PDFLibraryItem, windowTracker: WindowTrackerProtocol) {
+    init(identifier: String, item: PDFLibraryItem, windowTracker: WindowLifecycleRecording) {
         let viewController = PDFReaderViewController()
         viewController.load(item: item)
         let window = NSWindow(contentViewController: viewController)

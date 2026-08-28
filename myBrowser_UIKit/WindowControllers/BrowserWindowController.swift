@@ -9,7 +9,7 @@ import Cocoa
 import WebKit
 
 final class BrowserWindowController: RootWindowController {
-    init(identifier: String, model: BrowserViewController.Model, windowTracker: WindowTrackerProtocol) {
+    init(identifier: String, model: BrowserViewController.Model, windowTracker: WindowLifecycleRecording) {
         let viewController = BrowserViewController()
         viewController.preloadClass(data: model)
         let window = NSWindow(contentViewController: viewController)
@@ -21,7 +21,7 @@ final class BrowserWindowController: RootWindowController {
         self.window?.delegate = self
     }
 
-    init(identifier: String, configuration: WKWebViewConfiguration, windowTracker: WindowTrackerProtocol) {
+    init(identifier: String, configuration: WKWebViewConfiguration, windowTracker: WindowLifecycleRecording) {
         let viewController = BrowserViewController(configuration: configuration)
         let window = NSWindow(contentViewController: viewController)
         let visibleFrame = NSScreen.mainVisibleFrameOrDefault

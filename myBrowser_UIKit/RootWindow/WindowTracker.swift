@@ -7,25 +7,37 @@
 
 import AppKit
 
-protocol WindowTrackerProtocol {
+protocol WindowRegistering {
     func add(window: RootWindowControllerProtocol)
     func getCreatedWindow(for identifier: String) -> RootWindowControllerProtocol?
-    func didClose(window: RootWindowControllerProtocol)
-    func resetMinimized(window: RootWindowControllerProtocol)
-    func getWindowForDockClick() -> RootWindowControllerProtocol?
-    var minimizedWindow: [RootWindowControllerProtocol] {get set}
-    var currentWindow: RootWindowControllerProtocol? { get set}
 }
+
+protocol WindowLifecycleRecording {
+    func didClose(window: RootWindowControllerProtocol)
+    func markMinimized(window: RootWindowControllerProtocol)
+    func resetMinimized(window: RootWindowControllerProtocol)
+    func setCurrent(window: RootWindowControllerProtocol?)
+}
+
+protocol DockClickResolving {
+    func getWindowForDockClick() -> RootWindowControllerProtocol?
+    var minimizedWindow: [RootWindowControllerProtocol] { get }
+    var currentWindow: RootWindowControllerProtocol? { get }
+}
+
+/// New consumers should depend on the narrowest protocol above that covers what they call;
+/// this composition exists for `AppWindowFactory`/`AppDelegate`, which legitimately need all three.
+typealias WindowTrackerProtocol = WindowRegistering & WindowLifecycleRecording & DockClickResolving
 
 final class WindowTracker: WindowTrackerProtocol {
     private var createdWindows = [RootWindowControllerProtocol]()
-    var minimizedWindow: [RootWindowControllerProtocol] = []
-    var currentWindow: RootWindowControllerProtocol?
-    
+    private(set) var minimizedWindow: [RootWindowControllerProtocol] = []
+    private(set) var currentWindow: RootWindowControllerProtocol?
+
     func add(window: RootWindowControllerProtocol) {
         createdWindows.append(window)
     }
-    
+
     func didClose(window: RootWindowControllerProtocol) {
         let id = NSUserInterfaceItemIdentifier(window.identifier)
         if currentWindow?.identifier == id.rawValue {
@@ -36,19 +48,23 @@ final class WindowTracker: WindowTrackerProtocol {
         }
     }
 
+    func markMinimized(window: RootWindowControllerProtocol) {
+        minimizedWindow.append(window)
+    }
+
     func resetMinimized(window: RootWindowControllerProtocol) {
         minimizedWindow.removeAll { $0.identifier == window.identifier }
     }
 
-    func getWindowForDockClick() -> RootWindowControllerProtocol? {
-//        click on dock if any present window -> ignore
-//        click on dock if current nil, minimized != nil -> restore minimized window
-//        click on dock if current nil, minimized nil -> create main window
+    func setCurrent(window: RootWindowControllerProtocol?) {
+        currentWindow = window
+    }
 
+    func getWindowForDockClick() -> RootWindowControllerProtocol? {
         if let currentWindow = currentWindow {
             return currentWindow
         }
-        if currentWindow == nil, let minimizedWindow = minimizedWindow.last {
+        if let minimizedWindow = minimizedWindow.last {
             return minimizedWindow
         }
         return nil

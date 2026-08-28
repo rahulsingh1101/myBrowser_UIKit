@@ -11,7 +11,7 @@ final class PopupWindowController: RootWindowController, WKUIDelegate, WKNavigat
     let webView: WKWebView
 
     /// Fixed 900x600 by design, not `NSScreen.mainVisibleFrameOrDefault` — a full-screen JS popup is worse UX than a normal one.
-    init(identifier: String, configuration: WKWebViewConfiguration, windowTracker: WindowTrackerProtocol) {
+    init(identifier: String, configuration: WKWebViewConfiguration, windowTracker: WindowLifecycleRecording) {
         self.webView = WKWebView(frame: .zero, configuration: configuration)
         let vc = NSViewController()
         vc.view = NSView()

@@ -102,7 +102,7 @@ final class MainContainerController: NSViewController {
         let appDelegate = NSApplication.shared.delegate as? AppDelegate
         guard let windowFactory = appDelegate?.windowFactory else { return }
         let browser = windowFactory.create(windowType: .browser(url.absoluteString))
-        browser.showWindoww(self)
+        browser.presentWindow(self)
     }
     
     override func viewDidLoad() {
