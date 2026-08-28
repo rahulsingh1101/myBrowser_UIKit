@@ -186,7 +186,7 @@ extension BrowserViewController: WKNavigationDelegate {
 extension BrowserViewController: WKUIDelegate {
     func webView(_ webView: WKWebView, createWebViewWith configuration: WKWebViewConfiguration, for navigationAction: WKNavigationAction, windowFeatures: WKWindowFeatures) -> WKWebView? {
         let urlString = navigationAction.request.url?.absoluteString ?? UUID().uuidString
-        guard let popup = windowCreating.create(windowType: .browserPopup(configuration: configuration, urlString: urlString)) as? BrowserWindowController,
+        guard let popup = windowCreating.create(BrowserPopupWindowRequest(configuration: configuration, urlString: urlString)) as? BrowserWindowController,
               let popupWebView = popup.webView else { return nil }
 
         popups.insert(popup) // retain

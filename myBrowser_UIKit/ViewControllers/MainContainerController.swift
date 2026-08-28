@@ -110,7 +110,7 @@ final class MainContainerController: NSViewController {
 
     @objc private func loadURL() {
         guard let url = searchField.stringValue.normalizedURL() else { return }
-        let browser = windowCreating.create(windowType: .browser(url.absoluteString))
+        let browser = windowCreating.create(BrowserWindowRequest(urlString: url.absoluteString))
         browser.presentWindow(self)
     }
     

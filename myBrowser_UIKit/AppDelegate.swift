@@ -24,7 +24,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         FirebaseBootstrap.configure()
         loadWindow(identifier: #function) {
-            return windowFactory.create(windowType: .main)
+            return windowFactory.create(MainWindowRequest())
         }
     }
     
@@ -36,7 +36,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     private func openNewWindow(_ sender: NSApplication) {
         var minimizedWindow = windowFactory.windowTracker.getWindowForDockClick()
         if minimizedWindow == nil {
-            minimizedWindow = windowFactory.create(windowType: .main)
+            minimizedWindow = windowFactory.create(MainWindowRequest())
         }
         minimizedWindow?.presentWindow(minimizedWindow)
     }

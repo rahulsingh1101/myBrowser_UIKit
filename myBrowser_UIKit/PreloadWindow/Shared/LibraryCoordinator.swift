@@ -26,12 +26,12 @@ final class LibraryCoordinator {
     }
 
     func open(_ item: ItemModel) {
-        let browser = windowCreating.create(windowType: .browser(item.url))
+        let browser = windowCreating.create(BrowserWindowRequest(urlString: item.url))
         browser.presentWindow(nil)
     }
 
     func openPDF(_ item: PDFLibraryItem) {
-        let reader = windowCreating.create(windowType: .reader(item))
+        let reader = windowCreating.create(ReaderWindowRequest(item: item))
         reader.presentWindow(nil)
 
         guard let windowController = reader as? NSWindowController,
