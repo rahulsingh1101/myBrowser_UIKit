@@ -8,9 +8,9 @@ import Foundation
 final class FirebaseJSONRepository<Model: Codable> {
     private let path: String
     private let bundleFallbackResource: String?
-    private let store: RealtimeDatabaseStore
+    private let store: DataStoring
 
-    init(path: String, bundleFallbackResource: String? = nil, store: RealtimeDatabaseStore = .shared) {
+    init(path: String, bundleFallbackResource: String? = nil, store: DataStoring = RealtimeDatabaseStore.shared) {
         self.path = path
         self.bundleFallbackResource = bundleFallbackResource
         self.store = store

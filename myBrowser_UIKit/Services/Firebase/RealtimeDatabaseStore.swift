@@ -10,7 +10,12 @@ enum RealtimeDatabaseError: Error {
     case noData
 }
 
-final class RealtimeDatabaseStore {
+protocol DataStoring {
+    func read<T: Decodable>(at path: String, as type: T.Type) async throws -> T
+    func write<T: Encodable>(_ value: T, at path: String) async throws
+}
+
+final class RealtimeDatabaseStore: DataStoring {
     static let shared = RealtimeDatabaseStore()
 
     private let database = Database.database()
