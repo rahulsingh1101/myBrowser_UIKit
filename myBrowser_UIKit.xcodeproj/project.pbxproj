@@ -124,14 +124,13 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		1F4E02D32DDCA76D00A76078 /* TaskListController */ = {
+		1F4E02D32DDCA76D00A76078 /* TaskList */ = {
 			isa = PBXGroup;
 			children = (
 				B5E22E74303ECDFF0077B345 /* Views */,
-				1F860EC02E68849000A78030 /* SwiftUIHostController.swift */,
 				1F3B5EEF2DDE39AB00094BE1 /* ScrollViewViewModel.swift */,
 			);
-			path = TaskListController;
+			path = TaskList;
 			sourceTree = "<group>";
 		};
 		1F63F65C2DD8495500A31BC1 = {
@@ -160,7 +159,7 @@
 				B5E22E71303ECBF40077B345 /* ViewControllers */,
 				B5E22E70303ECBA70077B345 /* WindowControllers */,
 				1F78BC0D2E5A45F000CDF50B /* RootWindow */,
-				1F63F6ED2DDB10F700A31BC1 /* PreloadWindow */,
+				1F63F6ED2DDB10F700A31BC1 /* LibraryContent */,
 				1F63F6682DD8495500A31BC1 /* AppDelegate.swift */,
 				1F63F66F2DD8495700A31BC1 /* Assets.xcassets */,
 				1F63F6712DD8495700A31BC1 /* Main.storyboard */,
@@ -171,13 +170,15 @@
 			path = myBrowser_UIKit;
 			sourceTree = "<group>";
 		};
-		1F63F6ED2DDB10F700A31BC1 /* PreloadWindow */ = {
+		1F63F6ED2DDB10F700A31BC1 /* LibraryContent */ = {
 			isa = PBXGroup;
 			children = (
-				1F4E02D32DDCA76D00A76078 /* TaskListController */,
+				1F63F6EE2DDB113D00A31BC1 /* MenuContentController.swift */,
+				1F860EC02E68849000A78030 /* SwiftUIHostController.swift */,
+				1F4E02D32DDCA76D00A76078 /* TaskList */,
 				6A2A027777637707C60D93FC /* Shared */,
 			);
-			path = PreloadWindow;
+			path = LibraryContent;
 			sourceTree = "<group>";
 		};
 		6A2A027777637707C60D93FC /* Shared */ = {
@@ -256,11 +257,18 @@
 			children = (
 				1FB273D02DDB55090098D73A /* BrowserViewController.swift */,
 				1F63F66A2DD8495500A31BC1 /* MainContainerController.swift */,
-				1F63F6EE2DDB113D00A31BC1 /* MenuContentController.swift */,
-				D0E7CCBF10FBFF07359986F3 /* HamburgerMenuView.swift */,
 				D260434E61D84561C4D376E9 /* PDFReaderViewController.swift */,
+				0DDF871CCB41EBA99A2581F5 /* Views */,
 			);
 			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		0DDF871CCB41EBA99A2581F5 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				D0E7CCBF10FBFF07359986F3 /* HamburgerMenuView.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 		B5E22E72303ECC6A0077B345 /* Models */ = {
