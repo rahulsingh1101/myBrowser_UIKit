@@ -8,8 +8,8 @@
 import Cocoa
 
 final class MainContainerWindowController: RootWindowController {
-    init(identifier: String, windowTracker: WindowLifecycleRecording) {
-        let viewController = MainContainerController()
+    init(identifier: String, windowTracker: WindowLifecycleRecording, windowCreating: WindowCreating) {
+        let viewController = MainContainerController(windowCreating: windowCreating)
         let window = NSWindow(contentViewController: viewController)
         let visibleFrame = NSScreen.mainVisibleFrameOrDefault
         window.setContentSize(visibleFrame.size)

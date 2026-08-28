@@ -17,8 +17,18 @@ final class MenuContentController: NSViewController {
     private let menuContentViewModel = GenericLibraryViewModel<ItemModel>()
     private let pdfLibraryViewModel = GenericLibraryViewModel<PDFLibraryItem>()
     private let scrollViewViewModel = ScrollViewViewModel()
+    private let windowCreating: WindowCreating
     private var currentMenuItem: HamburgerMenuItem = .home
     private var hasPerformedInitialOpen = false
+
+    init(windowCreating: WindowCreating) {
+        self.windowCreating = windowCreating
+        super.init(nibName: nil, bundle: nil)
+    }
+
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
 
     override func loadView() {
         let dropView = DropTargetView()
@@ -122,9 +132,7 @@ final class MenuContentController: NSViewController {
     }
 
     private func openPDF(_ item: PDFLibraryItem) {
-        let appDelegate = NSApplication.shared.delegate as? AppDelegate
-        guard let windowFactory = appDelegate?.windowFactory else { return }
-        let reader = windowFactory.create(windowType: .reader(item))
+        let reader = windowCreating.create(windowType: .reader(item))
         reader.presentWindow(self)
 
         guard let windowController = reader as? NSWindowController,
@@ -194,9 +202,7 @@ final class MenuContentController: NSViewController {
     }
 
     private func open(_ item: ItemModel) {
-        let appDelegate = NSApplication.shared.delegate as? AppDelegate
-        guard let windowFactory = appDelegate?.windowFactory else { return }
-        let browser = windowFactory.create(windowType: .browser(item.url))
+        let browser = windowCreating.create(windowType: .browser(item.url))
         browser.presentWindow(self)
     }
 

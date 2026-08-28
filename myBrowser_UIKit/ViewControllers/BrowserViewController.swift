@@ -23,9 +23,11 @@ final class BrowserViewController: NSViewController {
     private var canGoForwardObservation: NSKeyValueObservation?
 
     private let externalConfiguration: WKWebViewConfiguration?
+    private let windowCreating: WindowCreating
 
-    init(configuration: WKWebViewConfiguration? = nil) {
+    init(configuration: WKWebViewConfiguration? = nil, windowCreating: WindowCreating) {
         self.externalConfiguration = configuration
+        self.windowCreating = windowCreating
         super.init(nibName: nil, bundle: nil)
     }
 
@@ -183,10 +185,8 @@ extension BrowserViewController: WKNavigationDelegate {
 
 extension BrowserViewController: WKUIDelegate {
     func webView(_ webView: WKWebView, createWebViewWith configuration: WKWebViewConfiguration, for navigationAction: WKNavigationAction, windowFeatures: WKWindowFeatures) -> WKWebView? {
-        let appDelegate = NSApplication.shared.delegate as? AppDelegate
-        guard let windowFactory = appDelegate?.windowFactory else { return nil }
         let urlString = navigationAction.request.url?.absoluteString ?? UUID().uuidString
-        guard let popup = windowFactory.create(windowType: .browserPopup(configuration: configuration, urlString: urlString)) as? BrowserWindowController,
+        guard let popup = windowCreating.create(windowType: .browserPopup(configuration: configuration, urlString: urlString)) as? BrowserWindowController,
               let popupWebView = popup.webView else { return nil }
 
         popups.insert(popup) // retain

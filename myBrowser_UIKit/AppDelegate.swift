@@ -11,7 +11,7 @@ import Cocoa
 class AppDelegate: NSObject, NSApplicationDelegate {
 
     var window: NSWindow!
-    let windowFactory = AppWindowFactory()
+    private let windowFactory = AppWindowFactory()
     
     fileprivate func loadWindow(
         identifier: String,

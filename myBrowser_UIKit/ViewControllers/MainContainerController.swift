@@ -11,8 +11,19 @@ import WebKit
 
 final class MainContainerController: NSViewController {
     let searchField = NSSearchField()
-    let webViewController = MenuContentController()
+    let webViewController: MenuContentController
     let hamburgerButton = NSButton()
+    private let windowCreating: WindowCreating
+
+    init(windowCreating: WindowCreating) {
+        self.windowCreating = windowCreating
+        self.webViewController = MenuContentController(windowCreating: windowCreating)
+        super.init(nibName: nil, bundle: nil)
+    }
+
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
 
     private lazy var menuPopover: NSPopover = {
         let popover = NSPopover()
@@ -99,9 +110,7 @@ final class MainContainerController: NSViewController {
 
     @objc private func loadURL() {
         guard let url = searchField.stringValue.normalizedURL() else { return }
-        let appDelegate = NSApplication.shared.delegate as? AppDelegate
-        guard let windowFactory = appDelegate?.windowFactory else { return }
-        let browser = windowFactory.create(windowType: .browser(url.absoluteString))
+        let browser = windowCreating.create(windowType: .browser(url.absoluteString))
         browser.presentWindow(self)
     }
     

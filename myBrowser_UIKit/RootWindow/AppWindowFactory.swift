@@ -29,7 +29,11 @@ extension WindowType {
     }
 }
 
-final class AppWindowFactory {
+protocol WindowCreating {
+    func create(windowType: WindowType) -> RootWindowControllerProtocol
+}
+
+final class AppWindowFactory: WindowCreating {
     let windowTracker: WindowTrackerProtocol = WindowTracker()
 
     func create(windowType: WindowType) -> RootWindowControllerProtocol {
@@ -38,18 +42,18 @@ final class AppWindowFactory {
         }
         switch windowType {
         case .main:
-            let windowController = MainContainerWindowController(identifier: NSUserInterfaceItemIdentifier("main").rawValue, windowTracker: windowTracker)
+            let windowController = MainContainerWindowController(identifier: NSUserInterfaceItemIdentifier("main").rawValue, windowTracker: windowTracker, windowCreating: self)
             windowTracker.add(window: windowController)
             return windowController
         case .browser(let urlString):
-            let windowController = BrowserWindowController(identifier: NSUserInterfaceItemIdentifier(urlString).rawValue, model: .init(urlToLoad: urlString, title: urlString), windowTracker: windowTracker)
+            let windowController = BrowserWindowController(identifier: NSUserInterfaceItemIdentifier(urlString).rawValue, model: .init(urlToLoad: urlString, title: urlString), windowTracker: windowTracker, windowCreating: self)
             windowTracker.add(window: windowController)
             return windowController
         case .popup(let configuration):
             let windowController = PopupWindowController(identifier: UUID().uuidString, configuration: configuration, windowTracker: windowTracker)
             return windowController
         case .browserPopup(let configuration, let urlString):
-            let windowController = BrowserWindowController(identifier: NSUserInterfaceItemIdentifier(urlString).rawValue, configuration: configuration, windowTracker: windowTracker)
+            let windowController = BrowserWindowController(identifier: NSUserInterfaceItemIdentifier(urlString).rawValue, configuration: configuration, windowTracker: windowTracker, windowCreating: self)
             windowTracker.add(window: windowController)
             return windowController
         case .reader(let item):

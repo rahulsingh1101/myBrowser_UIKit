@@ -9,8 +9,8 @@ import Cocoa
 import WebKit
 
 final class BrowserWindowController: RootWindowController {
-    init(identifier: String, model: BrowserViewController.Model, windowTracker: WindowLifecycleRecording) {
-        let viewController = BrowserViewController()
+    init(identifier: String, model: BrowserViewController.Model, windowTracker: WindowLifecycleRecording, windowCreating: WindowCreating) {
+        let viewController = BrowserViewController(windowCreating: windowCreating)
         viewController.preloadClass(data: model)
         let window = NSWindow(contentViewController: viewController)
         let visibleFrame = NSScreen.mainVisibleFrameOrDefault
@@ -21,8 +21,8 @@ final class BrowserWindowController: RootWindowController {
         self.window?.delegate = self
     }
 
-    init(identifier: String, configuration: WKWebViewConfiguration, windowTracker: WindowLifecycleRecording) {
-        let viewController = BrowserViewController(configuration: configuration)
+    init(identifier: String, configuration: WKWebViewConfiguration, windowTracker: WindowLifecycleRecording, windowCreating: WindowCreating) {
+        let viewController = BrowserViewController(configuration: configuration, windowCreating: windowCreating)
         let window = NSWindow(contentViewController: viewController)
         let visibleFrame = NSScreen.mainVisibleFrameOrDefault
         let size = NSSize(width: visibleFrame.width * 0.75, height: visibleFrame.height * 0.75)
