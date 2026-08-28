@@ -17,13 +17,17 @@ final class MenuContentController: NSViewController {
     private let menuContentViewModel = GenericLibraryViewModel<ItemModel>()
     private let pdfLibraryViewModel = GenericLibraryViewModel<PDFLibraryItem>()
     private let scrollViewViewModel = ScrollViewViewModel()
-    private let windowCreating: WindowCreating
     private var currentMenuItem: HamburgerMenuItem = .home
-    private var hasPerformedInitialOpen = false
+    private var coordinator: LibraryCoordinator!
 
     init(windowCreating: WindowCreating) {
-        self.windowCreating = windowCreating
         super.init(nibName: nil, bundle: nil)
+        coordinator = LibraryCoordinator(
+            windowCreating: windowCreating,
+            menuContentViewModel: menuContentViewModel,
+            pdfLibraryViewModel: pdfLibraryViewModel,
+            presentError: { [weak self] error in self?.showAlert(for: error) }
+        )
     }
 
     required init?(coder: NSCoder) {
@@ -33,7 +37,7 @@ final class MenuContentController: NSViewController {
     override func loadView() {
         let dropView = DropTargetView()
         dropView.onDropPDF = { [weak self] urls in
-            urls.forEach { self?.importPDF(at: $0) }
+            urls.forEach { self?.coordinator.importPDF(at: $0) }
         }
         self.view = dropView
     }
@@ -88,7 +92,7 @@ final class MenuContentController: NSViewController {
         LibraryGridView(
             viewModel: menuContentViewModel,
             subtitle: { $0.subtitle },
-            onOpen: { [weak self] item in self?.open(item) },
+            onOpen: { [weak self] item in self?.coordinator.open(item) },
             onAdd: { [weak self] in self?.presentAddItemPrompt() },
             onDelete: currentMenuItem == .home ? { [weak self] item in self?.confirmDelete(item) } : nil
         )
@@ -98,7 +102,7 @@ final class MenuContentController: NSViewController {
         LibraryGridView(
             viewModel: pdfLibraryViewModel,
             subtitle: { $0.lastReadPage > 0 ? "Last read: page \($0.lastReadPage + 1)" : "Not started" },
-            onOpen: { [weak self] item in self?.openPDF(item) },
+            onOpen: { [weak self] item in self?.coordinator.openPDF(item) },
             onAdd: { [weak self] in self?.presentImportPDFPanel() },
             onDelete: { [weak self] item in self?.confirmDeletePDF(item) }
         )
@@ -124,26 +128,10 @@ final class MenuContentController: NSViewController {
         guard let section = menuItem.itemModelSection else { return }
         Task {
             await menuContentViewModel.load(from: section.repository)
-            if isInitial { openInitialItemIfNeeded() }
+            if isInitial { coordinator.openInitialItemIfNeeded() }
         }
         if currentMenuItem == .home {
             Task { await scrollViewViewModel.load() }
-        }
-    }
-
-    private func openPDF(_ item: PDFLibraryItem) {
-        let reader = windowCreating.create(windowType: .reader(item))
-        reader.presentWindow(self)
-
-        guard let windowController = reader as? NSWindowController,
-              let window = windowController.window,
-              let readerVC = windowController.contentViewController as? PDFReaderViewController else { return }
-
-        NotificationCenter.default.addObserver(forName: NSWindow.willCloseNotification, object: window, queue: .main) { [weak self] _ in
-            Task {
-                await readerVC.persistCurrentPage()
-                await self?.pdfLibraryViewModel.load(from: .pdfLibrary())
-            }
         }
     }
 
@@ -155,55 +143,14 @@ final class MenuContentController: NSViewController {
         panel.canChooseDirectories = false
         panel.beginSheetModal(for: window) { [weak self] response in
             guard response == .OK, let url = panel.url else { return }
-            self?.importPDF(at: url)
-        }
-    }
-
-    /// Must run synchronously in the callback that granted access to `url` — deferring past an actor hop can lose the sandbox grant.
-    private func importPDF(at url: URL) {
-        let title = url.deletingPathExtension().lastPathComponent
-        let bookmarkData: Data
-        do {
-            bookmarkData = try PDFBookmark.makeData(for: url)
-        } catch {
-            showAlert(for: error)
-            return
-        }
-        let newItem = PDFLibraryItem(
-            id: UUID().uuidString,
-            title: title,
-            bookmarkData: bookmarkData,
-            lastReadPage: 0,
-            dateAdded: Date().timeIntervalSince1970
-        )
-        runCatchingErrors { [weak self] in
-            try await self?.pdfLibraryViewModel.add(newItem, to: .pdfLibrary())
+            self?.coordinator.importPDF(at: url)
         }
     }
 
     private func confirmDeletePDF(_ item: PDFLibraryItem) {
         confirm(title: "Delete \"\(item.title)\"?") { [weak self] in
-            self?.deletePDF(item)
+            self?.coordinator.deletePDF(item)
         }
-    }
-
-    private func deletePDF(_ item: PDFLibraryItem) {
-        runCatchingErrors { [weak self] in
-            try await self?.pdfLibraryViewModel.delete(item, from: .pdfLibrary())
-        }
-    }
-
-    private func openInitialItemIfNeeded() {
-        guard !hasPerformedInitialOpen else { return }
-        hasPerformedInitialOpen = true
-        if let kgsItem = menuContentViewModel.items.first(where: { $0.title == "KGS" }) {
-            open(kgsItem)
-        }
-    }
-
-    private func open(_ item: ItemModel) {
-        let browser = windowCreating.create(windowType: .browser(item.url))
-        browser.presentWindow(self)
     }
 
     private func presentAddItemPrompt() {
@@ -252,9 +199,7 @@ final class MenuContentController: NSViewController {
 
     private func addItem(_ item: ItemModel) {
         guard let section = currentMenuItem.itemModelSection else { return }
-        runCatchingErrors { [weak self] in
-            try await self?.menuContentViewModel.add(item, to: section.repository)
-        }
+        coordinator.addItem(item, to: section.repository)
     }
 
     private func confirmDelete(_ item: ItemModel) {
@@ -265,9 +210,7 @@ final class MenuContentController: NSViewController {
 
     private func deleteItem(_ item: ItemModel) {
         guard let section = currentMenuItem.itemModelSection else { return }
-        runCatchingErrors { [weak self] in
-            try await self?.menuContentViewModel.delete(item, from: section.repository)
-        }
+        coordinator.deleteItem(item, from: section.repository)
     }
 
     private func confirm(title: String, action: @escaping () -> Void) {
@@ -280,16 +223,6 @@ final class MenuContentController: NSViewController {
         alert.beginSheetModal(for: window) { response in
             guard response == .alertFirstButtonReturn else { return }
             action()
-        }
-    }
-
-    private func runCatchingErrors(_ operation: @escaping () async throws -> Void) {
-        Task {
-            do {
-                try await operation()
-            } catch {
-                showAlert(for: error)
-            }
         }
     }
 
