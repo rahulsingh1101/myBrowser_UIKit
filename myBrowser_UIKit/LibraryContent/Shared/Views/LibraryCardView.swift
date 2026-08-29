@@ -10,6 +10,9 @@ struct LibraryCardView<Item: Identifiable & LibraryDisplayable>: View {
     let subtitle: String
     let onOpen: () -> Void
     var onDelete: (() -> Void)? = nil
+    var onCopyURL: (() -> Void)? = nil
+
+    @State private var didCopy = false
 
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
@@ -28,14 +31,30 @@ struct LibraryCardView<Item: Identifiable & LibraryDisplayable>: View {
         .background(Color(nsColor: .lightGray).opacity(0.2))
         .cornerRadius(8)
         .overlay(alignment: .topTrailing) {
-            if let onDelete {
-                Button(action: onDelete) {
-                    Image(systemName: "xmark.circle.fill")
-                        .foregroundStyle(.secondary)
+            HStack(spacing: 4) {
+                if let onCopyURL {
+                    Button {
+                        onCopyURL()
+                        didCopy = true
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 1.2) {
+                            didCopy = false
+                        }
+                    } label: {
+                        Image(systemName: didCopy ? "checkmark.circle.fill" : "doc.on.doc")
+                            .foregroundStyle(didCopy ? .green : .secondary)
+                    }
+                    .buttonStyle(.plain)
+                    .help(didCopy ? "Copied!" : "Copy URL")
                 }
-                .buttonStyle(.plain)
-                .padding(6)
+                if let onDelete {
+                    Button(action: onDelete) {
+                        Image(systemName: "xmark.circle.fill")
+                            .foregroundStyle(.secondary)
+                    }
+                    .buttonStyle(.plain)
+                }
             }
+            .padding(6)
         }
     }
 }

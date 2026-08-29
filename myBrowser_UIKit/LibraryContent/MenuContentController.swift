@@ -94,7 +94,11 @@ final class MenuContentController: NSViewController {
             subtitle: { $0.subtitle },
             onOpen: { [weak self] item in self?.coordinator.open(item) },
             onAdd: { [weak self] in self?.presentAddItemPrompt() },
-            onDelete: currentMenuItem == .home ? { [weak self] item in self?.confirmDeleteItem(item) } : nil
+            onDelete: { [weak self] item in self?.confirmDeleteItem(item) },
+            onCopyURL: { item in
+                NSPasteboard.general.clearContents()
+                NSPasteboard.general.setString(item.url, forType: .string)
+            }
         )
     }
 
