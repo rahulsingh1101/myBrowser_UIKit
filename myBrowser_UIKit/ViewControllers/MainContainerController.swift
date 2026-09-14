@@ -31,6 +31,7 @@ final class MainContainerController: NSViewController {
         let hostingController = NSHostingController(
             rootView: HamburgerMenuView(onSelect: { [weak self] item in
                 self?.webViewController.select(item)
+                self?.view.window?.title = item.title
                 self?.menuPopover.performClose(nil)
             })
         )

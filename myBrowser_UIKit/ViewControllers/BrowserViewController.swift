@@ -19,6 +19,7 @@ final class BrowserViewController: NSViewController {
     private let forwardButton = NSButton()
     private var popups: Set<RootWindowController> = []
     private var urlObservation: NSKeyValueObservation?
+    private var titleObservation: NSKeyValueObservation?
     private var canGoBackObservation: NSKeyValueObservation?
     private var canGoForwardObservation: NSKeyValueObservation?
 
@@ -46,7 +47,6 @@ final class BrowserViewController: NSViewController {
 
         let wv = WKWebView(frame: .zero, configuration: config)
         wv.uiDelegate = self
-        wv.navigationDelegate = self
         wv.allowsBackForwardNavigationGestures = true
 
         // WKNavigationDelegate callbacks don't fire for same-document navigations
@@ -56,6 +56,16 @@ final class BrowserViewController: NSViewController {
             guard let self, let url = webView.url else { return }
             DispatchQueue.main.async {
                 self.searchField.stringValue = url.absoluteString
+            }
+        }
+
+        // Same reasoning as `urlObservation`: relying on didFinish alone missed
+        // same-document navigations and JS-driven document.title changes, so the
+        // window title went stale after clicking links inside the page.
+        titleObservation = wv.observe(\.title, options: [.new]) { [weak self] webView, _ in
+            guard let self else { return }
+            DispatchQueue.main.async {
+                self.view.window?.title = webView.title ?? (webView.url?.host ?? "Browser")
             }
         }
 
@@ -76,6 +86,7 @@ final class BrowserViewController: NSViewController {
 
     deinit {
         urlObservation?.invalidate()
+        titleObservation?.invalidate()
         canGoBackObservation?.invalidate()
         canGoForwardObservation?.invalidate()
     }
@@ -174,12 +185,6 @@ final class BrowserViewController: NSViewController {
         didSet {
         // Update the view, if already loaded.
         }
-    }
-}
-
-extension BrowserViewController: WKNavigationDelegate {
-    func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
-        self.view.window?.title = webView.title ?? (webView.url?.host ?? "Browser")
     }
 }
 
