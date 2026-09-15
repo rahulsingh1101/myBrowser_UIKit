@@ -17,7 +17,7 @@ final class MenuContentController: NSViewController {
     private let menuContentViewModel = GenericLibraryViewModel<ItemModel>()
     private let pdfLibraryViewModel = GenericLibraryViewModel<PDFLibraryItem>()
     private let scrollViewViewModel = ScrollViewViewModel()
-    private var currentMenuItem: HamburgerMenuItem = .home
+    private(set) var currentMenuItem: HamburgerMenuItem = .home
     private var coordinator: LibraryCoordinator!
 
     init(windowCreating: WindowCreating) {

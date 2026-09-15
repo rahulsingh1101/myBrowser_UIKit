@@ -14,7 +14,7 @@ final class MainContainerWindowController: RootWindowController {
         let visibleFrame = NSScreen.mainVisibleFrameOrDefault
         window.setContentSize(visibleFrame.size)
         window.styleMask = [.titled, .closable, .resizable, .miniaturizable]
-        window.title = "Search / Bookmark - 1"
+        window.title = viewController.webViewController.currentMenuItem.title
         super.init(window: window, identifier: identifier, windowTracker: windowTracker)
     }
     
