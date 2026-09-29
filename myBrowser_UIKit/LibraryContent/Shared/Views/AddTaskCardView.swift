@@ -14,7 +14,7 @@ struct AddTaskCardView: View {
                 .font(.system(size: 24, weight: .medium))
         }
         .buttonStyle(.plain)
-        .frame(width: 300, height: 100)
+        .frame(minWidth: 300, maxWidth: 300, minHeight: 100, maxHeight: .infinity)
         .background(Color(nsColor: .lightGray).opacity(0.1))
         .cornerRadius(8)
         .overlay(

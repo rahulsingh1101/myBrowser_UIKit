@@ -71,7 +71,8 @@ final class MenuContentController: NSViewController {
             onCopyURL: { item in
                 NSPasteboard.general.clearContents()
                 NSPasteboard.general.setString(item.url, forType: .string)
-            }
+            },
+            onEdit: { [weak self] item in self?.presentEditItemPrompt(item) }
         )
         pdfPane = PDFLibraryMenuPane(
             viewModel: pdfLibraryViewModel,
@@ -159,6 +160,11 @@ final class MenuContentController: NSViewController {
     private func presentAddItemPrompt() {
         guard let window = view.window, let repository = gridPane.repository(for: currentMenuItem) else { return }
         coordinator.presentAddItemPrompt(in: window, to: repository)
+    }
+
+    private func presentEditItemPrompt(_ item: ItemModel) {
+        guard let window = view.window, let repository = gridPane.repository(for: currentMenuItem) else { return }
+        coordinator.presentEditItemPrompt(item, in: window, in: repository)
     }
 
     private func confirmDeleteItem(_ item: ItemModel) {

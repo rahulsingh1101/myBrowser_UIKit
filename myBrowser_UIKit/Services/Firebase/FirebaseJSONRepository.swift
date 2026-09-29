@@ -94,4 +94,14 @@ extension FirebaseJSONRepository {
         try await save(items)
         return items
     }
+
+    /// Replaces in place so the element keeps its position even if `id` changes; no-op if no element matches `id`.
+    @discardableResult
+    func replaceElement<Item: Identifiable>(id: Item.ID, with newItem: Item) async throws -> [Item] where Model == [Item] {
+        var items = try await loadOrEmpty()
+        guard let index = items.firstIndex(where: { $0.id == id }) else { return items }
+        items[index] = newItem
+        try await save(items)
+        return items
+    }
 }

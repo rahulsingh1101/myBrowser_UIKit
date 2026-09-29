@@ -12,6 +12,7 @@ struct LibraryGridView<Item: Codable & Identifiable & LibraryDisplayable>: View 
     let onAdd: () -> Void
     var onDelete: ((Item) -> Void)? = nil
     var onCopyURL: ((Item) -> Void)? = nil
+    var onEdit: ((Item) -> Void)? = nil
 
     private let columns = [GridItem(.adaptive(minimum: 300, maximum: 300), spacing: 10)]
 
@@ -24,7 +25,8 @@ struct LibraryGridView<Item: Codable & Identifiable & LibraryDisplayable>: View 
                         subtitle: subtitle(item),
                         onOpen: { onOpen(item) },
                         onDelete: onDelete.map { delete in { delete(item) } },
-                        onCopyURL: onCopyURL.map { copy in { copy(item) } }
+                        onCopyURL: onCopyURL.map { copy in { copy(item) } },
+                        onEdit: onEdit.map { edit in { edit(item) } }
                     )
                 }
                 AddTaskCardView(onAdd: onAdd)

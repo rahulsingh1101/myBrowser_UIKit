@@ -22,6 +22,10 @@ final class GenericLibraryViewModel<Item: Codable & Identifiable>: ObservableObj
         items = try await repository.addElement(item)
     }
 
+    func replace(_ item: Item, with newItem: Item, in repository: FirebaseJSONRepository<[Item]>) async throws {
+        items = try await repository.replaceElement(id: item.id, with: newItem)
+    }
+
     func delete(_ item: Item, from repository: FirebaseJSONRepository<[Item]>) async throws {
         items = try await repository.deleteElement(id: item.id)
     }

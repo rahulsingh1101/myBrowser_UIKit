@@ -23,7 +23,8 @@ final class GridMenuPane<Item: Codable & Identifiable & LibraryDisplayable>: Men
         onOpen: @escaping (Item) -> Void,
         onAdd: @escaping () -> Void,
         onDelete: ((Item) -> Void)? = nil,
-        onCopyURL: ((Item) -> Void)? = nil
+        onCopyURL: ((Item) -> Void)? = nil,
+        onEdit: ((Item) -> Void)? = nil
     ) {
         self.viewModel = viewModel
         self.repositories = repositories
@@ -34,7 +35,8 @@ final class GridMenuPane<Item: Codable & Identifiable & LibraryDisplayable>: Men
                 onOpen: onOpen,
                 onAdd: onAdd,
                 onDelete: onDelete,
-                onCopyURL: onCopyURL
+                onCopyURL: onCopyURL,
+                onEdit: onEdit
             )
         }
         self.makeView = makeView

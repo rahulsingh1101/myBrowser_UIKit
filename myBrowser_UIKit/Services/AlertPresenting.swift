@@ -6,24 +6,24 @@
 import AppKit
 
 protocol AlertPresenting {
-    func presentAddWebsitePrompt(in window: NSWindow, onAdd: @escaping (ItemModel) -> Void)
+    func presentWebsitePrompt(editing existing: ItemModel?, in window: NSWindow, onSubmit: @escaping (ItemModel) -> Void)
     func presentDeleteConfirmation(title: String, in window: NSWindow, onConfirm: @escaping () -> Void)
     func presentError(_ error: Error, in window: NSWindow?)
 }
 
 @MainActor
 final class AlertPresenter: AlertPresenting {
-    func presentAddWebsitePrompt(in window: NSWindow, onAdd: @escaping (ItemModel) -> Void) {
+    func presentWebsitePrompt(editing existing: ItemModel?, in window: NSWindow, onSubmit: @escaping (ItemModel) -> Void) {
         let alert = NSAlert()
-        alert.messageText = "Add Website"
-        alert.addButton(withTitle: "Add")
+        alert.messageText = existing == nil ? "Add Website" : "Edit Website"
+        alert.addButton(withTitle: existing == nil ? "Add" : "Save")
         alert.addButton(withTitle: "Cancel")
 
-        let titleField = NSTextField(string: "")
+        let titleField = NSTextField(string: existing?.title ?? "")
         titleField.placeholderString = "Title"
-        let subtitleField = NSTextField(string: "")
+        let subtitleField = NSTextField(string: existing?.subtitle ?? "")
         subtitleField.placeholderString = "Subtitle"
-        let urlField = NSTextField(string: "")
+        let urlField = NSTextField(string: existing?.url ?? "")
         urlField.placeholderString = "URL"
 
         let stack = NSStackView(views: [titleField, subtitleField, urlField])
@@ -47,12 +47,12 @@ final class AlertPresenter: AlertPresenting {
 
         alert.beginSheetModal(for: window) { response in
             guard response == .alertFirstButtonReturn else { return }
-            let newItem = ItemModel(
+            let submitted = ItemModel(
                 title: titleField.stringValue,
                 subtitle: subtitleField.stringValue,
                 url: urlField.stringValue
             )
-            onAdd(newItem)
+            onSubmit(submitted)
         }
     }
 

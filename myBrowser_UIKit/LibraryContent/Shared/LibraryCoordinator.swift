@@ -77,8 +77,14 @@ final class LibraryCoordinator {
     }
 
     func presentAddItemPrompt(in window: NSWindow, to repository: FirebaseJSONRepository<[ItemModel]>) {
-        alertPresenting.presentAddWebsitePrompt(in: window) { [weak self] newItem in
+        alertPresenting.presentWebsitePrompt(editing: nil, in: window) { [weak self] newItem in
             self?.addItem(newItem, to: repository)
+        }
+    }
+
+    func presentEditItemPrompt(_ item: ItemModel, in window: NSWindow, in repository: FirebaseJSONRepository<[ItemModel]>) {
+        alertPresenting.presentWebsitePrompt(editing: item, in: window) { [weak self] edited in
+            self?.replaceItem(item, with: edited, in: repository)
         }
     }
 
@@ -103,6 +109,12 @@ final class LibraryCoordinator {
     private func addItem(_ item: ItemModel, to repository: FirebaseJSONRepository<[ItemModel]>) {
         runCatchingErrors { [weak self] in
             try await self?.menuContentViewModel.add(item, to: repository)
+        }
+    }
+
+    private func replaceItem(_ item: ItemModel, with edited: ItemModel, in repository: FirebaseJSONRepository<[ItemModel]>) {
+        runCatchingErrors { [weak self] in
+            try await self?.menuContentViewModel.replace(item, with: edited, in: repository)
         }
     }
 

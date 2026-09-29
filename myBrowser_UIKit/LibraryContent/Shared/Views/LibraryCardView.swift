@@ -11,6 +11,7 @@ struct LibraryCardView<Item: Identifiable & LibraryDisplayable>: View {
     let onOpen: () -> Void
     var onDelete: (() -> Void)? = nil
     var onCopyURL: (() -> Void)? = nil
+    var onEdit: (() -> Void)? = nil
 
     @State private var didCopy = false
 
@@ -18,20 +19,22 @@ struct LibraryCardView<Item: Identifiable & LibraryDisplayable>: View {
         VStack(alignment: .leading, spacing: 0) {
             Text(item.title)
                 .font(.system(size: 14, weight: .bold))
-                .lineLimit(1)
+                .lineLimit(2)
             Text(subtitle)
                 .font(.system(size: 12))
                 .foregroundStyle(.secondary)
                 .padding(.top, 4)
-            Button("Open", action: onOpen)
-                .padding(.top, 8)
-        }
-        .padding(10)
-        .frame(width: 300, height: 100, alignment: .topLeading)
-        .background(Color(nsColor: .lightGray).opacity(0.2))
-        .cornerRadius(8)
-        .overlay(alignment: .topTrailing) {
             HStack(spacing: 4) {
+                Button("Open", action: onOpen)
+                Spacer()
+                if let onEdit {
+                    Button(action: onEdit) {
+                        Image(systemName: "pencil")
+                            .foregroundStyle(.secondary)
+                    }
+                    .buttonStyle(.plain)
+                    .help("Edit")
+                }
                 if let onCopyURL {
                     Button {
                         onCopyURL()
@@ -54,7 +57,11 @@ struct LibraryCardView<Item: Identifiable & LibraryDisplayable>: View {
                     .buttonStyle(.plain)
                 }
             }
-            .padding(6)
+            .padding(.top, 8)
         }
+        .padding(10)
+        .frame(minWidth: 300, maxWidth: 300, minHeight: 100, maxHeight: .infinity, alignment: .topLeading)
+        .background(Color(nsColor: .lightGray).opacity(0.2))
+        .cornerRadius(8)
     }
 }
