@@ -10,15 +10,24 @@ import Cocoa
 import SwiftUI
 
 final class MenuContentController: NSViewController {
-    var taskGridController: SwiftUIHostController<LibraryGridView<ItemModel>>!
-    var pdfLibraryController: SwiftUIHostController<LibraryGridView<PDFLibraryItem>>!
+    private var gridPane: GridMenuPane<ItemModel>!
+    private var pdfPane: PDFLibraryMenuPane!
     var taskListController: SwiftUIHostController<TaskListView>!
 
     private let menuContentViewModel = GenericLibraryViewModel<ItemModel>()
     private let pdfLibraryViewModel = GenericLibraryViewModel<PDFLibraryItem>()
     private let scrollViewViewModel = ScrollViewViewModel()
     private(set) var currentMenuItem: HamburgerMenuItem = .home
+    private var activePane: MenuPane!
     private var coordinator: LibraryCoordinator!
+
+    /// Exhaustive `switch`: a new `HamburgerMenuItem` case fails to compile until it's routed here.
+    private func pane(for item: HamburgerMenuItem) -> MenuPane {
+        switch item {
+        case .home, .focusMusic: return gridPane
+        case .pdfLibrary: return pdfPane
+        }
+    }
 
     init(windowCreating: WindowCreating) {
         super.init(nibName: nil, bundle: nil)
@@ -52,45 +61,9 @@ final class MenuContentController: NSViewController {
     private func setupTaskGrid() {
         let screenWidth = NSScreen.main?.frame.width ?? 800
 
-        taskGridController = SwiftUIHostController(rootView: makeGridView())
-        taskGridController.view.translatesAutoresizingMaskIntoConstraints = false
-        view.addSubview(taskGridController.view)
-
-        pdfLibraryController = SwiftUIHostController(rootView: makePDFLibraryView())
-        pdfLibraryController.view.translatesAutoresizingMaskIntoConstraints = false
-        pdfLibraryController.view.isHidden = true
-        view.addSubview(pdfLibraryController.view)
-
-        taskListController = SwiftUIHostController(rootView: TaskListView(viewModel: scrollViewViewModel))
-        taskListController.view.translatesAutoresizingMaskIntoConstraints = false
-        view.addSubview(taskListController.view)
-
-        NSLayoutConstraint.activate([
-            taskGridController.view.topAnchor.constraint(equalTo: view.topAnchor, constant: 0),
-            taskGridController.view.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 0),
-            taskGridController.view.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0),
-            taskGridController.view.widthAnchor.constraint(equalTo: view.widthAnchor, constant: -(screenWidth/3))
-        ])
-
-        NSLayoutConstraint.activate([
-            pdfLibraryController.view.topAnchor.constraint(equalTo: taskGridController.view.topAnchor),
-            pdfLibraryController.view.leadingAnchor.constraint(equalTo: taskGridController.view.leadingAnchor),
-            pdfLibraryController.view.trailingAnchor.constraint(equalTo: taskGridController.view.trailingAnchor),
-            pdfLibraryController.view.bottomAnchor.constraint(equalTo: taskGridController.view.bottomAnchor)
-        ])
-
-        NSLayoutConstraint.activate([
-            taskListController.view.topAnchor.constraint(equalTo: view.topAnchor, constant: 0),
-            taskListController.view.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0),
-            taskListController.view.leadingAnchor.constraint(equalTo: taskGridController.view.trailingAnchor, constant: 0),
-            taskListController.view.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 0),
-            taskListController.view.widthAnchor.constraint(equalToConstant: screenWidth/3)
-        ])
-    }
-
-    private func makeGridView() -> LibraryGridView<ItemModel> {
-        LibraryGridView(
+        gridPane = GridMenuPane(
             viewModel: menuContentViewModel,
+            repositories: [.home: .preloadWebsites(), .focusMusic: .focusMusic()],
             subtitle: { $0.subtitle },
             onOpen: { [weak self] item in self?.coordinator.open(item) },
             onAdd: { [weak self] in self?.presentAddItemPrompt() },
@@ -100,41 +73,68 @@ final class MenuContentController: NSViewController {
                 NSPasteboard.general.setString(item.url, forType: .string)
             }
         )
-    }
-
-    private func makePDFLibraryView() -> LibraryGridView<PDFLibraryItem> {
-        LibraryGridView(
+        pdfPane = PDFLibraryMenuPane(
             viewModel: pdfLibraryViewModel,
-            subtitle: { $0.lastReadPage > 0 ? "Last read: page \($0.lastReadPage + 1)" : "Not started" },
             onOpen: { [weak self] item in self?.coordinator.openPDF(item) },
             onAdd: { [weak self] in self?.presentImportPDFPanel() },
             onDelete: { [weak self] item in self?.confirmDeletePDF(item) }
         )
+        activePane = pane(for: currentMenuItem)
+
+        gridPane.view.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(gridPane.view)
+
+        pdfPane.view.translatesAutoresizingMaskIntoConstraints = false
+        pdfPane.view.isHidden = pdfPane !== activePane
+        view.addSubview(pdfPane.view)
+
+        taskListController = SwiftUIHostController(rootView: TaskListView(viewModel: scrollViewViewModel))
+        taskListController.view.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(taskListController.view)
+
+        NSLayoutConstraint.activate([
+            gridPane.view.topAnchor.constraint(equalTo: view.topAnchor, constant: 0),
+            gridPane.view.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 0),
+            gridPane.view.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0),
+            gridPane.view.widthAnchor.constraint(equalTo: view.widthAnchor, constant: -(screenWidth/3))
+        ])
+
+        NSLayoutConstraint.activate([
+            pdfPane.view.topAnchor.constraint(equalTo: gridPane.view.topAnchor),
+            pdfPane.view.leadingAnchor.constraint(equalTo: gridPane.view.leadingAnchor),
+            pdfPane.view.trailingAnchor.constraint(equalTo: gridPane.view.trailingAnchor),
+            pdfPane.view.bottomAnchor.constraint(equalTo: gridPane.view.bottomAnchor)
+        ])
+
+        NSLayoutConstraint.activate([
+            taskListController.view.topAnchor.constraint(equalTo: view.topAnchor, constant: 0),
+            taskListController.view.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0),
+            taskListController.view.leadingAnchor.constraint(equalTo: gridPane.view.trailingAnchor, constant: 0),
+            taskListController.view.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 0),
+            taskListController.view.widthAnchor.constraint(equalToConstant: screenWidth/3)
+        ])
     }
 
     func select(_ menuItem: HamburgerMenuItem) {
         guard menuItem != currentMenuItem else { return }
         currentMenuItem = menuItem
-        taskGridController.view.isHidden = menuItem == .pdfLibrary
-        pdfLibraryController.view.isHidden = menuItem != .pdfLibrary
-        if menuItem != .pdfLibrary {
-            taskGridController.updateRootView(makeGridView())
+        let newPane = pane(for: menuItem)
+        if newPane !== activePane {
+            activePane.view.isHidden = true
+            newPane.view.isHidden = false
+            activePane = newPane
         }
         loadContent(isInitial: false)
     }
 
     private func loadContent(isInitial: Bool) {
         let menuItem = currentMenuItem
-        if menuItem == .pdfLibrary {
-            Task { await pdfLibraryViewModel.load(from: .pdfLibrary()) }
-            return
-        }
-        guard let repository = menuItem.itemModelRepository else { return }
+        let pane = activePane!
         Task {
-            await menuContentViewModel.load(from: repository)
+            await pane.load(for: menuItem)
             if isInitial { coordinator.openInitialItemIfNeeded() }
         }
-        if currentMenuItem == .home {
+        if menuItem == .home {
             Task { await scrollViewViewModel.load() }
         }
     }
@@ -157,12 +157,12 @@ final class MenuContentController: NSViewController {
     }
 
     private func presentAddItemPrompt() {
-        guard let window = view.window, let repository = currentMenuItem.itemModelRepository else { return }
+        guard let window = view.window, let repository = gridPane.repository(for: currentMenuItem) else { return }
         coordinator.presentAddItemPrompt(in: window, to: repository)
     }
 
     private func confirmDeleteItem(_ item: ItemModel) {
-        guard let window = view.window, let repository = currentMenuItem.itemModelRepository else { return }
+        guard let window = view.window, let repository = gridPane.repository(for: currentMenuItem) else { return }
         coordinator.confirmDelete(item, in: window, from: repository)
     }
 }

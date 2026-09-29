@@ -19,14 +19,4 @@ enum HamburgerMenuItem: String, CaseIterable, Identifiable, Hashable {
         case .pdfLibrary: return "My PDFs"
         }
     }
-
-    private static let itemModelRepositories: [HamburgerMenuItem: FirebaseJSONRepository<[ItemModel]>] = [
-        .home: .preloadWebsites(),
-        .focusMusic: .focusMusic()
-    ]
-
-    /// `nil` for sections not backed by a `FirebaseJSONRepository<[ItemModel]>` (currently `.pdfLibrary`, which uses its own `GenericLibraryViewModel<PDFLibraryItem>` pipeline instead — see `MenuContentController`).
-    var itemModelRepository: FirebaseJSONRepository<[ItemModel]>? {
-        Self.itemModelRepositories[self]
-    }
 }

@@ -48,6 +48,9 @@
 		950830C3D89F840DC6193DCC /* PDFBookmark.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBF03C150E3D0D8247A1CA23 /* PDFBookmark.swift */; };
 		402FDE295F83476893A3C542 /* AlertPresenting.swift in Sources */ = {isa = PBXBuildFile; fileRef = C06F5B5EF3CD4A368B518727 /* AlertPresenting.swift */; };
 		EB30FD512178FB81B4879039 /* GenericLibraryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C335F9858AE1085B3E63390E /* GenericLibraryViewModel.swift */; };
+		A3EF97DC07B6F1BAEF1C2C54 /* MenuPane.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7E08184225B3B757A203343 /* MenuPane.swift */; };
+		4EA1A6FE18161770B6993F2C /* GridMenuPane.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846BFD08A1C77B0AFFF70598 /* GridMenuPane.swift */; };
+		E68155C35271BD3B96EC58EC /* PDFLibraryMenuPane.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4802C526546F412B05C71912 /* PDFLibraryMenuPane.swift */; };
 		B1917ADE1E684B8B9741771B /* RealtimeDatabaseStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0417D363C08437AB6D4C589 /* RealtimeDatabaseStore.swift */; };
 		B5E22E6E303EC3E80077B345 /* PopupWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5E22E6D303EC3E80077B345 /* PopupWindowController.swift */; };
 		B5E22E79303EDABC0077B345 /* FirebaseDatabase in Frameworks */ = {isa = PBXBuildFile; productRef = B5E22E78303EDABC0077B345 /* FirebaseDatabase */; };
@@ -92,6 +95,9 @@
 		23488A4A1A5D32567544A8F9 /* PDFLibraryItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFLibraryItem.swift; sourceTree = "<group>"; };
 		3B7D2E6A5362E75542CFD40F /* PDFKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PDFKit.framework; path = System/Library/Frameworks/PDFKit.framework; sourceTree = SDKROOT; };
 		C335F9858AE1085B3E63390E /* GenericLibraryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenericLibraryViewModel.swift; sourceTree = "<group>"; };
+		F7E08184225B3B757A203343 /* MenuPane.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuPane.swift; sourceTree = "<group>"; };
+		846BFD08A1C77B0AFFF70598 /* GridMenuPane.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridMenuPane.swift; sourceTree = "<group>"; };
+		4802C526546F412B05C71912 /* PDFLibraryMenuPane.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFLibraryMenuPane.swift; sourceTree = "<group>"; };
 		4FA173AEA07D69A34383F3A5 /* String+URLNormalization.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+URLNormalization.swift"; sourceTree = "<group>"; };
 		E943F199525E6C8B78A52920 /* NSScreen+VisibleFrame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSScreen+VisibleFrame.swift"; sourceTree = "<group>"; };
 		541603EAC93E46846448F93D /* ReaderWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReaderWindowController.swift; sourceTree = "<group>"; };
@@ -186,6 +192,9 @@
 			children = (
 				C335F9858AE1085B3E63390E /* GenericLibraryViewModel.swift */,
 				29736A6164C24E6DA5288E91 /* LibraryCoordinator.swift */,
+				F7E08184225B3B757A203343 /* MenuPane.swift */,
+				846BFD08A1C77B0AFFF70598 /* GridMenuPane.swift */,
+				4802C526546F412B05C71912 /* PDFLibraryMenuPane.swift */,
 				C798F7B02C98224BF35F37B2 /* Views */,
 			);
 			path = Shared;
@@ -416,6 +425,9 @@
 				1F63F6692DD8495500A31BC1 /* AppDelegate.swift in Sources */,
 				1F3B5EEE2DDE28AF00094BE1 /* BoxView.swift in Sources */,
 				EB30FD512178FB81B4879039 /* GenericLibraryViewModel.swift in Sources */,
+				A3EF97DC07B6F1BAEF1C2C54 /* MenuPane.swift in Sources */,
+				4EA1A6FE18161770B6993F2C /* GridMenuPane.swift in Sources */,
+				E68155C35271BD3B96EC58EC /* PDFLibraryMenuPane.swift in Sources */,
 				119D5432909C4B9AAEBF4F94 /* AddTaskCardView.swift in Sources */,
 				0F1CA00360F17D5EA07F0D4D /* HamburgerMenuItem.swift in Sources */,
 				10398953D3D240B583C8B762 /* HamburgerMenuView.swift in Sources */,
